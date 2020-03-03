@@ -3,4 +3,68 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <!--titles-->
+    <string name="title_news">News</string>
+    <string name="title_drink">Drink</string>
+    <string name="title_tracker">Tracker</string>
+    <string name="title_statistics">Statistics</string>
+    <string name="title_drink_tracker">Drink tracker</string>
+    <string name="title_fasts">Fasts</string>
+    <string name="title_settings">Settings</string>
+
+    <!--buttons-->
+    <string name="title_btn_save">Save</string>
+    <string name="title_btn_start">Start your fast</string>
+    <string name="title_btn_stop">Start</string>
+    <string name="title_btn_choose">Choose this</string>
+    <string name="title_btn_choose_fast">Choose your fast</string>
+    <string name="title_btn_add">Add</string>
+    <string name="title_btn_cancel">Cancel</string>
+    <string name="title_btn_change">Change a fast</string>
+    <string name="title_btn_see_more">See more</string>
+    <string name="title_btn_show_dj">Show drink journal</string>
+
+    <!--fasts-->
+    <string name="title_fast_first">12:12 intermittent</string>
+    <string name="title_fast_second">14:10 intermittent</string>
+    <string name="title_fast_third">16:8 intermittent</string>
+    <string name="title_fast_fourth">20:4 intermittent</string>
+
+    <!--settings-->
+    <string name="title_settings_gr">Goal Reached</string>
+    <string name="title_settings_ht">Halfway through</string>
+    <string name="title_settings_lh">Last hour</string>
+    <string name="title_settings_water">Water a day</string>
+
+    <!--drink tracker-->
+    <string name="title_goal">Goal</string>
+    <string name="title_water_absorbed">Water absorbed</string>
+    <string name="title_water_to_drink">Water to drink</string>
+    <string name="title_choose_a_drink">Choose a drink</string>
+    <string name="title_drink_water">Water</string>
+    <string name="title_drink_energy">Energetic</string>
+    <string name="title_drink_soda">Soda</string>
+    <string name="title_drink_coffee">Coffee</string>
+    <string name="title_drink_tea">Tea</string>
+    <string name="title_drink_milk">Milk</string>
+    <string name="title_drink_juice">Juice</string>
+    <string name="title_drink_chocolate">Chocolate</string>
+    <string name="title_drink_alcohol">Alcohol</string>
+
+    <!--tracker-->
+    <string name="title_tracker_slf">Since last fast</string>
+    <string name="title_tracker_end">End</string>
+    <string name="title_tracker_rt">Remaining time</string>
+    <string name="title_tracker_et">Elapsed time</string>
+
+    <!--statistics-->
+    <string name="title_main_statistics">Main statistics</string>
+    <string name="title_total_fasts">Total fast</string>
+    <string name="title_total_drinks">Total drinks</string>
+    <string name="title_longest_fast">Longest fast</string>
+    <string name="title_average_drink">Average drink</string>
+    <string name="title_fasting_graph">Fasting graph</string>
+    <string name="title_water_graph">Water graph</string>
+    
 </resources>
