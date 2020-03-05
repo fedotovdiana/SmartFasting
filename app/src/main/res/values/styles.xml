@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:fontFamily">@font/abeezee_regular</item>
     </style>
 
     <!--Style for Splash Screen-->
@@ -14,6 +15,17 @@
 <!--        <item name ="android:windowBackground"> @drawable/splash_screen_background</item>-->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="SpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:fontFamily">@font/abeezee_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SeekBarStyle" parent="Theme.AppCompat.Light">
+        <item name="android:colorControlActivated">@color/colorTextDark</item>
+        <item name="android:colorControlNormal">@color/colorPrimary</item>
     </style>
 
 </resources>

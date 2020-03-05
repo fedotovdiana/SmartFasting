@@ -5,7 +5,8 @@
     <gradient
         android:endColor="@color/colorGradientYellowSecond"
         android:startColor="@color/colorGradientYellowFirst"
-        android:type="linear" />
+        android:type="linear"
+        android:angle="0" />
 
     <corners android:radius="20dp" />
 

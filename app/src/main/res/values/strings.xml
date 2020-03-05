@@ -66,5 +66,17 @@
     <string name="title_average_drink">Average drink</string>
     <string name="title_fasting_graph">Fasting graph</string>
     <string name="title_water_graph">Water graph</string>
-    
+    <string name="ml">ml</string>
+    <string name="set_ml">2000</string>
+
+    <string-array name="drinks">
+        <item>Water</item>
+        <item>Juice</item>
+        <item>Soda</item>
+        <item>Tea</item>
+        <item>Coffee</item>
+        <item>Alcohol</item>
+        <item>Milk</item>
+    </string-array>
+
 </resources>
