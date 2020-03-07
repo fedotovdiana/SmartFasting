@@ -1,7 +1,5 @@
 package com.itis.group11801.fedotova.smartfasting
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -9,15 +7,14 @@ import kotlin.random.Random
 
 
 var colors = arrayOf(
-
-    ColorDrawable(Color.parseColor("#ffeead")),
-    ColorDrawable(Color.parseColor("#93cfb3")),
-    ColorDrawable(Color.parseColor("#fd7a7a")),
-    ColorDrawable(Color.parseColor("#faca5f")),
-    ColorDrawable(Color.parseColor("#1ba798")),
-    ColorDrawable(Color.parseColor("#6aa9ae")),
-    ColorDrawable(Color.parseColor("#ffbf27")),
-    ColorDrawable(Color.parseColor("#d93947"))
+    R.color.colorGradientBlueFirst,
+    R.color.colorGradientBlueSecond,
+    R.color.colorGradientYellowFirst,
+    R.color.colorGradientYellowSecond,
+    R.color.colorGradientGreenFirst,
+    R.color.colorGradientGreenSecond,
+    R.color.colorGradientPurpleFirst,
+    R.color.colorGradientPurpleSecond
 )
 
 fun getRandomDrawableColor() = colors[Random.nextInt(colors.size)]
