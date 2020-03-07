@@ -26,10 +26,24 @@
         app:cpb_progress_direction="to_right"
         app:cpb_progressbar_color="@color/colorPrimaryDark"
         app:cpb_progressbar_width="10dp"
+        android:padding="48dp"
         app:cpb_round_border="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_add_drink"
+        android:layout_width="180dp"
+        android:layout_height="36dp"
+        android:background="@drawable/custom_btn"
+        android:fontFamily="@font/abeezee_regular"
+        android:text="@string/title_btn_add"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circularProgressBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

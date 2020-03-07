@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.itis.group11801.fedotova.smartfasting.R
+import kotlinx.android.synthetic.main.fragment_drink_tracker.*
 
 class DrinkTrackerFragment : Fragment() {
 
@@ -25,6 +27,13 @@ class DrinkTrackerFragment : Fragment() {
 //            textView.text = it
 //        })
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        btn_add_drink.setOnClickListener {
+            val navController = findNavController(this)
+            navController.navigate(R.id.chooseDialogFragment)
+        }
     }
 
 //    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
