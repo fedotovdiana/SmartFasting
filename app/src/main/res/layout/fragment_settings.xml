@@ -8,7 +8,6 @@
         android:id="@+id/btn_set_save"
         android:layout_width="180dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="160dp"
         android:background="@drawable/custom_btn"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/title_btn_save"
@@ -16,14 +15,15 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_set_water" />
 
     <TextView
         android:id="@+id/tv_set_gl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/title_settings_gr"
         android:textColor="@color/colorTextDark"
@@ -74,7 +74,7 @@
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -103,6 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:hint="@string/set_ml"
+        android:inputType="number"
         android:textColor="@color/colorTextDark"
         app:layout_constraintEnd_toStartOf="@id/tv_set_ml"
         app:layout_constraintTop_toBottomOf="@+id/switch3"></EditText>

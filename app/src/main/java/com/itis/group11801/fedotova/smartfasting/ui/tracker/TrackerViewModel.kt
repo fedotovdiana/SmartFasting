@@ -1,10 +1,10 @@
-package com.itis.group11801.fedotova.smartfasting.ui.home
+package com.itis.group11801.fedotova.smartfasting.ui.tracker
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class TrackerViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

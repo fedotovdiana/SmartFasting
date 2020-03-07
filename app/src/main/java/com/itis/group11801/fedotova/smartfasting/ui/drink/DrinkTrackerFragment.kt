@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.ui.dashboard
+package com.itis.group11801.fedotova.smartfasting.ui.drink
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.itis.group11801.fedotova.smartfasting.R
 
-class DashboardFragment : Fragment() {
+class DrinkTrackerFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var drinkTrackerViewModel: DrinkTrackerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        drinkTrackerViewModel =
+            ViewModelProviders.of(this).get(DrinkTrackerViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_drink_tracker, container, false)
 //        val textView: TextView = root.findViewById(R.id.text_dashboard)
 //        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it

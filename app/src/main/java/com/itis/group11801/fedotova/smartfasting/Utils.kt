@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
 
-
 var colors = arrayOf(
     R.color.colorGradientBlueFirst,
     R.color.colorGradientBlueSecond,

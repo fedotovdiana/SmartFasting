@@ -1,10 +1,10 @@
-package com.itis.group11801.fedotova.smartfasting.ui.notifications
+package com.itis.group11801.fedotova.smartfasting.ui.news
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class NewsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"

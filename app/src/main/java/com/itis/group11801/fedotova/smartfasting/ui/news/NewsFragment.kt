@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.ui.notifications
+package com.itis.group11801.fedotova.smartfasting.ui.news
 
 import android.content.Intent
 import android.net.Uri
@@ -12,12 +12,12 @@ import com.itis.group11801.fedotova.smartfasting.NewsAdapter
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.net.ApiFactory
 import com.itis.group11801.fedotova.smartfasting.net.ApiService
-import kotlinx.android.synthetic.main.fragment_notifications.*
+import kotlinx.android.synthetic.main.fragment_news.*
 import kotlinx.coroutines.*
 
-class NotificationsFragment : Fragment(), CoroutineScope by MainScope() {
+class NewsFragment : Fragment(), CoroutineScope by MainScope() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var newsViewModel: NewsViewModel
     lateinit var service: ApiService
     lateinit var adapter: NewsAdapter
 
@@ -26,9 +26,9 @@ class NotificationsFragment : Fragment(), CoroutineScope by MainScope() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
+        newsViewModel =
+            ViewModelProviders.of(this).get(NewsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_news, container, false)
 //        val textView: TextView = root.findViewById(R.id.text_notifications)
 //        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it

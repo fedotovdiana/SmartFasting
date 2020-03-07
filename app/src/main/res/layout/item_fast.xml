@@ -4,9 +4,9 @@
     android:layout_width="280dp"
     android:layout_height="110dp"
     android:layout_marginVertical="16dp"
-    android:background="@drawable/custom_btn_green"
     android:padding="16dp"
-    tools:context=".ui.home.HomeFragment">
+    tools:background="@drawable/custom_btn_green"
+    tools:context=".ui.tracker.TrackerFragment">
 
     <TextView
         android:id="@+id/tv_fast_title"

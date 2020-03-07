@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.ui.home
+package com.itis.group11801.fedotova.smartfasting.ui.tracker
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import androidx.lifecycle.ViewModelProviders
 import com.itis.group11801.fedotova.smartfasting.Fast
 import com.itis.group11801.fedotova.smartfasting.FastsAdapter
 import com.itis.group11801.fedotova.smartfasting.R
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_fast_tracker.*
 
-class HomeFragment : Fragment() {
+class TrackerFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: TrackerViewModel
     lateinit var adapter: FastsAdapter
 
     private val fasts = listOf(
@@ -30,8 +30,8 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+            ViewModelProviders.of(this).get(TrackerViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_fast_tracker, container, false)
 //        val textView: TextView = root.findViewById(R.id.textView)
 //        homeViewModel.text.observe(this, Observer {
 //            textView.text = it
