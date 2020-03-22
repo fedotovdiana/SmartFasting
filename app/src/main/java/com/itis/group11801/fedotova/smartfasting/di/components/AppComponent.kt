@@ -1,14 +1,32 @@
 package com.itis.group11801.fedotova.smartfasting.di.components
 
-import com.itis.group11801.fedotova.smartfasting.di.modules.AppModule
-import com.itis.group11801.fedotova.smartfasting.di.modules.DbModule
-import com.itis.group11801.fedotova.smartfasting.di.modules.NetworkModule
-import com.itis.group11801.fedotova.smartfasting.view.fragment.NewsFragment
+import android.app.Application
+import com.itis.group11801.fedotova.smartfasting.application.App
+import com.itis.group11801.fedotova.smartfasting.di.modules.*
+import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, DbModule::class, NetworkModule::class])
+@Component(
+    modules = [
+        AndroidInjectionModule::class,
+        MainActivityModule::class,
+        DbModule::class,
+        NetworkModule::class,
+        RepositoryModule::class,
+        ViewModelModule::class]
+)
 interface AppComponent {
-    fun inject(target: NewsFragment)
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: Application): Builder
+
+        fun build(): AppComponent
+    }
+
+    fun inject(application: App)
 }

@@ -8,12 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.Fast
 import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.FastsAdapter
 import com.itis.group11801.fedotova.smartfasting.viewmodel.TrackerViewModel
 import kotlinx.android.synthetic.main.fragment_fast_tracker.*
 
-class TrackerFragment : Fragment() {
+class TrackerFragment : Fragment(), Injectable {
 
     private lateinit var homeViewModel: TrackerViewModel
     lateinit var adapter: FastsAdapter

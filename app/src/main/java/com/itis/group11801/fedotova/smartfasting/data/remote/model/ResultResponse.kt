@@ -3,16 +3,16 @@ package com.itis.group11801.fedotova.smartfasting.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class News(
+data class ResultResponse(
     @SerializedName("status")
     val status: String?,
     @SerializedName("totalResults")
     val totalResults: Int?,
     @SerializedName("articles")
-    val articles: List<Article>?
+    val newsResponse: List<NewsResponse>?
 )
 
-data class Article(
+data class NewsResponse(
     @SerializedName("source")
     val source: Source?,
     @SerializedName("author")

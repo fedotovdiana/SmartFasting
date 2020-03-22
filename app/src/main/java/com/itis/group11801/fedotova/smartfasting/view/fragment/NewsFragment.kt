@@ -1,67 +1,61 @@
 package com.itis.group11801.fedotova.smartfasting.view.fragment
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.application.App
-import com.itis.group11801.fedotova.smartfasting.data.remote.service.NewsApiService
+import com.itis.group11801.fedotova.smartfasting.data.Result.Status.*
+import com.itis.group11801.fedotova.smartfasting.di.Injectable
+import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
+import com.itis.group11801.fedotova.smartfasting.utils.hide
+import com.itis.group11801.fedotova.smartfasting.utils.intentOpenWebsite
+import com.itis.group11801.fedotova.smartfasting.utils.show
 import com.itis.group11801.fedotova.smartfasting.view.recycler.news.NewsAdapter
 import com.itis.group11801.fedotova.smartfasting.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
-import kotlinx.coroutines.*
+import kotlinx.android.synthetic.main.fragment_news.view.*
 import javax.inject.Inject
 
-class NewsFragment : Fragment(), CoroutineScope by MainScope() {
-
-    private lateinit var newsViewModel: NewsViewModel
+class NewsFragment : Fragment(), Injectable {
 
     @Inject
-    lateinit var service: NewsApiService
-    lateinit var adapter: NewsAdapter
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        newsViewModel =
-            ViewModelProviders.of(this).get(NewsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_news, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_notifications)
-//        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
-        App.component.inject(this)
+        viewModel = injectViewModel(viewModelFactory)
+        observeViewModel(root)
         return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        launch {
-            val articles = withContext(Dispatchers.IO) {
-                service.getNews().articles
-            }
-            articles?.let {
-                adapter =
-                    NewsAdapter(
-                        articles
-                    ) {
-                        showDetails(it)
+    private fun observeViewModel(root: View) {
+        viewModel.news.observe(viewLifecycleOwner, Observer { result ->
+            when (result.status) {
+                SUCCESS -> {
+                    progressBar.hide()
+                    result.data?.let { list ->
+                        if (rv_news.adapter == null) {
+                            root.rv_news.adapter = NewsAdapter { intentOpenWebsite(this, it) }
+                        }
+                        (rv_news.adapter as NewsAdapter).submitList(list)
                     }
+                }
+                LOADING -> progressBar.show()
+                ERROR -> {
+                    progressBar.hide()
+                    Snackbar.make(root, result.message!!, Snackbar.LENGTH_LONG).show()
+                }
             }
-            rv_news.adapter = adapter
-        }
-    }
-
-    private fun showDetails(url: String) {
-        val openURL = Intent(Intent.ACTION_VIEW)
-        openURL.data = Uri.parse(url)
-        startActivity(openURL)
+        })
     }
 }

@@ -8,10 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.viewmodel.DrinkTrackerViewModel
 import kotlinx.android.synthetic.main.fragment_drink_tracker.*
 
-class DrinkTrackerFragment : Fragment() {
+class DrinkTrackerFragment : Fragment(), Injectable {
 
     private lateinit var drinkTrackerViewModel: DrinkTrackerViewModel
 

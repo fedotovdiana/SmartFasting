@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.di.Injectable
 
-class ChooseDialogFragment : DialogFragment() {
+class ChooseDialogFragment : DialogFragment(), Injectable {
 
     override fun onCreateView(
         inflater: LayoutInflater,
