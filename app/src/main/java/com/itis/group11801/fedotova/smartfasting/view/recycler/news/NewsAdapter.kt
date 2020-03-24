@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.item_news.*
 class NewsAdapter(
     private val onClick: (String) -> Unit
 ) : ListAdapter<News, NewsViewHolder>(DiffCallback) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         NewsViewHolder(
             LayoutInflater

@@ -22,5 +22,4 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeTrackerFragment(): TrackerFragment
-
 }

@@ -7,7 +7,6 @@ import com.itis.group11801.fedotova.smartfasting.data.Result.Status.ERROR
 import com.itis.group11801.fedotova.smartfasting.data.Result.Status.SUCCESS
 import kotlinx.coroutines.Dispatchers
 
-
 fun <T, A> resultLiveData(
     databaseQuery: () -> LiveData<T>,
     networkCall: suspend () -> Result<A>,

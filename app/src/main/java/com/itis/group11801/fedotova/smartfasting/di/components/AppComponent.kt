@@ -2,7 +2,9 @@ package com.itis.group11801.fedotova.smartfasting.di.components
 
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.application.App
-import com.itis.group11801.fedotova.smartfasting.di.modules.*
+import com.itis.group11801.fedotova.smartfasting.di.modules.AppModule
+import com.itis.group11801.fedotova.smartfasting.di.modules.MainActivityModule
+import com.itis.group11801.fedotova.smartfasting.di.modules.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -12,10 +14,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
+        AppModule::class,
         MainActivityModule::class,
-        DbModule::class,
-        NetworkModule::class,
-        RepositoryModule::class,
         ViewModelModule::class]
 )
 interface AppComponent {

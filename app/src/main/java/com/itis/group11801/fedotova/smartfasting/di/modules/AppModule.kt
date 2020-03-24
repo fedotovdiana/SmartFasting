@@ -4,10 +4,5 @@ import android.app.Application
 import dagger.Module
 
 
-@Module
-class AppModule(val app: Application) {
-
-//    @Provides
-//    @Singleton
-//    fun provideContext(): Application = app
-}
+@Module(includes = [DbModule::class, NetworkModule::class, RepositoryModule::class])
+class AppModule(val app: Application)
