@@ -29,7 +29,6 @@ class NewsViewModel @Inject constructor(
             _newsLiveData.value = result.value
         }
     }
-    //либо сделать функцию и вызвать в мейн после обзервера
 
     override fun onCleared() {
         super.onCleared()
