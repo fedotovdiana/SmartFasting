@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.di.modules
+package com.itis.group11801.fedotova.smartfasting.di.module
 
 import com.itis.group11801.fedotova.smartfasting.view.fragment.*
 import dagger.Module

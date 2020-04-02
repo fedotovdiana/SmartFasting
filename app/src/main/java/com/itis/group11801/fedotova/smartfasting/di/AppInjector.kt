@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.itis.group11801.fedotova.smartfasting.application.App
-import com.itis.group11801.fedotova.smartfasting.di.components.DaggerAppComponent
+import com.itis.group11801.fedotova.smartfasting.di.component.DaggerAppComponent
 import dagger.android.AndroidInjection
 import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection

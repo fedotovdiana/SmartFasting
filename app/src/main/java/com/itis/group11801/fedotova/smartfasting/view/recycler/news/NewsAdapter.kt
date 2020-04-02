@@ -17,12 +17,11 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.data.local.News
+import com.itis.group11801.fedotova.smartfasting.domain.model.News
 import com.itis.group11801.fedotova.smartfasting.utils.dateFormat
 import com.itis.group11801.fedotova.smartfasting.utils.getRandomDrawableColor
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_news.*
-
 
 class NewsAdapter(
     private val onClick: (String) -> Unit
@@ -52,8 +51,8 @@ class NewsViewHolder(
         news.apply {
             tv_title.text = title
             tv_description.text = description
-            tv_source.text = source?.name
-            publishedAt?.let {
+            tv_source.text = source
+            publishedAt.let {
                 val time =
                     dateFormat(
                         publishedAt
@@ -109,7 +108,7 @@ class NewsViewHolder(
 
 object DiffCallback : DiffUtil.ItemCallback<News>() {
     override fun areItemsTheSame(oldItem: News, newItem: News): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.url == newItem.url
     }
 
     override fun areContentsTheSame(oldItem: News, newItem: News): Boolean {

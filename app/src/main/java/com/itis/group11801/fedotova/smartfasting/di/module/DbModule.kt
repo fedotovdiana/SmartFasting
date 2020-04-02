@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.di.modules
+package com.itis.group11801.fedotova.smartfasting.di.module
 
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.data.local.AppDatabase
@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module()
+@Module
 class DbModule {
     @Singleton
     @Provides

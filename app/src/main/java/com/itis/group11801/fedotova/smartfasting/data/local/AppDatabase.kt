@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [News::class], version = 2, exportSchema = false)
+@Database(entities = [NewsLocal::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun newsDao(): NewsDao
@@ -17,7 +17,7 @@ abstract class AppDatabase : RoomDatabase() {
             return INSTANCE ?: synchronized(AppDatabase::class) {
                 INSTANCE ?: Room.databaseBuilder(
                         context.applicationContext,
-                        AppDatabase::class.java, "app.db"
+                        AppDatabase::class.java, "sf.db"
                     )
                     .build()
             }

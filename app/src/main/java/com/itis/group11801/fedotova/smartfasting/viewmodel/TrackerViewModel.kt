@@ -1,12 +1,11 @@
 package com.itis.group11801.fedotova.smartfasting.viewmodel
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.itis.group11801.fedotova.smartfasting.data.Result
-import com.itis.group11801.fedotova.smartfasting.data.local.News
-import com.itis.group11801.fedotova.smartfasting.data.repository.NewsRepository
+import com.itis.group11801.fedotova.smartfasting.domain.NewsInteractor
+import com.itis.group11801.fedotova.smartfasting.domain.model.News
 import javax.inject.Inject
 
-class TrackerViewModel @Inject constructor(repository: NewsRepository) : ViewModel() {
-    val news: LiveData<Result<List<News>>> = repository.news
+class TrackerViewModel @Inject constructor(interactor: NewsInteractor) : ViewModel() {
+    val news = MutableLiveData<List<News>>()
 }

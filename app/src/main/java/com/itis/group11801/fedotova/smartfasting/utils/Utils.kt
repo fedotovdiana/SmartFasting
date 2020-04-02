@@ -1,8 +1,5 @@
 package com.itis.group11801.fedotova.smartfasting.utils
 
-import android.content.Intent
-import android.net.Uri
-import androidx.fragment.app.Fragment
 import com.itis.group11801.fedotova.smartfasting.R
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -43,8 +40,8 @@ fun getCountry(): String {
     return country.toLowerCase(Locale.ROOT)
 }
 
-fun intentOpenWebsite(fragment: Fragment, url: String) {
-    val openURL = Intent(Intent.ACTION_VIEW)
-    openURL.data = Uri.parse(url)
-    fragment.startActivity(openURL)
-}
+//fun intentOpenWebsite(fragment: Fragment, url: String) {
+//    val openURL = Intent(Intent.ACTION_VIEW)
+//    openURL.data = Uri.parse(url)
+//    fragment.startActivity(openURL)
+//}

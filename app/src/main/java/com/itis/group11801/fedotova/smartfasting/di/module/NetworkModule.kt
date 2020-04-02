@@ -1,7 +1,6 @@
-package com.itis.group11801.fedotova.smartfasting.di.modules
+package com.itis.group11801.fedotova.smartfasting.di.module
 
 import com.itis.group11801.fedotova.smartfasting.BuildConfig
-import com.itis.group11801.fedotova.smartfasting.data.remote.NewsRemoteSource
 import com.itis.group11801.fedotova.smartfasting.data.remote.service.NewsApiService
 import dagger.Module
 import dagger.Provides
@@ -11,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module()
+@Module
 class NetworkModule {
 
     @Provides
@@ -38,8 +37,4 @@ class NetworkModule {
     fun provideService(retrofit: Retrofit): NewsApiService {
         return retrofit.create(NewsApiService::class.java)
     }
-
-    @Singleton
-    @Provides
-    fun provideNewsRemoteSource(newsApiService: NewsApiService) = NewsRemoteSource(newsApiService)
 }

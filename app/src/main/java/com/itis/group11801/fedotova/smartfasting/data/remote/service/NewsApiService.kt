@@ -16,3 +16,36 @@ interface NewsApiService {
     ): Response<ResultResponse>
 }
 // http://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=39ca608664a741e390df7aabf5b0e7c5
+
+//@Singleton
+//class NewsRepository @Inject constructor(
+//    private val remoteSource: NewsRemoteSource,
+//    private val dao: NewsDao
+//) {
+//    val news = resultLiveData(
+//        databaseQuery = { dao.getNews() },
+//        networkCall = { remoteSource.fetchData() },
+//        saveResult = { dao.insert(convertToModel(it.newsResponse!!)) })
+//
+//    private fun convertToModel(resp: List<NewsResponse>): List<News> {
+//        val news = mutableListOf<News>()
+//        for (elem in resp) {
+//            elem.apply {
+//                news.add(
+//                    News(
+//                        0,
+//                        source,
+//                        author,
+//                        title,
+//                        description,
+//                        url,
+//                        urlToImage,
+//                        publishedAt,
+//                        content
+//                    )
+//                )
+//            }
+//        }
+//        return news
+//    }
+//}

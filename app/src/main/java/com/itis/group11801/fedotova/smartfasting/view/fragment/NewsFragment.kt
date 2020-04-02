@@ -8,17 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.data.Result.Status.*
+import com.itis.group11801.fedotova.smartfasting.data.ResultWrapper.Status.*
+import com.itis.group11801.fedotova.smartfasting.databinding.FragmentNewsBinding
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.utils.hide
-import com.itis.group11801.fedotova.smartfasting.utils.intentOpenWebsite
 import com.itis.group11801.fedotova.smartfasting.utils.show
 import com.itis.group11801.fedotova.smartfasting.view.recycler.news.NewsAdapter
 import com.itis.group11801.fedotova.smartfasting.viewmodel.NewsViewModel
-import kotlinx.android.synthetic.main.fragment_news.*
-import kotlinx.android.synthetic.main.fragment_news.view.*
 import javax.inject.Inject
 
 class NewsFragment : Fragment(), Injectable {
@@ -32,28 +29,33 @@ class NewsFragment : Fragment(), Injectable {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_news, container, false)
         viewModel = injectViewModel(viewModelFactory)
-        observeViewModel(root)
-        return root
+
+        val binding = FragmentNewsBinding.inflate(inflater, container, false)
+        context ?: return binding.root
+
+        val adapter = NewsAdapter { viewModel.router.intentOpenWebsite(this, it) }
+        binding.rvNews.adapter = adapter
+
+        observeViewModel(binding, adapter)
+
+        setHasOptionsMenu(true)
+        return binding.root
     }
 
-    private fun observeViewModel(root: View) {
-        viewModel.news.observe(viewLifecycleOwner, Observer { result ->
+    private fun observeViewModel(binding: FragmentNewsBinding, adapter: NewsAdapter) {
+        viewModel.getNews()
+        viewModel.newsLiveData.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
-                    progressBar.hide()
-                    result.data?.let { list ->
-                        if (rv_news.adapter == null) {
-                            root.rv_news.adapter = NewsAdapter { intentOpenWebsite(this, it) }
-                        }
-                        (rv_news.adapter as NewsAdapter).submitList(list)
-                    }
+                    binding.progressBar.hide()
+                    result.data?.let { adapter.submitList(it) }
                 }
-                LOADING -> progressBar.show()
+                LOADING -> binding.progressBar.show()
                 ERROR -> {
-                    progressBar.hide()
-                    Snackbar.make(root, result.message!!, Snackbar.LENGTH_LONG).show()
+                    binding.progressBar.hide()
+                    Snackbar.make(binding.root, result.message!!, Snackbar.LENGTH_LONG)
+                        .show()
                 }
             }
         })

@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.di.modules
+package com.itis.group11801.fedotova.smartfasting.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
