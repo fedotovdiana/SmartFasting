@@ -10,7 +10,7 @@ class NewsInteractorImpl @Inject constructor(
     private val newsRepository: NewsRepository
 ) : NewsInteractor {
 
-    override suspend fun getNews(): LiveData<ResultWrapper<List<News>>> {
+    override fun getNews(): LiveData<ResultWrapper<List<News>>> {
         return newsRepository.getNews()
     }
 }

@@ -44,7 +44,6 @@ class NewsFragment : Fragment(), Injectable {
     }
 
     private fun observeViewModel(binding: FragmentNewsBinding, adapter: NewsAdapter) {
-        viewModel.getNews()
         viewModel.newsLiveData.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {

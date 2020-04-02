@@ -20,9 +20,9 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsDao: NewsDao
 ) : NewsRepository {
 
-    override suspend fun getNews(): LiveData<ResultWrapper<List<News>>> {
+    override fun getNews(): LiveData<ResultWrapper<List<News>>> =
 
-        return liveData(Dispatchers.IO) {
+        liveData(Dispatchers.IO) {
 
             emit(ResultWrapper.loading<List<News>>())
 
@@ -36,7 +36,7 @@ class NewsRepositoryImpl @Inject constructor(
                 }
             emitSource(source)
 
-            val result = getResult(service.getNews())
+            val result = fromResponseToResultWrapper(service.getNews())
 
             if (result.status == ResultWrapper.Status.SUCCESS) {
                 newsDao.insert(result.data!!.map { mapNewsToNewsLocal(it) })
@@ -45,11 +45,11 @@ class NewsRepositoryImpl @Inject constructor(
                 emit(ResultWrapper.error(result.message!!))
                 emitSource(source)
             }
+
         }
-    }
 
 
-    private fun getResult(response: Response<ResultResponse>): ResultWrapper<List<News>> {
+    private fun fromResponseToResultWrapper(response: Response<ResultResponse>): ResultWrapper<List<News>> {
         if (response.isSuccessful) {
             val body = response.body()
             if (body != null) {

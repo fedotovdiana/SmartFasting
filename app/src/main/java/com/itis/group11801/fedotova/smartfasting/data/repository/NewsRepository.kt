@@ -6,5 +6,5 @@ import com.itis.group11801.fedotova.smartfasting.domain.model.News
 
 interface NewsRepository {
 
-    suspend fun getNews(): LiveData<ResultWrapper<List<News>>>
+    fun getNews(): LiveData<ResultWrapper<List<News>>>
 }
