@@ -20,13 +20,3 @@ class NewsViewModel @Inject constructor(
         job.cancel()
     }
 }
-
-//    private val _newsLiveData = MutableLiveData<ResultWrapper<List<News>>>()
-//    val newsLiveData: LiveData<ResultWrapper<List<News>>> get() = _newsLiveData
-//
-//    fun getNews() {
-//        viewModelScope.launch {
-//            val result = withContext(Dispatchers.IO) { interactor.getNews() }
-//            _newsLiveData.value = result.value
-//        }
-//    }

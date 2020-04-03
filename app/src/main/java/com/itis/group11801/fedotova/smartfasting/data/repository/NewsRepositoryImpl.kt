@@ -48,7 +48,6 @@ class NewsRepositoryImpl @Inject constructor(
 
         }
 
-
     private fun fromResponseToResultWrapper(response: Response<ResultResponse>): ResultWrapper<List<News>> {
         if (response.isSuccessful) {
             val body = response.body()
