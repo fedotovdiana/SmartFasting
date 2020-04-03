@@ -3,23 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_tracker">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.itis.group11801.fedotova.smartfasting.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_news"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.itis.group11801.fedotova.smartfasting.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_tracker"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.TrackerFragment"
+        android:label="@string/title_tracker"
+        tools:layout="@layout/fragment_fast_tracker" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.itis.group11801.fedotova.smartfasting.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_drink_tracker"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.DrinkTrackerFragment"
+        android:label="@string/title_drink_tracker"
+        tools:layout="@layout/fragment_drink_tracker" />
+
+    <fragment
+        android:id="@+id/navigation_statistics"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.StatisticsFragment"
+        android:label="@string/title_statistics"
+        tools:layout="@layout/fragment_settings" />
+
+    <dialog
+        android:id="@+id/chooseDialogFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.ChooseDialogFragment"
+        android:label="@string/title_choose_a_drink"
+        tools:layout="@layout/dialog_fragment_choose_drink" />
+
 </navigation>
