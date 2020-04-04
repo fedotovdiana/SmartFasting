@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.data.local
+package com.itis.group11801.fedotova.smartfasting.data.local.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

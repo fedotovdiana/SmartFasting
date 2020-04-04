@@ -15,7 +15,12 @@
         android:id="@+id/navigation_tracker"
         android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.TrackerFragment"
         android:label="@string/title_tracker"
-        tools:layout="@layout/fragment_fast_tracker" />
+        tools:layout="@layout/fragment_fast_tracker">
+
+        <action
+            android:id="@+id/open_fasts_fragment"
+            app:destination="@id/navigation_fasts" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_drink_tracker"
@@ -34,6 +39,12 @@
         android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_fasts"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.FastsFragment"
+        android:label="@string/title_fasts"
+        tools:layout="@layout/fragment_fasts" />
 
     <dialog
         android:id="@+id/chooseDialogFragment"

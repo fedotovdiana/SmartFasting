@@ -11,7 +11,6 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_fast.*
 
 class FastsAdapter(
-//    private val data: List<Fast>,
     private val onClick: (Fast) -> Unit
 ) : ListAdapter<Fast, FastsViewHolder>(DiffCallback) {
 

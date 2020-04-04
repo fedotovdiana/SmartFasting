@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_constraintBottom_toTopOf="@id/bottom_nav">
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/rv_fasts"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:overScrollMode="never"-->
-    <!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-    <!--        app:spanCount="1"-->
-    <!--        tools:itemCount="4"-->
-    <!--        tools:listitem="@layout/item_fast">-->
-    <!--    </androidx.recyclerview.widget.RecyclerView>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fasts"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:spanCount="1"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_fast" />
 
 </FrameLayout>

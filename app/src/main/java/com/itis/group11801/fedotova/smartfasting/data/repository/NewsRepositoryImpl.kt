@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.itis.group11801.fedotova.smartfasting.data.ResultWrapper
-import com.itis.group11801.fedotova.smartfasting.data.local.NewsDao
+import com.itis.group11801.fedotova.smartfasting.data.local.service.NewsDao
 import com.itis.group11801.fedotova.smartfasting.data.remote.mapper.mapNewsLocalToNews
 import com.itis.group11801.fedotova.smartfasting.data.remote.mapper.mapNewsToNewsLocal
 import com.itis.group11801.fedotova.smartfasting.data.remote.mapper.mapResponseResultToNews

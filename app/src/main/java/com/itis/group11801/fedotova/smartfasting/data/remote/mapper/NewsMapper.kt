@@ -1,6 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.data.remote.mapper
 
-import com.itis.group11801.fedotova.smartfasting.data.local.NewsLocal
+import com.itis.group11801.fedotova.smartfasting.data.local.model.NewsLocal
 import com.itis.group11801.fedotova.smartfasting.data.remote.model.NewsResponse
 import com.itis.group11801.fedotova.smartfasting.domain.model.News
 

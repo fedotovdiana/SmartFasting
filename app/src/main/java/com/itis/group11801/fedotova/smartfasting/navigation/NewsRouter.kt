@@ -5,4 +5,6 @@ import androidx.fragment.app.Fragment
 interface NewsRouter {
 
     fun intentOpenWebsite(fragment: Fragment, url: String)
+
+    fun openFastsFragment(fragment: Fragment)
 }

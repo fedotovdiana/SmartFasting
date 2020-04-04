@@ -22,4 +22,7 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeTrackerFragment(): TrackerFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeFastsFragment(): FastsFragment
 }
