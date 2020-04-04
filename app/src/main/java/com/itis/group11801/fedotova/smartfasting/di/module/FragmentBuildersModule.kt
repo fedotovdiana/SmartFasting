@@ -25,4 +25,7 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeFastsFragment(): FastsFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeFastInfoFragment(): FastInfoFragment
 }

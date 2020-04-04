@@ -44,7 +44,29 @@
         android:id="@+id/navigation_fasts"
         android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.FastsFragment"
         android:label="@string/title_fasts"
-        tools:layout="@layout/fragment_fasts" />
+        tools:layout="@layout/fragment_fasts">
+        <action
+            android:id="@+id/open_fast_info"
+            app:destination="@id/navigation_fast_info">
+            <argument
+                android:name="fastId"
+                android:defaultValue="0"
+                app:argType="integer" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_fast_info"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.FastInfoFragment"
+        android:label="@string/title_fasts"
+        tools:layout="@layout/fragment_fasting_graph">
+
+        <argument
+            android:name="fastId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+    </fragment>
 
     <dialog
         android:id="@+id/chooseDialogFragment"

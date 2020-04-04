@@ -3,9 +3,7 @@ package com.itis.group11801.fedotova.smartfasting.di.module
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.di.ViewModelKey
-import com.itis.group11801.fedotova.smartfasting.viewmodel.NewsViewModel
-import com.itis.group11801.fedotova.smartfasting.viewmodel.TrackerViewModel
-import com.itis.group11801.fedotova.smartfasting.viewmodel.ViewModelFactory
+import com.itis.group11801.fedotova.smartfasting.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -22,6 +20,16 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(TrackerViewModel::class)
     abstract fun bindTrackerViewModel(viewModel: TrackerViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FastsViewModel::class)
+    abstract fun bindFastsViewModel(viewModel: FastsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FastInfoViewModel::class)
+    abstract fun bindFastInfoViewModel(viewModel: FastInfoViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

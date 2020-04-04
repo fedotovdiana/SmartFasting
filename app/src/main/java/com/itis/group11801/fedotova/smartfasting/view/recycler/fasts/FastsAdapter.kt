@@ -36,7 +36,7 @@ class FastsViewHolder(
         tv_fast_title.text = fast.title
         tv_fast_desc.text = fast.desc
         itemView.setOnClickListener { onClick(fast) }
-        itemView.setBackgroundResource(fast.color)
+        itemView.setBackgroundResource(fast.gradient)
     }
 }
 
@@ -51,7 +51,10 @@ object DiffCallback : DiffUtil.ItemCallback<Fast>() {
 }
 
 data class Fast(
+    val id: Int,
     val title: String,
     val desc: String,
-    val color: Int
+    val gradient: Int,
+    val color_first: Int,
+    val color_second: Int
 )

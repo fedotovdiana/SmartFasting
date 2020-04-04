@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
@@ -13,7 +13,7 @@ import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.Fast
 import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.FastsAdapter
 import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.FastsObject
-import com.itis.group11801.fedotova.smartfasting.viewmodel.TrackerViewModel
+import com.itis.group11801.fedotova.smartfasting.viewmodel.FastsViewModel
 import kotlinx.android.synthetic.main.fragment_fasts.*
 import javax.inject.Inject
 
@@ -21,7 +21,7 @@ class FastsFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: TrackerViewModel
+    private lateinit var viewModel: FastsViewModel
     private lateinit var adapter: FastsAdapter
 
     override fun onCreateView(
@@ -43,6 +43,7 @@ class FastsFragment : Fragment(), Injectable {
     }
 
     private fun showDetails(fast: Fast) {
-        Toast.makeText(activity, fast.title, Toast.LENGTH_LONG).show()
+        val bundle = bundleOf("fastId" to fast.id)
+        viewModel.router.openFastInfoFragment(this, bundle)
     }
 }
