@@ -27,6 +27,12 @@
         android:id="@+id/navigation_statistics"
         android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.StatisticsFragment"
         android:label="@string/title_statistics"
+        tools:layout="@layout/fragment_statistics" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.SettingsFragment"
+        android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 
     <dialog

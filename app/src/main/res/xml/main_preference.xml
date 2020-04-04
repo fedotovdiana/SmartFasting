@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/title_notifications">
+
+        <SwitchPreferenceCompat
+            android:key="preference_gr"
+            android:title="@string/title_settings_gr">
+
+        </SwitchPreferenceCompat>
+
+        <SwitchPreferenceCompat
+            android:key="preference_ht"
+            android:title="@string/title_settings_ht">
+
+        </SwitchPreferenceCompat>
+
+        <SwitchPreferenceCompat
+            android:key="preference_lh"
+            android:title="@string/title_settings_lh">
+
+        </SwitchPreferenceCompat>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/title_drink_water">
+
+        <SeekBarPreference
+            android:summary="Water per day"
+            app:defaultValue="70"
+            app:key="water"
+            app:title="@string/title_drink_water" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
