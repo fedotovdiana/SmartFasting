@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:layout_constraintBottom_toTopOf="@id/nav_view">
+    app:layout_constraintBottom_toTopOf="@id/bottom_nav">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fasts"

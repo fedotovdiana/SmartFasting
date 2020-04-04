@@ -1,10 +1,14 @@
 package com.itis.group11801.fedotova.smartfasting.view.activity
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.itis.group11801.fedotova.smartfasting.R
@@ -21,6 +25,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector, Injectable {
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -29,7 +34,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector, Injectable {
 
         navController = findNavController(R.id.nav_host_fragment)
 
-        val appBarConfiguration = AppBarConfiguration(
+        appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_news,
                 R.id.navigation_drink_tracker,
@@ -38,10 +43,23 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector, Injectable {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        nav_view.setupWithNavController(navController)
+        bottom_nav.setupWithNavController(navController)
     }
 
-    override fun onSupportNavigateUp() = navController.navigateUp()
+    override fun onSupportNavigateUp() = navController.navigateUp(appBarConfiguration)
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.item_settings) {
+            navController.navigate(R.id.navigation_settings)
+            Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun androidInjector() = dispatchingAndroidInjector
 }
