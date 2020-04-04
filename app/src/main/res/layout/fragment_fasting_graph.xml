@@ -5,10 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/tv_fast_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="bvcxz"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +28,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv" />
+        app:layout_constraintTop_toTopOf="@id/tv_fast_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

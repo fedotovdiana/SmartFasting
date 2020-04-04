@@ -35,7 +35,7 @@ class FastInfoFragment : Fragment(), Injectable {
         viewModel = injectViewModel(viewModelFactory)
 
         viewModel.fast.observe(viewLifecycleOwner, Observer {
-            tv.text = it.id.toString()
+            tv_fast_info.text = it.desc
             btn_choose.background = ContextCompat.getDrawable(context!!, it.gradient)
         })
         viewModel.setFast(arguments?.getInt("fastId") ?: 0)
