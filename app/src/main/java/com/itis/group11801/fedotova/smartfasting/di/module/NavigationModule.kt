@@ -1,5 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.di.module
 
+import com.itis.group11801.fedotova.smartfasting.navigation.DrinkRouter
 import com.itis.group11801.fedotova.smartfasting.navigation.FastsRouter
 import com.itis.group11801.fedotova.smartfasting.navigation.Navigator
 import com.itis.group11801.fedotova.smartfasting.navigation.NewsRouter
@@ -21,4 +22,8 @@ class NavigationModule {
     @Singleton
     @Provides
     fun provideFastsRouter(navigator: Navigator): FastsRouter = navigator
+
+    @Singleton
+    @Provides
+    fun provideDrinkRouter(navigator: Navigator): DrinkRouter = navigator
 }

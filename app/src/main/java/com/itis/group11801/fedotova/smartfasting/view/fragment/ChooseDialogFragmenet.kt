@@ -5,10 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
+import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
+import com.itis.group11801.fedotova.smartfasting.viewmodel.ChooseDialogViewModel
+import kotlinx.android.synthetic.main.dialog_fragment_choose_drink.*
+import javax.inject.Inject
 
 class ChooseDialogFragment : DialogFragment(), Injectable {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var viewModel: ChooseDialogViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -16,6 +25,17 @@ class ChooseDialogFragment : DialogFragment(), Injectable {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.dialog_fragment_choose_drink, container, false)
+        viewModel = injectViewModel(viewModelFactory)
         return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        btn_save_drink.setOnClickListener {
+            viewModel.saveDrink()
+            viewModel.router.closeDrinkDialog(this)
+        }
+        tv_cancel_drink.setOnClickListener {
+            viewModel.router.closeDrinkDialog(this)
+        }
     }
 }

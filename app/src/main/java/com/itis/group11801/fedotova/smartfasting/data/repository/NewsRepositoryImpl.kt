@@ -27,7 +27,7 @@ class NewsRepositoryImpl @Inject constructor(
             emit(ResultWrapper.loading<List<News>>())
 
             val source: LiveData<ResultWrapper<List<News>>> =
-                newsDao.getNews().map { list ->
+                newsDao.getAll().map { list ->
                     ResultWrapper.success(
                         list.map {
                             mapNewsLocalToNews(it)

@@ -69,7 +69,7 @@
     </fragment>
 
     <dialog
-        android:id="@+id/chooseDialogFragment"
+        android:id="@+id/navigation_choose_dialog"
         android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.ChooseDialogFragment"
         android:label="@string/title_choose_a_drink"
         tools:layout="@layout/dialog_fragment_choose_drink" />

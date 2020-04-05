@@ -2,6 +2,7 @@ package com.itis.group11801.fedotova.smartfasting.di.module
 
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.data.local.AppDatabase
+import com.itis.group11801.fedotova.smartfasting.data.local.service.DrinkDao
 import com.itis.group11801.fedotova.smartfasting.data.local.service.NewsDao
 import dagger.Module
 import dagger.Provides
@@ -16,4 +17,8 @@ class DbModule {
     @Singleton
     @Provides
     fun provideNewsDao(db: AppDatabase): NewsDao = db.newsDao()
+
+    @Singleton
+    @Provides
+    fun provideDrinkDao(db: AppDatabase): DrinkDao = db.drinkDao()
 }

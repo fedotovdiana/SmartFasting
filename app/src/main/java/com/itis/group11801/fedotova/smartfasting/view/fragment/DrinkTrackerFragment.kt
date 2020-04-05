@@ -5,36 +5,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
+import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.viewmodel.DrinkTrackerViewModel
 import kotlinx.android.synthetic.main.fragment_drink_tracker.*
+import javax.inject.Inject
 
 class DrinkTrackerFragment : Fragment(), Injectable {
 
-    private lateinit var drinkTrackerViewModel: DrinkTrackerViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var viewModel: DrinkTrackerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        drinkTrackerViewModel =
-            ViewModelProviders.of(this).get(DrinkTrackerViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_drink_tracker, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_dashboard)
-//        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
+        viewModel = injectViewModel(viewModelFactory)
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btn_add_drink.setOnClickListener {
-            val navController = findNavController(this)
-            navController.navigate(R.id.chooseDialogFragment)
+            viewModel.router.openDrinkDialog(this)
         }
     }
 

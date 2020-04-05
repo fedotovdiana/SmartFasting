@@ -32,5 +32,15 @@ abstract class ViewModelModule {
     abstract fun bindFastInfoViewModel(viewModel: FastInfoViewModel): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(DrinkTrackerViewModel::class)
+    abstract fun bindDrinkTrackerViewModel(viewModel: DrinkTrackerViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChooseDialogViewModel::class)
+    abstract fun bindChooseDialogViewModel(viewModel: ChooseDialogViewModel): ViewModel
+
+    @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

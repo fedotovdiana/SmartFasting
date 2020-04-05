@@ -1,10 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/dialog"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@drawable/dialog"
     tools:showIn=".ui.drink.ChooseDialogFragment">
 
     <TextView
@@ -18,29 +18,34 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="184dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="48dp"
-        android:theme="@style/SpinnerItemStyle"
-        android:entries="@array/drinks"></Spinner>
+        android:layout_marginTop="40dp"
+        android:entries="@array/drinks"
+        android:theme="@style/SpinnerItemStyle"></Spinner>
 
-    <androidx.appcompat.widget.AppCompatSeekBar
-        android:layout_width="160dp"
-        android:layout_height="match_parent"
+    <EditText
+        android:id="@+id/et_water_ml"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:textColor="@color/colorTextDark"
         android:layout_gravity="center"
-        android:theme="@style/SeekBarStyle"
-        android:layout_marginTop="40dp"></androidx.appcompat.widget.AppCompatSeekBar>
+        android:layout_marginTop="16dp"></EditText>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:hint="200ml"></TextView>
+        android:textColor="@color/colorTextDark"
+        android:text="@string/ml"></TextView>
 
     <Button
-        android:layout_width="180dp"
+        android:id="@+id/btn_save_drink"
+        android:layout_width="120dp"
         android:layout_height="36dp"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
@@ -51,6 +56,7 @@
         android:textSize="14sp"></Button>
 
     <TextView
+        android:id="@+id/tv_cancel_drink"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
