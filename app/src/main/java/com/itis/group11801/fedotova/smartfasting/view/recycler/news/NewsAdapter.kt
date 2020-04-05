@@ -62,9 +62,7 @@ class NewsViewHolder(
         }
 
         itemView.setOnClickListener {
-            news.url?.let {
-                onClick(it)
-            }
+            onClick(news.url)
         }
     }
 

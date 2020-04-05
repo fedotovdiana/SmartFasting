@@ -31,7 +31,10 @@ class ChooseDialogFragment : DialogFragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btn_save_drink.setOnClickListener {
-            viewModel.saveDrink()
+            viewModel.saveDrink(
+                spinner.selectedItem.toString(),
+                et_volume.text.toString()
+            )
             viewModel.router.closeDrinkDialog(this)
         }
         tv_cancel_drink.setOnClickListener {

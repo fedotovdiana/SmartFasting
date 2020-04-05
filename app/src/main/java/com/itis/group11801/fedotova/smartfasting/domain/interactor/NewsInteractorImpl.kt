@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.domain
+package com.itis.group11801.fedotova.smartfasting.domain.interactor
 
 import androidx.lifecycle.LiveData
 import com.itis.group11801.fedotova.smartfasting.data.ResultWrapper
