@@ -11,9 +11,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
 
-        val switchDarkMode: SwitchPreferenceCompat? = findPreference("preference_gr")
+        val switch_gr: SwitchPreferenceCompat? = findPreference("preference_gr")
 
-        switchDarkMode?.setOnPreferenceChangeListener { preference, newValue ->
+        switch_gr?.setOnPreferenceChangeListener { _, newValue ->
             if (newValue == true) {
                 Toast.makeText(activity, "enabled", Toast.LENGTH_LONG).show()
             } else {

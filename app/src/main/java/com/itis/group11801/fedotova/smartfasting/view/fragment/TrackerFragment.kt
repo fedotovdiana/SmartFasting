@@ -1,6 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.view.fragment
 
-import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +20,9 @@ class TrackerFragment : Fragment(), Injectable {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: TrackerViewModel
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,9 +40,7 @@ class TrackerFragment : Fragment(), Injectable {
     //    Test SharedPreference
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val sharedPref = activity?.getSharedPreferences("pref", MODE_PRIVATE)
-        val str = sharedPref?.getString("fastId", "")
+        val str = sharedPreferences.getString("fastId", "")
         btn_choose_fast.text = str
     }
-//    End Test
 }
