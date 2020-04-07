@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.itis.group11801.fedotova.smartfasting.R
+import javax.inject.Singleton
 
+@Singleton
 class Navigator : NewsRouter, FastsRouter, DrinkRouter {
 
     override fun intentOpenWebsite(fragment: Fragment, url: String) {

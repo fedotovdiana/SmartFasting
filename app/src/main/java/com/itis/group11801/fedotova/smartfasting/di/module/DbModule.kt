@@ -10,6 +10,7 @@ import javax.inject.Singleton
 
 @Module
 class DbModule {
+
     @Singleton
     @Provides
     fun provideDb(app: Application) = AppDatabase.getInstance(app)

@@ -1,13 +1,10 @@
 package com.itis.group11801.fedotova.smartfasting.di.module
 
-import com.itis.group11801.fedotova.smartfasting.data.repository.DrinkRepository
-import com.itis.group11801.fedotova.smartfasting.data.repository.DrinkRepositoryImpl
-import com.itis.group11801.fedotova.smartfasting.data.repository.NewsRepository
-import com.itis.group11801.fedotova.smartfasting.data.repository.NewsRepositoryImpl
-import com.itis.group11801.fedotova.smartfasting.domain.interactor.DrinkInteractor
-import com.itis.group11801.fedotova.smartfasting.domain.interactor.DrinkInteractorImpl
-import com.itis.group11801.fedotova.smartfasting.domain.interactor.NewsInteractor
-import com.itis.group11801.fedotova.smartfasting.domain.interactor.NewsInteractorImpl
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import com.itis.group11801.fedotova.smartfasting.resources.ResourceManager
+import com.itis.group11801.fedotova.smartfasting.resources.ResourceManagerImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -17,19 +14,17 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(newsRepository: NewsRepositoryImpl): NewsRepository = newsRepository
+    fun provideResourceManager(context: Context): ResourceManager {
+        return ResourceManagerImpl(context)
+    }
 
     @Provides
     @Singleton
-    fun provideDrinkRepository(drinkRepository: DrinkRepositoryImpl): DrinkRepository =
-        drinkRepository
+    fun providesSharedPreferences(app: Application): SharedPreferences {
+        return app.getSharedPreferences(SP_PREF, Context.MODE_PRIVATE);
+    }
 
-    @Provides
-    @Singleton
-    fun provideNewsInteractor(newsInteractor: NewsInteractorImpl): NewsInteractor = newsInteractor
-
-    @Provides
-    @Singleton
-    fun provideDrinkInteractor(drinkInteractor: DrinkInteractorImpl): DrinkInteractor =
-        drinkInteractor
+    companion object {
+        private const val SP_PREF = "pref"
+    }
 }
