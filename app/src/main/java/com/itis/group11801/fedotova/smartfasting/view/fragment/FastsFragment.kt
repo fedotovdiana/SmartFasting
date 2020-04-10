@@ -44,6 +44,6 @@ class FastsFragment : Fragment(), Injectable {
 
     private fun showDetails(fast: Fast) {
         val bundle = bundleOf("fastId" to fast.id)
-        viewModel.router.openFastInfoFragment(this, bundle)
+        viewModel.router.openFastInfoFragment(bundle)
     }
 }

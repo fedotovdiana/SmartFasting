@@ -34,7 +34,7 @@ class NewsFragment : Fragment(), Injectable {
         val binding = FragmentNewsBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
-        val adapter = NewsAdapter { viewModel.router.intentOpenWebsite(this, it) }
+        val adapter = NewsAdapter { it.length }
         binding.rvNews.adapter = adapter
 
         observeViewModel(binding, adapter)

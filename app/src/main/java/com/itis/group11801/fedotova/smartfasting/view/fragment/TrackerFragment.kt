@@ -34,7 +34,7 @@ class TrackerFragment : Fragment(), Injectable {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btn_choose_fast.setOnClickListener { viewModel.router.openFastsFragment(this) }
+        btn_choose_fast.setOnClickListener { viewModel.router.openFastsFragment() }
     }
 
     //    Test SharedPreference
