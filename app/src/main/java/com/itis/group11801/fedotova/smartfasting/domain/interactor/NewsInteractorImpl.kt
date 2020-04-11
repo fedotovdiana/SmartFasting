@@ -1,7 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.domain.interactor
 
 import androidx.lifecycle.LiveData
-import com.itis.group11801.fedotova.smartfasting.data.ResultWrapper
 import com.itis.group11801.fedotova.smartfasting.data.repository.NewsRepository
 import com.itis.group11801.fedotova.smartfasting.domain.model.News
 import javax.inject.Inject
@@ -10,7 +9,11 @@ class NewsInteractorImpl @Inject constructor(
     private val newsRepository: NewsRepository
 ) : NewsInteractor {
 
-    override fun getNews(): LiveData<ResultWrapper<List<News>>> {
-        return newsRepository.getNews()
+    override fun getNews(): LiveData<List<News>> {
+        return newsRepository.getLocalNews()
+    }
+
+    override suspend fun updateDb() {
+        newsRepository.updateDb()
     }
 }

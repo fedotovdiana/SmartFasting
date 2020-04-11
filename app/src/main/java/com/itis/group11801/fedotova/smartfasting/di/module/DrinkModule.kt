@@ -21,6 +21,3 @@ class DrinkModule {
     fun provideDrinkInteractor(drinkInteractor: DrinkInteractorImpl): DrinkInteractor =
         drinkInteractor
 }
-//    @Binds
-//    @Singleton
-//    abstract fun provideDrinkInteractor(drinkInteractor: DrinkInteractorImpl): DrinkInteractor

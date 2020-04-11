@@ -20,18 +20,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="14:10 intermittent" />
 
-    <TextView
-        android:id="@+id/tv_fast_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:fontFamily="@font/abeezee_regular"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_fast_title"
-        tools:text="A 14 hour fast and an 8 hour feeding window" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_fast_desc"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="11dp"-->
+    <!--        android:fontFamily="@font/abeezee_regular"-->
+    <!--        android:textColor="@android:color/white"-->
+    <!--        android:textSize="16sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tv_fast_title"-->
+    <!--        tools:text="A 14 hour fast and an 8 hour feeding window" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

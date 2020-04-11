@@ -14,6 +14,12 @@ class AppModule {
 
     @Provides
     @Singleton
+    fun provideContext(app: Application): Context {
+        return app.applicationContext
+    }
+
+    @Provides
+    @Singleton
     fun provideResourceManager(context: Context): ResourceManager {
         return ResourceManagerImpl(context)
     }

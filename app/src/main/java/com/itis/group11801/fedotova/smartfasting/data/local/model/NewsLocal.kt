@@ -3,14 +3,13 @@ package com.itis.group11801.fedotova.smartfasting.data.local.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "articles")
+@Entity(tableName = "news")
 data class NewsLocal(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
     val source: String,
     val author: String,
     val title: String,
     val description: String,
+    @PrimaryKey
     val url: String,
     val urlToImage: String,
     val publishedAt: String,

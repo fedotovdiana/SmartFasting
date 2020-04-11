@@ -6,22 +6,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
-import com.itis.group11801.fedotova.smartfasting.viewmodel.FastInfoViewModel
-import kotlinx.android.synthetic.main.fragment_fasting_graph.*
+import com.itis.group11801.fedotova.smartfasting.viewmodel.DietInfoViewModel
+import kotlinx.android.synthetic.main.fragment_diet_graph.*
 import javax.inject.Inject
 
-class FastInfoFragment : Fragment(), Injectable {
+class DietInfoFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: FastInfoViewModel
+    private lateinit var viewModel: DietInfoViewModel
 
     lateinit var pref: SharedPreferences
     val APP_PREFERENCES = "pref"
@@ -31,16 +30,17 @@ class FastInfoFragment : Fragment(), Injectable {
         savedInstanceState: Bundle?
     ): View? {
         //TODO rename layout
-        val root = inflater.inflate(R.layout.fragment_fasting_graph, container, false)
         viewModel = injectViewModel(viewModelFactory)
+        observeViewModel()
+        return inflater.inflate(R.layout.fragment_diet_graph, container, false)
+    }
 
-        viewModel.fast.observe(viewLifecycleOwner, Observer {
+    private fun observeViewModel() {
+        viewModel.diet.observe(viewLifecycleOwner, Observer {
             tv_fast_info.text = it.desc
-            btn_choose.background = ContextCompat.getDrawable(context!!, it.gradient)
+            btn_choose.background = viewModel.toDrawable(it.gradient)
         })
-        viewModel.setFast(arguments?.getInt("fastId") ?: 0)
-
-        return root
+        viewModel.setDietPlan(arguments?.getInt("dietPlanId") ?: 0)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ class FastInfoFragment : Fragment(), Injectable {
         btn_choose.setOnClickListener {
             val sharedPref = activity!!.getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE)
             with(sharedPref.edit()) {
-                putString("fastId", viewModel.fast.value?.id.toString())
+                putString("dietPlanId", viewModel.diet.value?.id.toString())
                 apply()
             }
         }

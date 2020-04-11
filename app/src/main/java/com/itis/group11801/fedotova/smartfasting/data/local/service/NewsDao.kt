@@ -10,9 +10,9 @@ import com.itis.group11801.fedotova.smartfasting.data.local.model.NewsLocal
 @Dao
 interface NewsDao {
 
-    @Query("SELECT * FROM articles ORDER BY publishedAt DESC")
+    @Query("SELECT * FROM news ORDER BY publishedAt DESC")
     fun getAll(): LiveData<List<NewsLocal>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(news: List<NewsLocal>)
+    suspend fun insertAll(news: List<NewsLocal>)
 }

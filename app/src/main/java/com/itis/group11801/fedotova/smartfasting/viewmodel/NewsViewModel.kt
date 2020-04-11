@@ -1,9 +1,13 @@
 package com.itis.group11801.fedotova.smartfasting.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.itis.group11801.fedotova.smartfasting.domain.interactor.NewsInteractor
+import com.itis.group11801.fedotova.smartfasting.domain.model.News
 import com.itis.group11801.fedotova.smartfasting.navigation.NewsRouter
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class NewsViewModel @Inject constructor(
@@ -11,9 +15,22 @@ class NewsViewModel @Inject constructor(
     val router: NewsRouter
 ) : ViewModel() {
 
-    private val job = Job()
+    private lateinit var job: Job
 
-    val newsLiveData = interactor.getNews()
+    private var _news = interactor.getNews()
+
+    val news: LiveData<List<News>>
+        get() = _news
+
+    fun updateDb() {
+        job = viewModelScope.launch {
+            interactor.updateDb()
+        }
+    }
+
+    fun newsClicked(url: String) {
+        router.intentOpenWebsite(url)
+    }
 
     override fun onCleared() {
         super.onCleared()

@@ -1,7 +1,7 @@
 package com.itis.group11801.fedotova.smartfasting.di.module
 
+import com.itis.group11801.fedotova.smartfasting.navigation.DietPlansRouter
 import com.itis.group11801.fedotova.smartfasting.navigation.DrinkRouter
-import com.itis.group11801.fedotova.smartfasting.navigation.FastsRouter
 import com.itis.group11801.fedotova.smartfasting.navigation.Navigator
 import com.itis.group11801.fedotova.smartfasting.navigation.NewsRouter
 import dagger.Module
@@ -11,9 +11,9 @@ import javax.inject.Singleton
 @Module
 class NavigationModule {
 
-    @Singleton
-    @Provides
-    fun provideNavigator(): Navigator = Navigator()
+//    @Singleton
+//    @Provides
+//    fun provideNavigator(context: Context): Navigator = Navigator(context)
 
     @Singleton
     @Provides
@@ -21,7 +21,7 @@ class NavigationModule {
 
     @Singleton
     @Provides
-    fun provideFastsRouter(navigator: Navigator): FastsRouter = navigator
+    fun provideDietPlansRouter(navigator: Navigator): DietPlansRouter = navigator
 
     @Singleton
     @Provides

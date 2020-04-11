@@ -24,8 +24,8 @@ abstract class FragmentBuildersModule {
     abstract fun contributeTrackerFragment(): TrackerFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeFastsFragment(): FastsFragment
+    abstract fun contributeDietPlansFragment(): DietPlansFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeFastInfoFragment(): FastInfoFragment
+    abstract fun contributeDietInfoFragment(): DietInfoFragment
 }
