@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.data.remote.mapper
+package com.itis.group11801.fedotova.smartfasting.data.mapper
 
 import com.itis.group11801.fedotova.smartfasting.data.local.model.NewsLocal
 import com.itis.group11801.fedotova.smartfasting.data.remote.model.NewsResponse
@@ -37,7 +37,6 @@ fun mapNewsLocalToNews(newsLocal: NewsLocal): News {
 fun mapNewsToNewsLocal(news: News): NewsLocal {
     return with(news) {
         NewsLocal(
-            0,
             source,
             author,
             title,

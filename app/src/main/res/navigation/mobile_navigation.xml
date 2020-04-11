@@ -15,11 +15,11 @@
         android:id="@+id/navigation_tracker"
         android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.TrackerFragment"
         android:label="@string/title_tracker"
-        tools:layout="@layout/fragment_fast_tracker">
+        tools:layout="@layout/fragment_diet_tracker">
 
         <action
-            android:id="@+id/open_fasts_fragment"
-            app:destination="@id/navigation_fasts" />
+            android:id="@+id/open_diet_plans_fragment"
+            app:destination="@id/navigation_diet_plans" />
     </fragment>
 
     <fragment
@@ -41,28 +41,28 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/navigation_fasts"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.FastsFragment"
+        android:id="@+id/navigation_diet_plans"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.DietPlansFragment"
         android:label="@string/title_fasts"
-        tools:layout="@layout/fragment_fasts">
+        tools:layout="@layout/fragment_diet_plans">
         <action
-            android:id="@+id/open_fast_info"
-            app:destination="@id/navigation_fast_info">
+            android:id="@+id/open_diet_info"
+            app:destination="@id/navigation_diet_info">
             <argument
-                android:name="fastId"
+                android:name="dietPlanId"
                 android:defaultValue="0"
                 app:argType="integer" />
         </action>
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_fast_info"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.FastInfoFragment"
+        android:id="@+id/navigation_diet_info"
+        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.DietInfoFragment"
         android:label="@string/title_fasts"
-        tools:layout="@layout/fragment_fasting_graph">
+        tools:layout="@layout/fragment_diet_graph">
 
         <argument
-            android:name="fastId"
+            android:name="dietPlanId"
             android:defaultValue="0"
             app:argType="integer" />
 

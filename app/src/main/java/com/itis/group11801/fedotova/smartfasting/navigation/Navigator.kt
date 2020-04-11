@@ -1,35 +1,61 @@
 package com.itis.group11801.fedotova.smartfasting.navigation
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import android.widget.Toast
+import androidx.navigation.NavController
 import com.itis.group11801.fedotova.smartfasting.R
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Navigator : NewsRouter, FastsRouter, DrinkRouter {
+class Navigator @Inject constructor(
+    private val context: Context
+) : NewsRouter, DietPlansRouter, DrinkRouter {
 
-    override fun intentOpenWebsite(fragment: Fragment, url: String) {
+    private var navController: NavController? = null
+
+    fun attachNavController(navController: NavController?, graph: Int) {
+        Toast.makeText(context, "ATTACHED", Toast.LENGTH_LONG).show()
+        navController?.setGraph(graph)
+        this.navController = navController
+    }
+
+    fun detachNavController(navController: NavController) {
+        Toast.makeText(context, "DETTACCHED", Toast.LENGTH_LONG).show()
+        if (this.navController == navController) {
+            this.navController = null
+        }
+    }
+
+    override fun intentOpenWebsite(url: String) {
         val openURL = Intent(Intent.ACTION_VIEW)
         openURL.data = Uri.parse(url)
-        fragment.startActivity(openURL)
+        context.startActivity(openURL)
     }
 
-    override fun openFastsFragment(fragment: Fragment) {
-        fragment.findNavController().navigate(R.id.open_fasts_fragment)
+    override fun openDietPlansFragment() {
+        if (navController == null) {
+            Toast.makeText(
+                context,
+                "OPEN DIET PLANS",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+        navController?.navigate(R.id.open_diet_plans_fragment)
     }
 
-    override fun openFastInfoFragment(fragment: Fragment, bundle: Bundle) {
-        fragment.findNavController().navigate(R.id.open_fast_info, bundle)
+    override fun openDietInfoFragment(bundle: Bundle) {
+        navController?.navigate(R.id.open_diet_info, bundle)
     }
 
-    override fun openDrinkDialog(fragment: Fragment) {
-        fragment.findNavController().navigate(R.id.navigation_choose_dialog)
+    override fun openDrinkDialog() {
+        navController?.navigate(R.id.navigation_choose_dialog)
     }
 
-    override fun closeDrinkDialog(fragment: Fragment) {
-        fragment.findNavController().navigate(R.id.navigation_drink_tracker)
+    override fun closeDrinkDialog() {
+        navController?.navigate(R.id.navigation_drink_tracker)
     }
 }

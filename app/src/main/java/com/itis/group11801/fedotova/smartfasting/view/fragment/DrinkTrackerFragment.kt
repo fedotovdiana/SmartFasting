@@ -31,7 +31,7 @@ class DrinkTrackerFragment : Fragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btn_add_drink.setOnClickListener {
-            viewModel.router.openDrinkDialog(this)
+            viewModel.router.openDrinkDialog()
         }
     }
 

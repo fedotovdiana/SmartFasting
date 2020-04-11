@@ -23,13 +23,13 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(FastsViewModel::class)
-    abstract fun bindFastsViewModel(viewModel: FastsViewModel): ViewModel
+    @ViewModelKey(DietPlansViewModel::class)
+    abstract fun bindDietPlansViewModel(viewModel: DietPlansViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(FastInfoViewModel::class)
-    abstract fun bindFastInfoViewModel(viewModel: FastInfoViewModel): ViewModel
+    @ViewModelKey(DietInfoViewModel::class)
+    abstract fun bindDietInfoViewModel(viewModel: DietInfoViewModel): ViewModel
 
     @Binds
     @IntoMap

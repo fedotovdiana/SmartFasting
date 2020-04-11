@@ -22,7 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
             return INSTANCE ?: synchronized(AppDatabase::class) {
                 INSTANCE ?: Room.databaseBuilder(
                         context.applicationContext,
-                        AppDatabase::class.java, "smart_fasting.db"
+                        AppDatabase::class.java, "sm1.db"
                     )
                     .build()
             }

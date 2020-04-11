@@ -17,6 +17,7 @@ import javax.inject.Singleton
         AppModule::class,
         NewsModule::class,
         DrinkModule::class,
+        DietPlansModule::class,
         NavigationModule::class,
         MainActivityModule::class,
         ViewModelModule::class

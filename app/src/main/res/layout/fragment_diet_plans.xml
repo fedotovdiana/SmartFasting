@@ -15,6 +15,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:spanCount="1"
         tools:itemCount="6"
-        tools:listitem="@layout/item_fast" />
+        tools:listitem="@layout/item_diet" />
 
 </FrameLayout>

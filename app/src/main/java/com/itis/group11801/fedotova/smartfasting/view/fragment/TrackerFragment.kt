@@ -11,7 +11,7 @@ import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.viewmodel.TrackerViewModel
-import kotlinx.android.synthetic.main.fragment_fast_tracker.*
+import kotlinx.android.synthetic.main.fragment_diet_tracker.*
 import javax.inject.Inject
 
 class TrackerFragment : Fragment(), Injectable {
@@ -28,19 +28,19 @@ class TrackerFragment : Fragment(), Injectable {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_fast_tracker, container, false)
+        val root = inflater.inflate(R.layout.fragment_diet_tracker, container, false)
         viewModel = injectViewModel(viewModelFactory)
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btn_choose_fast.setOnClickListener { viewModel.router.openFastsFragment(this) }
+        btn_choose_fast.setOnClickListener { viewModel.openDietPlan() }
     }
 
     //    Test SharedPreference
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val str = sharedPreferences.getString("fastId", "")
+        val str = sharedPreferences.getString("dietPlanId", "")
         btn_choose_fast.text = str
     }
 }

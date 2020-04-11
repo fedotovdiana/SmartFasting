@@ -10,40 +10,35 @@ import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
-import com.itis.group11801.fedotova.smartfasting.view.recycler.news.NewsAdapter
-import com.itis.group11801.fedotova.smartfasting.viewmodel.NewsViewModel
-import kotlinx.android.synthetic.main.fragment_news.*
+import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.FastsAdapter
+import com.itis.group11801.fedotova.smartfasting.viewmodel.DietPlansViewModel
+import kotlinx.android.synthetic.main.fragment_diet_plans.*
 import javax.inject.Inject
 
-class NewsFragment : Fragment(), Injectable {
+class DietPlansFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: NewsViewModel
+    private lateinit var viewModel: DietPlansViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_news, container, false)
+        val root = inflater.inflate(R.layout.fragment_diet_plans, container, false)
         viewModel = injectViewModel(viewModelFactory)
-        setHasOptionsMenu(true)
         observeViewModel()
         return root
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.updateDb()
-    }
-
     private fun observeViewModel() {
-        viewModel.news.observe(viewLifecycleOwner, Observer { result ->
-            if (rvNews.adapter == null) {
-                rvNews.adapter = NewsAdapter { viewModel.newsClicked(it) }
+        viewModel.dietPlans.observe(viewLifecycleOwner, Observer { result ->
+            if (rv_fasts.adapter == null) {
+                rv_fasts.adapter = FastsAdapter { viewModel.showDietPlan(it.id) }
             }
-            (rvNews.adapter as NewsAdapter).submitList(result)
+            (rv_fasts.adapter as FastsAdapter).submitList(result)
         })
+        viewModel.getDietPlans()
     }
 }
