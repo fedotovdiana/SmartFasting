@@ -8,13 +8,12 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.viewmodel.ChooseDialogViewModel
 import kotlinx.android.synthetic.main.dialog_fragment_choose_drink.*
 import javax.inject.Inject
 
-class ChooseDialogFragment : DialogFragment(), Injectable {
+class ChooseDialogFragment : DialogFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

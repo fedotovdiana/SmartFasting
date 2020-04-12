@@ -9,14 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.DietPlansAdapter
 import com.itis.group11801.fedotova.smartfasting.viewmodel.DietPlansViewModel
 import kotlinx.android.synthetic.main.fragment_diet_plans.*
 import javax.inject.Inject
 
-class DietPlansFragment : Fragment(), Injectable {
+class DietPlansFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.viewmodel.StatisticsViewModel
 
-class StatisticsFragment : Fragment(), Injectable {
+class StatisticsFragment : Fragment() {
 
     companion object {
         fun newInstance() =
