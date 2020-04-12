@@ -7,9 +7,11 @@ import com.itis.group11801.fedotova.smartfasting.data.mapper.mapNewsLocalToNews
 import com.itis.group11801.fedotova.smartfasting.data.mapper.mapNewsToNewsLocal
 import com.itis.group11801.fedotova.smartfasting.data.mapper.mapResponseResultToNews
 import com.itis.group11801.fedotova.smartfasting.data.remote.service.NewsApiService
+import com.itis.group11801.fedotova.smartfasting.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.domain.model.News
 import javax.inject.Inject
 
+@AppScope
 class NewsRepositoryImpl @Inject constructor(
     private val service: NewsApiService,
     private val newsDao: NewsDao

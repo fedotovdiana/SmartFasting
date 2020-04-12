@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.itis.group11801.fedotova.smartfasting.data.local.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.data.local.model.DrinkSort
+import com.itis.group11801.fedotova.smartfasting.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.domain.interactor.DrinkInteractor
 import com.itis.group11801.fedotova.smartfasting.navigation.DrinkRouter
 import kotlinx.coroutines.Job
@@ -11,6 +12,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
+@ScreenScope
 class ChooseDialogViewModel @Inject constructor(
     private val interactor: DrinkInteractor,
     val router: DrinkRouter

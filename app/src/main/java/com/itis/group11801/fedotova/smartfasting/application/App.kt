@@ -2,19 +2,11 @@ package com.itis.group11801.fedotova.smartfasting.application
 
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.di.AppInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
 
-class App : Application(), HasAndroidInjector {
-
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
         AppInjector.init(this)
     }
-
-    override fun androidInjector(): DispatchingAndroidInjector<Any> = dispatchingAndroidInjector
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.itis.group11801.fedotova.smartfasting.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.domain.interactor.DietPlansInteractor
 import com.itis.group11801.fedotova.smartfasting.navigation.DietPlansRouter
 import com.itis.group11801.fedotova.smartfasting.resources.ResourceManager
@@ -14,6 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ScreenScope
 class DietInfoViewModel @Inject constructor(
     val router: DietPlansRouter,
     val interactor: DietPlansInteractor,

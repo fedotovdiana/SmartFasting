@@ -11,17 +11,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.di.Injectable
+import com.itis.group11801.fedotova.smartfasting.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.navigation.Navigator
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), HasAndroidInjector, Injectable {
-
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var navigator: Navigator
@@ -30,6 +25,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector, Injectable {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppInjector.injectMainActivity(this)
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -67,9 +63,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector, Injectable {
     }
 
     override fun onDestroy() {
-        navigator.detachNavController(navController)
         super.onDestroy()
+        navigator.detachNavController(navController)
     }
-
-    override fun androidInjector() = dispatchingAndroidInjector
 }
