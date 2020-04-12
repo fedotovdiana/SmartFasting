@@ -1,6 +1,5 @@
-package com.itis.group11801.fedotova.smartfasting.di.component
+package com.itis.group11801.fedotova.smartfasting.di.drink
 
-import com.itis.group11801.fedotova.smartfasting.di.module.drink.DrinkViewModelModule
 import com.itis.group11801.fedotova.smartfasting.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.view.fragment.ChooseDialogFragment
 import com.itis.group11801.fedotova.smartfasting.view.fragment.DrinkTrackerFragment

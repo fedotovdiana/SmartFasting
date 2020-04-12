@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.di.module.app
+package com.itis.group11801.fedotova.smartfasting.di.app
 
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.data.local.AppDatabase

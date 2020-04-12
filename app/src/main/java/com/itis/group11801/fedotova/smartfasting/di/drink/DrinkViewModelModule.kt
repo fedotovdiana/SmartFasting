@@ -1,8 +1,8 @@
-package com.itis.group11801.fedotova.smartfasting.di.module.drink
+package com.itis.group11801.fedotova.smartfasting.di.drink
 
 import androidx.lifecycle.ViewModel
 import com.itis.group11801.fedotova.smartfasting.di.ViewModelKey
-import com.itis.group11801.fedotova.smartfasting.di.module.app.ViewModelModule
+import com.itis.group11801.fedotova.smartfasting.di.app.ViewModelModule
 import com.itis.group11801.fedotova.smartfasting.viewmodel.ChooseDialogViewModel
 import com.itis.group11801.fedotova.smartfasting.viewmodel.DrinkTrackerViewModel
 import dagger.Binds

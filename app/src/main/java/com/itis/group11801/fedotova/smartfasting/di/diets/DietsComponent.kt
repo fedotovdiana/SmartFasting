@@ -1,6 +1,5 @@
-package com.itis.group11801.fedotova.smartfasting.di.component
+package com.itis.group11801.fedotova.smartfasting.di.diets
 
-import com.itis.group11801.fedotova.smartfasting.di.module.diets.DietsViewModelModule
 import com.itis.group11801.fedotova.smartfasting.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.view.fragment.DietInfoFragment
 import com.itis.group11801.fedotova.smartfasting.view.fragment.DietPlansFragment
