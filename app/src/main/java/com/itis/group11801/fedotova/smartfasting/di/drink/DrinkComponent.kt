@@ -5,7 +5,7 @@ import com.itis.group11801.fedotova.smartfasting.view.fragment.ChooseDialogFragm
 import com.itis.group11801.fedotova.smartfasting.view.fragment.DrinkTrackerFragment
 import dagger.Subcomponent
 
-@Subcomponent(modules = [DrinkViewModelModule::class])
+@Subcomponent(modules = [DrinkModule::class])
 @ScreenScope
 interface DrinkComponent {
 
@@ -15,5 +15,6 @@ interface DrinkComponent {
     }
 
     fun inject(fragment: DrinkTrackerFragment)
+
     fun inject(fragment: ChooseDialogFragment)
 }

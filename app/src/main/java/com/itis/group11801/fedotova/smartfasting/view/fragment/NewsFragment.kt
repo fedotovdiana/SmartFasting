@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.view.recycler.news.NewsAdapter
 import com.itis.group11801.fedotova.smartfasting.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
@@ -18,8 +16,7 @@ import javax.inject.Inject
 class NewsFragment : Fragment() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: NewsViewModel
+    lateinit var viewModel: NewsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppInjector.initNewsComponent()
@@ -33,7 +30,6 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_news, container, false)
-        viewModel = injectViewModel(viewModelFactory)
         setHasOptionsMenu(true)
         observeViewModel()
         return root

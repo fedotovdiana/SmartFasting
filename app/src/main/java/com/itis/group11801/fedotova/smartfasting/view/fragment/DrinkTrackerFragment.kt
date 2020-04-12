@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.viewmodel.DrinkTrackerViewModel
 import kotlinx.android.synthetic.main.fragment_drink_tracker.*
 import javax.inject.Inject
@@ -16,8 +14,7 @@ import javax.inject.Inject
 class DrinkTrackerFragment : Fragment() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: DrinkTrackerViewModel
+    lateinit var viewModel: DrinkTrackerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppInjector.initDrinkComponent()
@@ -30,9 +27,7 @@ class DrinkTrackerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_drink_tracker, container, false)
-        viewModel = injectViewModel(viewModelFactory)
-        return root
+        return inflater.inflate(R.layout.fragment_drink_tracker, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

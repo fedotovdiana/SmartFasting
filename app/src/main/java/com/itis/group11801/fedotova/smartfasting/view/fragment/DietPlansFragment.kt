@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.DietPlansAdapter
 import com.itis.group11801.fedotova.smartfasting.viewmodel.DietPlansViewModel
 import kotlinx.android.synthetic.main.fragment_diet_plans.*
@@ -18,11 +16,10 @@ import javax.inject.Inject
 class DietPlansFragment : Fragment() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: DietPlansViewModel
+    lateinit var viewModel: DietPlansViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.initDietsComponent()
+        AppInjector.initDietPlansComponent()
         AppInjector.injectDietPlansFragment(this)
         super.onCreate(savedInstanceState)
     }
@@ -33,7 +30,6 @@ class DietPlansFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_diet_plans, container, false)
-        viewModel = injectViewModel(viewModelFactory)
         observeViewModel()
         return root
     }
@@ -50,6 +46,6 @@ class DietPlansFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        AppInjector.clearDietsComponent()
+        AppInjector.clearDietPlansComponent()
     }
 }

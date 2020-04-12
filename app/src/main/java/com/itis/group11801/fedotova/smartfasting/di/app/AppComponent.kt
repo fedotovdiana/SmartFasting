@@ -2,7 +2,8 @@ package com.itis.group11801.fedotova.smartfasting.di.app
 
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.application.App
-import com.itis.group11801.fedotova.smartfasting.di.diets.DietsComponent
+import com.itis.group11801.fedotova.smartfasting.di.diets.DietInfoComponent
+import com.itis.group11801.fedotova.smartfasting.di.diets.DietPlansComponent
 import com.itis.group11801.fedotova.smartfasting.di.drink.DrinkComponent
 import com.itis.group11801.fedotova.smartfasting.di.news.NewsComponent
 import com.itis.group11801.fedotova.smartfasting.di.scope.AppScope
@@ -17,6 +18,7 @@ import dagger.Component
         DbModule::class,
         NetworkModule::class,
         AppModule::class,
+        ViewModelModule::class,
         RepositoryModule::class,
         InteractorModule::class,
         NavigationModule::class
@@ -24,7 +26,9 @@ import dagger.Component
 )
 interface AppComponent {
 
-    fun plusDietsComponentBuilder(): DietsComponent.Builder
+    fun plusDietPlansComponentBuilder(): DietPlansComponent.Builder
+
+    fun plusDietInfoComponentBuilder(): DietInfoComponent.Builder
 
     fun plusDrinkComponentBuilder(): DrinkComponent.Builder
 

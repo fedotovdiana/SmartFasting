@@ -3,7 +3,8 @@ package com.itis.group11801.fedotova.smartfasting.di
 import com.itis.group11801.fedotova.smartfasting.application.App
 import com.itis.group11801.fedotova.smartfasting.di.app.AppComponent
 import com.itis.group11801.fedotova.smartfasting.di.app.DaggerAppComponent
-import com.itis.group11801.fedotova.smartfasting.di.diets.DietsComponent
+import com.itis.group11801.fedotova.smartfasting.di.diets.DietInfoComponent
+import com.itis.group11801.fedotova.smartfasting.di.diets.DietPlansComponent
 import com.itis.group11801.fedotova.smartfasting.di.drink.DrinkComponent
 import com.itis.group11801.fedotova.smartfasting.di.news.NewsComponent
 import com.itis.group11801.fedotova.smartfasting.di.tracker.TrackerComponent
@@ -13,7 +14,8 @@ import com.itis.group11801.fedotova.smartfasting.view.fragment.*
 object AppInjector {
 
     lateinit var appComponent: AppComponent
-    private var dietsComponent: DietsComponent? = null
+    private var dietPlansComponent: DietPlansComponent? = null
+    private var dietInfoComponent: DietInfoComponent? = null
     private var drinkComponent: DrinkComponent? = null
     private var newsComponent: NewsComponent? = null
     private var trackerComponent: TrackerComponent? = null
@@ -30,12 +32,21 @@ object AppInjector {
         appComponent.inject(activity)
     }
 
-    fun initDietsComponent() {
-        dietsComponent ?: appComponent
-            .plusDietsComponentBuilder()
+    fun initDietPlansComponent() {
+        dietPlansComponent ?: appComponent
+            .plusDietPlansComponentBuilder()
             .build()
             .also {
-                dietsComponent = it
+                dietPlansComponent = it
+            }
+    }
+
+    fun initDietInfoComponent() {
+        dietInfoComponent ?: appComponent
+            .plusDietInfoComponentBuilder()
+            .build()
+            .also {
+                dietInfoComponent = it
             }
     }
 
@@ -75,11 +86,11 @@ object AppInjector {
     }
 
     fun injectDietPlansFragment(fragment: DietPlansFragment) {
-        dietsComponent?.inject(fragment)
+        dietPlansComponent?.inject(fragment)
     }
 
     fun injectDietInfoFragment(fragment: DietInfoFragment) {
-        dietsComponent?.inject(fragment)
+        dietInfoComponent?.inject(fragment)
     }
 
     fun injectNewsFragment(fragment: NewsFragment) {
@@ -90,8 +101,12 @@ object AppInjector {
         trackerComponent?.inject(fragment)
     }
 
-    fun clearDietsComponent() {
-        dietsComponent = null
+    fun clearDietPlansComponent() {
+        dietPlansComponent = null
+    }
+
+    fun clearDietInfoComponent() {
+        dietInfoComponent = null
     }
 
     fun clearDrinkComponent() {
