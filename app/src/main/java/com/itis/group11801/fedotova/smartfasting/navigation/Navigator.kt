@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.navigation.NavController
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.di.scope.AppScope
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 class Navigator @Inject constructor(
     private val context: Context
 ) : NewsRouter, DietPlansRouter, DrinkRouter {

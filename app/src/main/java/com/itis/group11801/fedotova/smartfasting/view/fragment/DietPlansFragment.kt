@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
-import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.FastsAdapter
+import com.itis.group11801.fedotova.smartfasting.view.recycler.fasts.DietPlansAdapter
 import com.itis.group11801.fedotova.smartfasting.viewmodel.DietPlansViewModel
 import kotlinx.android.synthetic.main.fragment_diet_plans.*
 import javax.inject.Inject
@@ -20,6 +21,12 @@ class DietPlansFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: DietPlansViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AppInjector.initDietsComponent()
+        AppInjector.injectDietPlansFragment(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,10 +42,15 @@ class DietPlansFragment : Fragment(), Injectable {
     private fun observeViewModel() {
         viewModel.dietPlans.observe(viewLifecycleOwner, Observer { result ->
             if (rv_fasts.adapter == null) {
-                rv_fasts.adapter = FastsAdapter { viewModel.showDietPlan(it.id) }
+                rv_fasts.adapter = DietPlansAdapter { viewModel.showDietPlan(it.id) }
             }
-            (rv_fasts.adapter as FastsAdapter).submitList(result)
+            (rv_fasts.adapter as DietPlansAdapter).submitList(result)
         })
         viewModel.getDietPlans()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppInjector.clearDietsComponent()
     }
 }

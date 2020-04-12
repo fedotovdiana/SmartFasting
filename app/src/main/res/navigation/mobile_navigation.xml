@@ -59,7 +59,7 @@
         android:id="@+id/navigation_diet_info"
         android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.DietInfoFragment"
         android:label="@string/title_fasts"
-        tools:layout="@layout/fragment_diet_graph">
+        tools:layout="@layout/fragment_diet_info">
 
         <argument
             android:name="dietPlanId"

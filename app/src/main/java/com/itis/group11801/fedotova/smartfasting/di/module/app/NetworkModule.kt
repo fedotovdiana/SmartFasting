@@ -1,8 +1,11 @@
-package com.itis.group11801.fedotova.smartfasting.di.module
+package com.itis.group11801.fedotova.smartfasting.di.module.app
 
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.BuildConfig
+import com.itis.group11801.fedotova.smartfasting.data.remote.service.DietPlansService
+import com.itis.group11801.fedotova.smartfasting.data.remote.service.DietPlansServiceImpl
 import com.itis.group11801.fedotova.smartfasting.data.remote.service.NewsApiService
+import com.itis.group11801.fedotova.smartfasting.di.scope.AppScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -12,14 +15,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
-import javax.inject.Singleton
-
 
 @Module
 class NetworkModule {
 
     @Provides
-    @Singleton
+    @AppScope
     fun provideOkHttpClient(
         @Named(TAG_AUTH) authInterceptor: Interceptor,
         @Named(TAG_LOGGING) loggingInterceptor: Interceptor,
@@ -34,7 +35,7 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
+    @AppScope
     fun provideRetrofit(
         client: OkHttpClient,
         converterFactory: GsonConverterFactory,
@@ -48,13 +49,19 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
+    @AppScope
     fun provideService(retrofit: Retrofit): NewsApiService {
         return retrofit.create(NewsApiService::class.java)
     }
 
     @Provides
-    @Singleton
+    @AppScope
+    fun provideDietPlanService(dietPlansServiceImpl: DietPlansServiceImpl): DietPlansService =
+        dietPlansServiceImpl
+
+
+    @Provides
+    @AppScope
     @Named(TAG_AUTH)
     fun provideAuthInterceptor(
         @Named(TAG_API_KEY) apiKey: String
@@ -71,29 +78,29 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
+    @AppScope
     @Named(TAG_LOGGING)
     fun provideLoggingInterceptor(): Interceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @Provides
-    @Singleton
+    @AppScope
     fun provideConvertFactory(): GsonConverterFactory = GsonConverterFactory.create()
 
     @Provides
-    @Singleton
+    @AppScope
     fun provideHttpCache(app: Application): Cache {
         val cacheSize: Long = 10 * 1024 * 1024
         return Cache(app.cacheDir, cacheSize)
     }
 
     @Provides
-    @Singleton
+    @AppScope
     @Named(TAG_BASE_URL)
     fun provideBaseURL(): String = BuildConfig.API_ENDPOINT
 
     @Provides
-    @Singleton
+    @AppScope
     @Named(TAG_API_KEY)
     fun provideApyKey(): String = BuildConfig.API_KEY
 

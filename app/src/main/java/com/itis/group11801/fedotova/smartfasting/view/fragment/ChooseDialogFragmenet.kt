@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.viewmodel.ChooseDialogViewModel
@@ -18,6 +19,12 @@ class ChooseDialogFragment : DialogFragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: ChooseDialogViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AppInjector.initDrinkComponent()
+        AppInjector.injectChooseDialogFragment(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,5 +47,10 @@ class ChooseDialogFragment : DialogFragment(), Injectable {
         tv_cancel_drink.setOnClickListener {
             viewModel.router.closeDrinkDialog()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppInjector.clearDrinkComponent()
     }
 }

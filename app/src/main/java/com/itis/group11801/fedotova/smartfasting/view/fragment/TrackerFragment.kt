@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.viewmodel.TrackerViewModel
@@ -22,6 +23,12 @@ class TrackerFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AppInjector.initTrackerComponent()
+        AppInjector.injectTrackerFragment(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,5 +49,10 @@ class TrackerFragment : Fragment(), Injectable {
         super.onActivityCreated(savedInstanceState)
         val str = sharedPreferences.getString("dietPlanId", "")
         btn_choose_fast.text = str
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppInjector.clearTrackerComponent()
     }
 }

@@ -10,12 +10,12 @@ import com.itis.group11801.fedotova.smartfasting.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_diet.*
 
-class FastsAdapter(
+class DietPlansAdapter(
     private val onClick: (DietPlanUI) -> Unit
-) : ListAdapter<DietPlanUI, FastsViewHolder>(DiffCallback) {
+) : ListAdapter<DietPlanUI, DietPlansViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        FastsViewHolder(
+        DietPlansViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_diet,
                 parent,
@@ -23,12 +23,12 @@ class FastsAdapter(
             )
         )
 
-    override fun onBindViewHolder(holder: FastsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DietPlansViewHolder, position: Int) {
         holder.bind(getItem(position), onClick)
     }
 }
 
-class FastsViewHolder(
+class DietPlansViewHolder(
     override val containerView: View
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.di.Injectable
 import com.itis.group11801.fedotova.smartfasting.di.injectViewModel
 import com.itis.group11801.fedotova.smartfasting.view.recycler.news.NewsAdapter
@@ -20,6 +21,12 @@ class NewsFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: NewsViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AppInjector.initNewsComponent()
+        AppInjector.injectNewsFragment(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,5 +52,10 @@ class NewsFragment : Fragment(), Injectable {
             }
             (rvNews.adapter as NewsAdapter).submitList(result)
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppInjector.clearNewsComponent()
     }
 }

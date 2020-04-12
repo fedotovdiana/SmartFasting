@@ -1,9 +1,11 @@
 package com.itis.group11801.fedotova.smartfasting.domain.interactor
 
 import com.itis.group11801.fedotova.smartfasting.data.repository.DietPlansRepository
+import com.itis.group11801.fedotova.smartfasting.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.domain.model.DietPlan
 import javax.inject.Inject
 
+@AppScope
 class DietPlansInteractorImpl @Inject constructor(
     private val dietPlansRepository: DietPlansRepository
 ) : DietPlansInteractor {
