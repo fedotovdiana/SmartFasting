@@ -1,18 +1,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:fontFamily">@font/abeezee_regular</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <!--        <item name="android:windowBackground">@color/colorPrimary</item>-->
     </style>
 
     <!--Style for Splash Screen-->
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">
-<!--        <item name ="android:windowBackground"> @drawable/splash_screen_background</item>-->
+        <!--        <item name="android:windowBackground">@drawable/splash_screen_background</item>-->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>

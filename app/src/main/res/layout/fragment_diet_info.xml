@@ -28,6 +28,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_fast_info" />
+        app:layout_constraintTop_toBottomOf="@id/tv_fast_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
