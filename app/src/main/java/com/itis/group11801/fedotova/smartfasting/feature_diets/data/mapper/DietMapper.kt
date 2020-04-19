@@ -5,9 +5,6 @@ import com.itis.group11801.fedotova.smartfasting.feature_diets.domain.model.Diet
 
 fun mapDietRemoteToDiet(dietRemote: DietRemote): Diet {
     return with(dietRemote) {
-        Diet(
-            id,
-            title
-        )
+        Diet(id, title)
     }
 }

@@ -8,6 +8,7 @@ import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.info
 import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.di.DietPlansComponent
 import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.di.DrinkComponent
 import com.itis.group11801.fedotova.smartfasting.feature_news.presentation.di.NewsComponent
+import com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.di.DrinkJournalComponent
 import com.itis.group11801.fedotova.smartfasting.feature_tracker.presentation.di.TrackerComponent
 import dagger.BindsInstance
 import dagger.Component
@@ -34,6 +35,8 @@ interface AppComponent {
     fun plusNewsComponentBuilder(): NewsComponent.Builder
 
     fun plusTrackerComponentBuilder(): TrackerComponent.Builder
+
+    fun plusDrinkJournalComponentBuilder(): DrinkJournalComponent.Builder
 
     @Component.Builder
     interface Builder {

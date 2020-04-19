@@ -14,7 +14,7 @@ import javax.inject.Inject
 @ScreenScope
 class NewsViewModel @Inject constructor(
     private val interactor: NewsInteractor,
-    val router: NewsRouter
+    private val router: NewsRouter
 ) : ViewModel() {
 
     private lateinit var job: Job

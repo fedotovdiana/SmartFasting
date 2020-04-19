@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.feature_news.presentation
+package com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,17 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
-import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.android.synthetic.main.fragment_drink_journal.*
 import javax.inject.Inject
 
-class NewsFragment : Fragment() {
+class DrinkJournalFragment : Fragment() {
 
     @Inject
-    lateinit var viewModel: NewsViewModel
+    lateinit var viewModel: DrinkJournalViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.initNewsComponent()
-        AppInjector.injectNewsFragment(this)
+        AppInjector.initDrinkJournalComponent()
+        AppInjector.injectDrinkJournalFragment(this)
         super.onCreate(savedInstanceState)
     }
 
@@ -27,7 +27,7 @@ class NewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_news, container, false)
+        return inflater.inflate(R.layout.fragment_drink_journal, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,20 +35,10 @@ class NewsFragment : Fragment() {
         observeViewModel()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.updateDb()
-    }
-
     private fun observeViewModel() {
-        viewModel.news.observe(viewLifecycleOwner, Observer { result ->
-            if (rvNews.adapter == null) {
-                rvNews.adapter =
-                    NewsAdapter {
-                        viewModel.newsClicked(it)
-                    }
-            }
-            (rvNews.adapter as NewsAdapter).submitList(result)
+        viewModel.drinkNotes.observe(viewLifecycleOwner, Observer {
+            rv_journal.adapter = DrinkJournalAdapter(it)
+            rv_journal.setHasFixedSize(true)
         })
     }
 

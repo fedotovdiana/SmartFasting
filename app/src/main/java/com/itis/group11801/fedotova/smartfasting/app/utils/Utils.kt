@@ -34,6 +34,18 @@ fun dateFormat(oldStringDate: String): String {
     return newDate
 }
 
+fun dateFormatToDate(oldDate: Date): String {
+    val newDate: String
+    val dateFormat = SimpleDateFormat("d MMM yyyy", Locale(getCountry()))
+    newDate = try {
+        dateFormat.format(oldDate)
+    } catch (e: ParseException) {
+        e.printStackTrace()
+        oldDate.toString()
+    }
+    return newDate
+}
+
 fun getCountry(): String {
     val locale: Locale = Locale.getDefault()
     val country: String = java.lang.String.valueOf(locale.country)

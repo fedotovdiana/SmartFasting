@@ -68,6 +68,12 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_drink_journal"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.DrinkJournalFragment"
+        android:label="@string/title_drink_statistics"
+        tools:layout="@layout/fragment_drink_journal" />
+
     <dialog
         android:id="@+id/navigation_choose_dialog"
         android:name="com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.ChooseDialogFragment"

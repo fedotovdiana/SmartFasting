@@ -1,7 +1,8 @@
 package com.itis.group11801.fedotova.smartfasting.feature_drink.domain
 
+import androidx.lifecycle.LiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.model.DrinkNoteUI
+import com.itis.group11801.fedotova.smartfasting.feature_drink.domain.model.DrinkNote
 import javax.inject.Inject
 
 @AppScope
@@ -9,7 +10,11 @@ class DrinkInteractorImpl @Inject constructor(
     private val drinkRepository: DrinkRepository
 ) : DrinkInteractor {
 
-    override suspend fun saveDrinkNote(drinkNote: DrinkNoteUI) {
+    override suspend fun saveDrinkNote(drinkNote: DrinkNote) {
         drinkRepository.saveDrinkNote(drinkNote)
+    }
+
+    override fun getDrinkNotes(): LiveData<List<DrinkNote>> {
+        return drinkRepository.getDrinkNotes()
     }
 }

@@ -1,8 +1,11 @@
 package com.itis.group11801.fedotova.smartfasting.feature_drink.domain
 
-import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.model.DrinkNoteUI
+import androidx.lifecycle.LiveData
+import com.itis.group11801.fedotova.smartfasting.feature_drink.domain.model.DrinkNote
 
 interface DrinkInteractor {
 
-    suspend fun saveDrinkNote(drinkNote: DrinkNoteUI)
+    suspend fun saveDrinkNote(drinkNote: DrinkNote)
+
+    fun getDrinkNotes(): LiveData<List<DrinkNote>>
 }

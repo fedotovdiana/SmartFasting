@@ -35,10 +35,10 @@ class ChooseDialogFragment : DialogFragment() {
                 spinner.selectedItem.toString(),
                 et_volume.text.toString()
             )
-            viewModel.router.closeDrinkDialog()
+            viewModel.closeDialog()
         }
         tv_cancel_drink.setOnClickListener {
-            viewModel.router.closeDrinkDialog()
+            viewModel.closeDialog()
         }
     }
 }

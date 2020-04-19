@@ -55,10 +55,7 @@ class NewsViewHolder(
             tv_description.text = description
             tv_source.text = source
             publishedAt.let {
-                val time =
-                    dateFormat(
-                        publishedAt
-                    )
+                val time = dateFormat(publishedAt)
                 tv_time.text = time
             }
         }

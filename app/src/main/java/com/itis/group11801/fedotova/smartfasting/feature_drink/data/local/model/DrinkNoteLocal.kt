@@ -9,7 +9,7 @@ import java.util.*
 
 @TypeConverters(DateConverter::class)
 @Entity(tableName = "drink_notes")
-data class DrinkNote(
+data class DrinkNoteLocal(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(name = "drink_sort")

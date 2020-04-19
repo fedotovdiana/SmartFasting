@@ -13,6 +13,8 @@ import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.Drin
 import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.di.DrinkComponent
 import com.itis.group11801.fedotova.smartfasting.feature_news.presentation.NewsFragment
 import com.itis.group11801.fedotova.smartfasting.feature_news.presentation.di.NewsComponent
+import com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.DrinkJournalFragment
+import com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.di.DrinkJournalComponent
 import com.itis.group11801.fedotova.smartfasting.feature_tracker.presentation.TrackerFragment
 import com.itis.group11801.fedotova.smartfasting.feature_tracker.presentation.di.TrackerComponent
 
@@ -24,6 +26,7 @@ object AppInjector {
     private var drinkComponent: DrinkComponent? = null
     private var newsComponent: NewsComponent? = null
     private var trackerComponent: TrackerComponent? = null
+    private var drinkJournalComponent: DrinkJournalComponent? = null
 
     fun init(application: App) {
         DaggerAppComponent
@@ -82,6 +85,15 @@ object AppInjector {
             }
     }
 
+    fun initDrinkJournalComponent() {
+        drinkJournalComponent ?: appComponent
+            .plusDrinkJournalComponentBuilder()
+            .build()
+            .also {
+                drinkJournalComponent = it
+            }
+    }
+
     fun injectDrinkTrackerFragment(fragment: DrinkTrackerFragment) {
         drinkComponent?.inject(fragment)
     }
@@ -106,6 +118,10 @@ object AppInjector {
         trackerComponent?.inject(fragment)
     }
 
+    fun injectDrinkJournalFragment(fragment: DrinkJournalFragment) {
+        drinkJournalComponent?.inject(fragment)
+    }
+
     fun clearDietPlansComponent() {
         dietPlansComponent = null
     }
@@ -124,5 +140,9 @@ object AppInjector {
 
     fun clearTrackerComponent() {
         trackerComponent = null
+    }
+
+    fun clearDrinkJournalComponent() {
+        drinkJournalComponent = null
     }
 }

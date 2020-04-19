@@ -60,6 +60,7 @@
 
     <!--statistics-->
     <string name="title_main_statistics">Main statistics</string>
+    <string name="title_drink_statistics">Drink statistics</string>
     <string name="title_total_fasts">Total fast</string>
     <string name="title_total_drinks">Total drinks</string>
     <string name="title_longest_fast">Longest fast</string>

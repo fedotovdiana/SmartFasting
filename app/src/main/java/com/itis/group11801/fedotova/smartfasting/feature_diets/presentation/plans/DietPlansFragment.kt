@@ -27,9 +27,12 @@ class DietPlansFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_diet_plans, container, false)
+        return inflater.inflate(R.layout.fragment_diet_plans, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         observeViewModel()
-        return root
     }
 
     private fun observeViewModel() {

@@ -5,11 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.itis.group11801.fedotova.smartfasting.feature_drink.data.local.DrinkDao
-import com.itis.group11801.fedotova.smartfasting.feature_drink.data.local.model.DrinkNote
+import com.itis.group11801.fedotova.smartfasting.feature_drink.data.local.model.DrinkNoteLocal
 import com.itis.group11801.fedotova.smartfasting.feature_news.data.local.NewsDao
 import com.itis.group11801.fedotova.smartfasting.feature_news.data.local.model.NewsLocal
 
-@Database(entities = [NewsLocal::class, DrinkNote::class], version = 1, exportSchema = false)
+@Database(entities = [NewsLocal::class, DrinkNoteLocal::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun newsDao(): NewsDao
