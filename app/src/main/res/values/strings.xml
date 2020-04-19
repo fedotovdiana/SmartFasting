@@ -60,6 +60,7 @@
 
     <!--statistics-->
     <string name="title_main_statistics">Main statistics</string>
+    <string name="title_drink_statistics">Drink statistics</string>
     <string name="title_total_fasts">Total fast</string>
     <string name="title_total_drinks">Total drinks</string>
     <string name="title_longest_fast">Longest fast</string>
@@ -70,10 +71,10 @@
     <string name="set_ml">2000</string>
 
     <!--fasts-->
-    <string name="fast_0_title">20:4 intermittent</string>
-    <string name="fast_1_title">16:8 intermittent</string>
-    <string name="fast_2_title">12:12 intermittent</string>
-    <string name="fast_3_title">10:14 intermittent</string>
+    <string name="fast_0_title">20:4 fasting plan</string>
+    <string name="fast_1_title">16:8 fasting plan</string>
+    <string name="fast_2_title">16:8 fasting plan</string>
+    <string name="fast_3_title">10:14 fasting plan</string>
     <string name="fast_0_description">0"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="fast_1_description">1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="fast_2_description">2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>

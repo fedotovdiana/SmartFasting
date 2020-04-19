@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_news"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.NewsFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_news.presentation.NewsFragment"
         android:label="@string/title_news"
         tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/navigation_tracker"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.TrackerFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_tracker.presentation.TrackerFragment"
         android:label="@string/title_tracker"
         tools:layout="@layout/fragment_diet_tracker">
 
@@ -24,25 +24,25 @@
 
     <fragment
         android:id="@+id/navigation_drink_tracker"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.DrinkTrackerFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.DrinkTrackerFragment"
         android:label="@string/title_drink_tracker"
         tools:layout="@layout/fragment_drink_tracker" />
 
     <fragment
         android:id="@+id/navigation_statistics"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.StatisticsFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.StatisticsFragment"
         android:label="@string/title_statistics"
         tools:layout="@layout/fragment_statistics" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.SettingsFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_settings.presentation.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/navigation_diet_plans"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.DietPlansFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.DietPlansFragment"
         android:label="@string/title_fasts"
         tools:layout="@layout/fragment_diet_plans">
         <action
@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/navigation_diet_info"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.DietInfoFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.info.DietInfoFragment"
         android:label="@string/title_fasts"
         tools:layout="@layout/fragment_diet_info">
 
@@ -68,9 +68,15 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_drink_journal"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.DrinkJournalFragment"
+        android:label="@string/title_drink_statistics"
+        tools:layout="@layout/fragment_drink_journal" />
+
     <dialog
         android:id="@+id/navigation_choose_dialog"
-        android:name="com.itis.group11801.fedotova.smartfasting.view.fragment.ChooseDialogFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.ChooseDialogFragment"
         android:label="@string/title_choose_a_drink"
         tools:layout="@layout/dialog_fragment_choose_drink" />
 
