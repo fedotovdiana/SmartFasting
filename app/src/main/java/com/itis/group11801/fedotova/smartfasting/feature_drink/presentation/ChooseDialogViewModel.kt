@@ -7,6 +7,7 @@ import com.itis.group11801.fedotova.smartfasting.feature_drink.DrinkRouter
 import com.itis.group11801.fedotova.smartfasting.feature_drink.data.local.model.DrinkSort
 import com.itis.group11801.fedotova.smartfasting.feature_drink.domain.DrinkInteractor
 import com.itis.group11801.fedotova.smartfasting.feature_drink.domain.model.DrinkNote
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
@@ -21,7 +22,7 @@ class ChooseDialogViewModel @Inject constructor(
     private val job = Job()
 
     fun saveDrink(drinkSort: String, volume: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             interactor.saveDrinkNote(
                 DrinkNote(
                     DrinkSort.valueOf(drinkSort),

@@ -36,7 +36,7 @@ class DrinkJournalFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.drinkNotes.observe(viewLifecycleOwner, Observer {
+        viewModel.journal.observe(viewLifecycleOwner, Observer {
             rv_journal.adapter = DrinkJournalAdapter(it)
             rv_journal.setHasFixedSize(true)
         })

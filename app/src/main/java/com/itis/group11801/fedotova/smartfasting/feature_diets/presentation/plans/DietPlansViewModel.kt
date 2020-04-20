@@ -11,6 +11,7 @@ import com.itis.group11801.fedotova.smartfasting.feature_diets.DietRouter
 import com.itis.group11801.fedotova.smartfasting.feature_diets.domain.DietInteractor
 import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.mapper.mapDietToDietPlanUI
 import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.model.DietPlanUI
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,13 +30,10 @@ class DietPlansViewModel @Inject constructor(
         get() = _dietPlans
 
     fun getDietPlans() {
-        job = viewModelScope.launch {
+        job = viewModelScope.launch(Dispatchers.IO) {
             val dietPlans =
                 interactor.getDietPlans().map {
-                    mapDietToDietPlanUI(
-                        resourceManager,
-                        it
-                    )
+                    mapDietToDietPlanUI(resourceManager, it)
                 }
             _dietPlans.postValue(dietPlans)
         }

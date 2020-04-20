@@ -7,6 +7,7 @@ import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.feature_news.NewsRouter
 import com.itis.group11801.fedotova.smartfasting.feature_news.domain.NewsInteractor
 import com.itis.group11801.fedotova.smartfasting.feature_news.domain.model.News
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,7 +26,7 @@ class NewsViewModel @Inject constructor(
         get() = _news
 
     fun updateDb() {
-        job = viewModelScope.launch {
+        job = viewModelScope.launch(Dispatchers.IO) {
             interactor.updateDb()
         }
     }
