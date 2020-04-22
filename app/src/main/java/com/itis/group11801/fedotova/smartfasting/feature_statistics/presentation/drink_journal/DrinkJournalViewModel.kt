@@ -6,19 +6,19 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatToDate
-import com.itis.group11801.fedotova.smartfasting.feature_drink.domain.DrinkInteractorImpl
 import com.itis.group11801.fedotova.smartfasting.feature_drink.domain.model.DrinkNote
+import com.itis.group11801.fedotova.smartfasting.feature_statistics.domain.StatisticsInteractorImpl
 import com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.model.JournalChild
 import com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.model.JournalParent
 import javax.inject.Inject
 
 @ScreenScope
 class DrinkJournalViewModel @Inject constructor(
-    private val interactor: DrinkInteractorImpl
+    private val interactor: StatisticsInteractorImpl
 ) : ViewModel() {
 
     val journal: LiveData<List<JournalParent>> =
-        Transformations.switchMap(interactor.getJournal(), ::convertToJournal)
+        Transformations.switchMap(interactor.getDrinkNotes(), ::convertToJournal)
 
     private fun convertToJournal(notes: List<DrinkNote>): LiveData<List<JournalParent>> {
         val parentItems: MutableList<JournalParent> = ArrayList()

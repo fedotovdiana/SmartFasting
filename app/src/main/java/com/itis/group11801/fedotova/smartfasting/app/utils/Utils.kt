@@ -51,9 +51,3 @@ fun getCountry(): String {
     val country: String = java.lang.String.valueOf(locale.country)
     return country.toLowerCase(Locale.ROOT)
 }
-
-//fun intentOpenWebsite(fragment: Fragment, url: String) {
-//    val openURL = Intent(Intent.ACTION_VIEW)
-//    openURL.data = Uri.parse(url)
-//    fragment.startActivity(openURL)
-//}

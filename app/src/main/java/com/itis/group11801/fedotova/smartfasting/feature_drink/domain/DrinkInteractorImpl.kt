@@ -1,6 +1,5 @@
 package com.itis.group11801.fedotova.smartfasting.feature_drink.domain
 
-import androidx.lifecycle.LiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.feature_drink.domain.model.DrinkNote
 import javax.inject.Inject
@@ -12,9 +11,5 @@ class DrinkInteractorImpl @Inject constructor(
 
     suspend fun saveDrinkNote(drinkNote: DrinkNote) {
         drinkRepository.saveDrinkNote(drinkNote)
-    }
-
-    fun getJournal(): LiveData<List<DrinkNote>> {
-        return drinkRepository.getDrinkNotes()
     }
 }
