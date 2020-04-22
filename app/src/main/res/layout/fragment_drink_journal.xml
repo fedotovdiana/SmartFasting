@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature_statistics.presentation.drink_journal.DrinkJournalFragment">
+    tools:context=".app.features.statistics.presentation.drinks.DrinkJournalFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_journal"

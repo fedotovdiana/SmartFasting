@@ -3,9 +3,9 @@ package com.itis.group11801.fedotova.smartfasting.app.di.common
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.BuildConfig
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.feature_diets.data.network.DietService
-import com.itis.group11801.fedotova.smartfasting.feature_diets.data.network.DietServiceImpl
-import com.itis.group11801.fedotova.smartfasting.feature_news.data.network.NewsApiService
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.data.network.DietService
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.data.network.DietServiceImpl
+import com.itis.group11801.fedotova.smartfasting.app.features.news.data.network.NewsApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache

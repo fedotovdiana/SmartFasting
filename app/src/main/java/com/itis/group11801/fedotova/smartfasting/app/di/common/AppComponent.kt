@@ -4,12 +4,12 @@ import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.app.App
 import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.info.di.DietInfoComponent
-import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.di.DietPlansComponent
-import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.di.DrinkComponent
-import com.itis.group11801.fedotova.smartfasting.feature_news.presentation.di.NewsComponent
-import com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.di.DrinkJournalComponent
-import com.itis.group11801.fedotova.smartfasting.feature_tracker.presentation.di.TrackerComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info.di.DietInfoComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.di.DietPlansComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentation.di.DrinkComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.di.NewsComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.di.DrinkJournalComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
 import dagger.BindsInstance
 import dagger.Component
 

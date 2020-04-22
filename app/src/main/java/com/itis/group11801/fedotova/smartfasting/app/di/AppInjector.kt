@@ -4,19 +4,19 @@ import com.itis.group11801.fedotova.smartfasting.app.App
 import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.common.AppComponent
 import com.itis.group11801.fedotova.smartfasting.app.di.common.DaggerAppComponent
-import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.info.DietInfoFragment
-import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.info.di.DietInfoComponent
-import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.DietPlansFragment
-import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.di.DietPlansComponent
-import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.ChooseDialogFragment
-import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.DrinkTrackerFragment
-import com.itis.group11801.fedotova.smartfasting.feature_drink.presentation.di.DrinkComponent
-import com.itis.group11801.fedotova.smartfasting.feature_news.presentation.NewsFragment
-import com.itis.group11801.fedotova.smartfasting.feature_news.presentation.di.NewsComponent
-import com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.DrinkJournalFragment
-import com.itis.group11801.fedotova.smartfasting.feature_statistics.presentation.drink_journal.di.DrinkJournalComponent
-import com.itis.group11801.fedotova.smartfasting.feature_tracker.presentation.TrackerFragment
-import com.itis.group11801.fedotova.smartfasting.feature_tracker.presentation.di.TrackerComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info.DietInfoFragment
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info.di.DietInfoComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.DietPlansFragment
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.di.DietPlansComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentation.ChooseDialogFragment
+import com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentation.DrinkTrackerFragment
+import com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentation.di.DrinkComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.NewsFragment
+import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.di.NewsComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.DrinkJournalFragment
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.di.DrinkJournalComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.TrackerFragment
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
 
 object AppInjector {
 
