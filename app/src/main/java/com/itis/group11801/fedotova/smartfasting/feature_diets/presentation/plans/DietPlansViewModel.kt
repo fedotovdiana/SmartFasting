@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
 import com.itis.group11801.fedotova.smartfasting.feature_diets.DietRouter
-import com.itis.group11801.fedotova.smartfasting.feature_diets.domain.DietInteractor
+import com.itis.group11801.fedotova.smartfasting.feature_diets.domain.DietInteractorImpl
 import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.mapper.mapDietToDietPlanUI
 import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.plans.model.DietPlanUI
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +19,7 @@ import javax.inject.Inject
 @ScreenScope
 class DietPlansViewModel @Inject constructor(
     private val router: DietRouter,
-    private val interactor: DietInteractor,
+    private val interactor: DietInteractorImpl,
     private val resourceManager: ResourceManager
 ) : ViewModel() {
 

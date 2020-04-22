@@ -7,13 +7,13 @@ import javax.inject.Inject
 @AppScope
 class DietInteractorImpl @Inject constructor(
     private val dietRepository: DietRepository
-) : DietInteractor {
+) {
 
-    override suspend fun getDietPlans(): List<Diet> {
+    suspend fun getDietPlans(): List<Diet> {
         return dietRepository.getDietPlans()
     }
 
-    override suspend fun getDietPlan(id: Int): Diet {
+    suspend fun getDietPlan(id: Int): Diet {
         return dietRepository.getDietPlan(id)
     }
 }

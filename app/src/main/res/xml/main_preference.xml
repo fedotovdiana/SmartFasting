@@ -24,10 +24,10 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/title_drink_water">
+    <PreferenceCategory android:title="@string/title_drinks">
 
         <SeekBarPreference
-            android:summary="Water per day"
+            android:summary="@string/title_settings_water"
             app:defaultValue="70"
             app:key="water"
             app:title="@string/title_drink_water" />

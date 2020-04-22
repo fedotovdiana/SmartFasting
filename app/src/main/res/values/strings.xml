@@ -35,7 +35,8 @@
     <string name="title_settings_gr">Goal Reached</string>
     <string name="title_settings_ht">Halfway through</string>
     <string name="title_settings_lh">Last hour</string>
-    <string name="title_settings_water">Water a day</string>
+    <string name="title_settings_water">Choose volume per day</string>
+    <string name="title_drinks">Drinks</string>
 
     <!--drink tracker-->
     <string name="title_goal">Goal</string>

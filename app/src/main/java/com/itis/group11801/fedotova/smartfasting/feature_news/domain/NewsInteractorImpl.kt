@@ -8,13 +8,13 @@ import javax.inject.Inject
 @AppScope
 class NewsInteractorImpl @Inject constructor(
     private val newsRepository: NewsRepository
-) : NewsInteractor {
+) {
 
-    override fun getNews(): LiveData<List<News>> {
+    fun getNews(): LiveData<List<News>> {
         return newsRepository.getLocalNews()
     }
 
-    override suspend fun updateDb() {
+    suspend fun updateDb() {
         newsRepository.updateDb()
     }
 }

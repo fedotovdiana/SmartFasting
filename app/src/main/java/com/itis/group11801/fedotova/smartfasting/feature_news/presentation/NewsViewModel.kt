@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.feature_news.NewsRouter
-import com.itis.group11801.fedotova.smartfasting.feature_news.domain.NewsInteractor
+import com.itis.group11801.fedotova.smartfasting.feature_news.domain.NewsInteractorImpl
 import com.itis.group11801.fedotova.smartfasting.feature_news.domain.model.News
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @ScreenScope
 class NewsViewModel @Inject constructor(
-    private val interactor: NewsInteractor,
+    private val interactor: NewsInteractorImpl,
     private val router: NewsRouter
 ) : ViewModel() {
 

@@ -1,7 +1,7 @@
 package com.itis.group11801.fedotova.smartfasting.app.di
 
+import com.itis.group11801.fedotova.smartfasting.app.App
 import com.itis.group11801.fedotova.smartfasting.app.MainActivity
-import com.itis.group11801.fedotova.smartfasting.app.application.App
 import com.itis.group11801.fedotova.smartfasting.app.di.common.AppComponent
 import com.itis.group11801.fedotova.smartfasting.app.di.common.DaggerAppComponent
 import com.itis.group11801.fedotova.smartfasting.feature_diets.presentation.info.DietInfoFragment
