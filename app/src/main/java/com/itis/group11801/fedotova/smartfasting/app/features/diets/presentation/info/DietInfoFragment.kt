@@ -47,7 +47,7 @@ class DietInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         btn_choose.setOnClickListener {
-            val sharedPref = activity!!.getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE)
+            val sharedPref = requireActivity().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE)
             with(sharedPref.edit()) {
                 putString("dietPlanId", viewModel.diet.value?.id.toString())
                 apply()

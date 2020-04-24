@@ -3,10 +3,10 @@ package com.itis.group11801.fedotova.smartfasting.app.resources
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
+import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 class ResourceManagerImpl @Inject constructor(
     private val context: Context
 ) : ResourceManager {
