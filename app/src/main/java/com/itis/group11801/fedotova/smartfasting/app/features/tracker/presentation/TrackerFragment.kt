@@ -1,23 +1,22 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
-import kotlinx.android.synthetic.main.fragment_diet_tracker.*
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.*
+import kotlinx.android.synthetic.main.content_timer.*
+import kotlinx.android.synthetic.main.fragment_timer.*
 import javax.inject.Inject
 
 class TrackerFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: TrackerViewModel
-
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppInjector.initTrackerComponent()
@@ -30,18 +29,66 @@ class TrackerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_diet_tracker, container, false)
+        return inflater.inflate(R.layout.fragment_timer, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btn_choose_fast.setOnClickListener { viewModel.openDietPlan() }
+        fab_start.setOnClickListener {
+            viewModel.startTimer()
+        }
+
+        fab_pause.setOnClickListener {
+            viewModel.pauseTimer()
+        }
+
+        fab_stop.setOnClickListener {
+            viewModel.stopTimer()
+        }
+        tv_open_diets.setOnClickListener {
+            viewModel.openDiets()
+        }
+        subscribeUI()
     }
 
-    //    Test SharedPreference
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val str = sharedPreferences.getString("dietPlanId", "")
-        btn_choose_fast.text = str
+    private fun subscribeUI() {
+        viewModel.timerState.observe(viewLifecycleOwner, Observer { state ->
+            when (state) {
+                RUNNING -> {
+                    fab_start.isEnabled = false
+                    fab_pause.isEnabled = true
+                    fab_stop.isEnabled = true
+                }
+                STOPPED -> {
+                    fab_start.isEnabled = true
+                    fab_pause.isEnabled = false
+                    fab_stop.isEnabled = false
+                }
+                PAUSED -> {
+                    fab_start.isEnabled = true
+                    fab_pause.isEnabled = false
+                    fab_stop.isEnabled = true
+                }
+            }
+        })
+        viewModel.progress.observe(viewLifecycleOwner, Observer {
+            progress_countdown.progress = it
+        })
+        viewModel.progressMax.observe(viewLifecycleOwner, Observer {
+            progress_countdown.max = it
+        })
+        viewModel.progressText.observe(viewLifecycleOwner, Observer {
+            textView_countdown.text = it
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.initTimer()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.saveTimer()
     }
 
     override fun onDestroy() {
