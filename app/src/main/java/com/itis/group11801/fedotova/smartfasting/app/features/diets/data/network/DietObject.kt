@@ -7,25 +7,25 @@ object DietObject {
         add(
             DietRemote(
                 0,
-                "20:4 intermittent"
-            )
-        )
-        add(
-            DietRemote(
-                1,
-                "16:8 intermittent"
-            )
-        )
-        add(
-            DietRemote(
-                2,
                 "12:12 intermittent"
             )
         )
         add(
             DietRemote(
+                1,
+                "14:10 intermittent"
+            )
+        )
+        add(
+            DietRemote(
+                2,
+                "16:8 intermittent"
+            )
+        )
+        add(
+            DietRemote(
                 3,
-                "10:14 intermittent"
+                "20:4 intermittent"
             )
         )
     }

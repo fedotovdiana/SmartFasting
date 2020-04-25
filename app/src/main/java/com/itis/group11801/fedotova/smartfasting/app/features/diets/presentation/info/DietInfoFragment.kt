@@ -1,6 +1,5 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info
 
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +16,6 @@ class DietInfoFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: DietInfoViewModel
-
-    val APP_PREFERENCES = "pref"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppInjector.initDietInfoComponent()
@@ -47,11 +44,7 @@ class DietInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         btn_choose.setOnClickListener {
-            val sharedPref = requireActivity().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE)
-            with(sharedPref.edit()) {
-                putString("dietPlanId", viewModel.diet.value?.id.toString())
-                apply()
-            }
+            viewModel.choosePlan()
         }
     }
 

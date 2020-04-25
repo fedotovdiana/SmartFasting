@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.*
-import kotlinx.android.synthetic.main.activity_timer.*
 import kotlinx.android.synthetic.main.content_timer.*
+import kotlinx.android.synthetic.main.fragment_timer.*
 import javax.inject.Inject
 
 class TrackerFragment : Fragment() {
@@ -29,7 +29,7 @@ class TrackerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_timer, container, false)
+        return inflater.inflate(R.layout.fragment_timer, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,6 +43,9 @@ class TrackerFragment : Fragment() {
 
         fab_stop.setOnClickListener {
             viewModel.stopTimer()
+        }
+        tv_open_diets.setOnClickListener {
+            viewModel.openDiets()
         }
         subscribeUI()
     }

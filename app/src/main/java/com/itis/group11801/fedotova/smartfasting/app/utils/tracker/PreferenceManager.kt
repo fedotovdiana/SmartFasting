@@ -9,13 +9,17 @@ class PreferenceManager @Inject constructor(
     private val preferences: SharedPreferences
 ) {
 
-    //свеженастроенное время
+    //свеженастроенное время в минутах
     fun getNewestTimerLength(): Int {
-        //return preferences.getInt(LAST_TIMER_LENGTH_ID, 10)
-        return 1
+        return when (getDietPlan()) {
+            0 -> FIRST_DIET_TIME_ID
+            1 -> SECOND_DIET_TIME_ID
+            2 -> THIRD_DIET_TIME_ID
+            else -> FOURTH_DIET_TIME_ID
+        }
     }
 
-    //время текущего таймера
+    //время незавершенного таймера
     fun getCurrentTimerLengthSeconds(): Long {
         return preferences.getLong(CURRENT_TIMER_LENGTH_ID, 0)
     }
@@ -42,13 +46,13 @@ class PreferenceManager @Inject constructor(
     }
 
     //оставшиеся секунды
-    fun getSecondsRemaining(): Long {
-        return preferences.getLong(SECONDS_REMAINING_ID, 0)
+    fun getRemainingSeconds(): Long {
+        return preferences.getLong(REMAINING_SECONDS_ID, 0)
     }
 
-    fun setSecondsRemaining(seconds: Long) {
+    fun setRemainingSeconds(seconds: Long) {
         with(preferences.edit()) {
-            putLong(SECONDS_REMAINING_ID, seconds)
+            putLong(REMAINING_SECONDS_ID, seconds)
             apply()
         }
     }
@@ -61,6 +65,17 @@ class PreferenceManager @Inject constructor(
     fun setAlarmSetTime(time: Long) {
         with(preferences.edit()) {
             putLong(ALARM_SET_TIME_ID, time)
+            apply()
+        }
+    }
+
+    fun getDietPlan(): Int {
+        return preferences.getInt(DIET_PLAN_ID, 0)
+    }
+
+    fun setDietPlan(id: Int) {
+        with(preferences.edit()) {
+            putInt(DIET_PLAN_ID, id)
             apply()
         }
     }
