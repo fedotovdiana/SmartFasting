@@ -10,7 +10,7 @@ class PreferenceManager @Inject constructor(
 ) {
 
     //свеженастроенное время
-    fun getLastTimerLength(): Int {
+    fun getNewestTimerLength(): Int {
         //return preferences.getInt(LAST_TIMER_LENGTH_ID, 10)
         return 1
     }
@@ -53,7 +53,7 @@ class PreferenceManager @Inject constructor(
         }
     }
 
-    //время окончания
+    //время установки таймера (начала отсчета)
     fun getAlarmSetTime(): Long {
         return preferences.getLong(ALARM_SET_TIME_ID, 0)
     }

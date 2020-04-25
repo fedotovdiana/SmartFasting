@@ -34,15 +34,15 @@ class TrackerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fab_start.setOnClickListener {
-            viewModel.onStartButtonPressed()
+            viewModel.startTimer()
         }
 
         fab_pause.setOnClickListener {
-            viewModel.onPauseButtonPressed()
+            viewModel.pauseTimer()
         }
 
         fab_stop.setOnClickListener {
-            viewModel.onStopButtonPressed()
+            viewModel.stopTimer()
         }
         subscribeUI()
     }
