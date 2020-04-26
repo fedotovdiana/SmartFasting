@@ -6,45 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".app.features.drinks.presentation.DrinkTrackerFragment">
 
-    <TextView
-        android:id="@+id/textView_countdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00:10:00"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.mikhaellopez.circularprogressbar.CircularProgressBar
-        android:id="@+id/circularProgressBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        app:cpb_background_progressbar_color="@color/colorPrimary"
-        app:cpb_background_progressbar_width="16dp"
-        app:cpb_progress_direction="to_right"
-        app:cpb_progressbar_color="@color/colorPrimaryDark"
-        app:cpb_progressbar_width="10dp"
-        app:cpb_round_border="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/include_drink"
+        layout="@layout/content_timer" />
 
     <Button
         android:id="@+id/btn_add_drink"
         android:layout_width="180dp"
         android:layout_height="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="48dp"
         android:background="@drawable/custom_btn"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/title_btn_add"
         android:textColor="@android:color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/include_drink"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circularProgressBar" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

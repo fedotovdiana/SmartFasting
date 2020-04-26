@@ -8,7 +8,7 @@
     tools:showIn="@layout/fragment_tracker">
 
     <TextView
-        android:id="@+id/textView_countdown"
+        android:id="@+id/textView_drink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10:00"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-        android:id="@+id/progress_countdown"
+        android:id="@+id/progress_drink"
         style="@style/Widget.MaterialProgressBar.ProgressBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

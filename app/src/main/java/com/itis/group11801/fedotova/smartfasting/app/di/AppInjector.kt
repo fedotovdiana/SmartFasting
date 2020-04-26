@@ -17,6 +17,8 @@ import com.itis.group11801.fedotova.smartfasting.app.features.statistics.present
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.di.DrinkJournalComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.TrackerFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerExpiredReceiver
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerNotificationReceiver
 
 object AppInjector {
 
@@ -38,6 +40,14 @@ object AppInjector {
 
     fun injectMainActivity(activity: MainActivity) {
         appComponent.inject(activity)
+    }
+
+    fun injectTimerExpiredReceiver(receiver: TimerExpiredReceiver) {
+        appComponent.inject(receiver)
+    }
+
+    fun injectTimerNotificationReceiver(receiver: TimerNotificationReceiver) {
+        appComponent.inject(receiver)
     }
 
     fun initDietPlansComponent() {

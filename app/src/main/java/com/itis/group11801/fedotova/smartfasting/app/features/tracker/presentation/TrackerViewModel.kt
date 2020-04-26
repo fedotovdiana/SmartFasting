@@ -7,24 +7,23 @@ import androidx.lifecycle.ViewModel
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.AlarmsManager
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.NotificationsManager
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.PreferenceManager
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.*
-import java.util.*
 import javax.inject.Inject
 
 @ScreenScope
 class TrackerViewModel @Inject constructor(
     private val router: DietRouter,
     private val preferenceManager: PreferenceManager,
-    private val alarmsManager: AlarmsManager
+    private val alarmsManager: AlarmsManager,
+    private val notificationsManager: NotificationsManager
 ) : ViewModel() {
 
     private lateinit var timer: CountDownTimer
     private var timerLengthSeconds: Long = 0
     private var remainingSeconds: Long = 0
-    private val nowSeconds: Long
-        get() = Calendar.getInstance().timeInMillis / 1000
 
     private var _progress: MutableLiveData<Int> = MutableLiveData(0)
     val progress: LiveData<Int>
@@ -41,46 +40,6 @@ class TrackerViewModel @Inject constructor(
     private var _timerState: MutableLiveData<TimerState> = MutableLiveData(STOPPED)
     val timerState: LiveData<TimerState>
         get() = _timerState
-
-    //блок обновления preferences
-    private fun setAlarm(nowSeconds: Long, secondsRemaining: Long) {
-        alarmsManager.setAlarm(nowSeconds, secondsRemaining)
-        preferenceManager.setAlarmSetTime(nowSeconds)
-    }
-
-    private fun removeAlarm() {
-        alarmsManager.removeAlarm()
-        preferenceManager.setAlarmSetTime(0)
-    }
-
-    private fun setNewestTimerLength() {
-        val lengthInMinutes = preferenceManager.getNewestTimerLength()
-        timerLengthSeconds = (lengthInMinutes * 60L)
-        _progressMax.value = timerLengthSeconds.toInt()
-    }
-
-    private fun setCurrentTimerLength() {
-        timerLengthSeconds = preferenceManager.getCurrentTimerLengthSeconds()
-        _progressMax.value = timerLengthSeconds.toInt()
-    }
-
-    private fun updateProgress() {
-        //часы
-        val hoursUntilFinished = remainingSeconds / 3600
-        val hoursStr = hoursUntilFinished.toString()
-        //минуты
-        val minutesUntilFinished = remainingSeconds / 60 - hoursUntilFinished * 60
-        val minutesStr = minutesUntilFinished.toString()
-        //секунды
-        val secondsInMinuteUntilFinished =
-            remainingSeconds - hoursUntilFinished * 3600 - minutesUntilFinished * 60
-        val secondsStr = secondsInMinuteUntilFinished.toString()
-        _progressText.value =
-            "${if (hoursStr.length == 2) hoursStr else "0" + hoursStr}:" +
-                    "${if (minutesStr.length == 2) minutesStr else "0" + minutesStr}:" +
-                    "${if (secondsStr.length == 2) secondsStr else "0" + secondsStr}"
-        _progress.value = (timerLengthSeconds - remainingSeconds).toInt()
-    }
 
     //блок работы с таймером
     fun initTimer() {
@@ -100,7 +59,7 @@ class TrackerViewModel @Inject constructor(
 
         //пересчитываем оставшиеся секунды
         val alarmSetTime = preferenceManager.getAlarmSetTime()
-        if (alarmSetTime > 0) remainingSeconds -= nowSeconds - alarmSetTime
+        if (alarmSetTime > 0) remainingSeconds -= alarmsManager.nowSeconds - alarmSetTime
 
         //если время вышло, обнуляем таймер; иначе запускаем
         if (remainingSeconds <= 0) {
@@ -144,7 +103,10 @@ class TrackerViewModel @Inject constructor(
     fun saveTimer() {
         if (_timerState.value == RUNNING) {
             timer.cancel()
-            setAlarm(nowSeconds, remainingSeconds)
+            val wakeUpTime = setAlarm(alarmsManager.nowSeconds, remainingSeconds)
+            notificationsManager.showTimerRunning(wakeUpTime)
+        } else if (timerState == PAUSED) {
+            notificationsManager.showTimerPaused()
         }
         preferenceManager.setCurrentTimerLengthSeconds(timerLengthSeconds)
         preferenceManager.setRemainingSeconds(remainingSeconds)
@@ -153,5 +115,47 @@ class TrackerViewModel @Inject constructor(
 
     fun openDiets() {
         router.openDietPlansFragment()
+    }
+
+    //блок обновления preferences
+    private fun setAlarm(nowSeconds: Long, secondsRemaining: Long): Long {
+        val wakeUpTime = alarmsManager.setAlarm(nowSeconds, secondsRemaining)
+        preferenceManager.setAlarmSetTime(nowSeconds)
+        return wakeUpTime
+    }
+
+    private fun removeAlarm() {
+        alarmsManager.removeAlarm()
+        preferenceManager.setAlarmSetTime(0)
+        notificationsManager.hideTimerNotification()
+    }
+
+    private fun setNewestTimerLength() {
+        val lengthInMinutes = preferenceManager.getNewestTimerLength()
+        timerLengthSeconds = (lengthInMinutes * 60L)
+        _progressMax.value = timerLengthSeconds.toInt()
+    }
+
+    private fun setCurrentTimerLength() {
+        timerLengthSeconds = preferenceManager.getCurrentTimerLengthSeconds()
+        _progressMax.value = timerLengthSeconds.toInt()
+    }
+
+    private fun updateProgress() {
+        //часы
+        val hoursUntilFinished = remainingSeconds / 3600
+        val hoursStr = hoursUntilFinished.toString()
+        //минуты
+        val minutesUntilFinished = remainingSeconds / 60 - hoursUntilFinished * 60
+        val minutesStr = minutesUntilFinished.toString()
+        //секунды
+        val secondsInMinuteUntilFinished =
+            remainingSeconds - hoursUntilFinished * 3600 - minutesUntilFinished * 60
+        val secondsStr = secondsInMinuteUntilFinished.toString()
+        _progressText.value =
+            "${if (hoursStr.length == 2) hoursStr else "0" + hoursStr}:" +
+                    "${if (minutesStr.length == 2) minutesStr else "0" + minutesStr}:" +
+                    "${if (secondsStr.length == 2) secondsStr else "0" + secondsStr}"
+        _progress.value = (timerLengthSeconds - remainingSeconds).toInt()
     }
 }
