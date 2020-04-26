@@ -105,7 +105,7 @@ class TrackerViewModel @Inject constructor(
             timer.cancel()
             val wakeUpTime = setAlarm(alarmsManager.nowSeconds, remainingSeconds)
             notificationsManager.showTimerRunning(wakeUpTime)
-        } else if (timerState == PAUSED) {
+        } else if (_timerState.value == PAUSED) {
             notificationsManager.showTimerPaused()
         }
         preferenceManager.setCurrentTimerLengthSeconds(timerLengthSeconds)

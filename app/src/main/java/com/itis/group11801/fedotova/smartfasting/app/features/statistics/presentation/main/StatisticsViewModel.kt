@@ -3,5 +3,4 @@ package com.itis.group11801.fedotova.smartfasting.app.features.statistics.presen
 import androidx.lifecycle.ViewModel
 
 class StatisticsViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
 }

@@ -30,7 +30,6 @@ class PreferenceManager @Inject constructor(
         }
     }
 
-    //состояние таймера
     fun getTimerState(): TimerState {
         val ordinal = preferences.getInt(TIMER_STATE_ID, 0)
         return TimerState.values()[ordinal]
@@ -44,7 +43,6 @@ class PreferenceManager @Inject constructor(
         }
     }
 
-    //оставшиеся секунды
     fun getRemainingSeconds(): Long {
         return preferences.getLong(REMAINING_SECONDS_ID, 0)
     }
@@ -75,6 +73,41 @@ class PreferenceManager @Inject constructor(
     fun setDietPlan(id: Int) {
         with(preferences.edit()) {
             putInt(DIET_PLAN_ID, id)
+            apply()
+        }
+    }
+
+    fun getDayWaterVolume(): Int {
+//        return preferences.getInt(DAY_WATER_VOLUME, 0)
+        return 2000
+    }
+
+    //TODO set in settings
+    fun setDayWaterWVolume(volume: Int) {
+        with(preferences.edit()) {
+            putInt(DAY_WATER_VOLUME_ID, volume)
+            apply()
+        }
+    }
+
+    fun getWaterVolume(): Int {
+        return preferences.getInt(WATER_VOLUME_ID, 0)
+    }
+
+    fun setWaterWVolume(volume: Int) {
+        with(preferences.edit()) {
+            putInt(WATER_VOLUME_ID, volume)
+            apply()
+        }
+    }
+
+    fun getDate(): String? {
+        return preferences.getString(DATE_ID, "")
+    }
+
+    fun setDate(date: String) {
+        with(preferences.edit()) {
+            putString(DATE_ID, date)
             apply()
         }
     }

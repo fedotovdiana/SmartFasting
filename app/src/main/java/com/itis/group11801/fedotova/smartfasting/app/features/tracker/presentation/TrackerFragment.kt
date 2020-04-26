@@ -36,11 +36,9 @@ class TrackerFragment : Fragment() {
         fab_start.setOnClickListener {
             viewModel.startTimer()
         }
-
         fab_pause.setOnClickListener {
             viewModel.pauseTimer()
         }
-
         fab_stop.setOnClickListener {
             viewModel.stopTimer()
         }
