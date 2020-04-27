@@ -18,8 +18,8 @@ class TimerExpiredReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         AppInjector.injectTimerExpiredReceiver(this)
-        notificationsManager.showTimerExpired()
         preferenceManager.setTimerState(TimerState.STOPPED)
         preferenceManager.setAlarmSetTime(0)
+        notificationsManager.showTimerExpired()
     }
 }

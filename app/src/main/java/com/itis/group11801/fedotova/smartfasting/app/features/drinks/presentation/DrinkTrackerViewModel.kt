@@ -33,7 +33,7 @@ class DrinkTrackerViewModel @Inject constructor(
     fun updateProgress() {
         _progressMax.value = preferenceManager.getDayWaterVolume()
         _progress.value = preferenceManager.getWaterVolume()
-        _progressText.value = preferenceManager.getDate()!!
-//        _progressText.value = "${_progress.value.toString()}/${_progressMax.value.toString()}"
+//        _progressText.value = preferenceManager.getDate()!!
+        _progressText.value = "${_progress.value.toString()}/${_progressMax.value.toString()}"
     }
 }

@@ -23,12 +23,13 @@ class TimerNotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         AppInjector.injectTimerNotificationReceiver(this)
         when (intent.action) {
-            AppConstants.ACTION_STOP -> {
+            ACTION_STOP -> {
                 alarmsManager.removeAlarm()
                 preferenceManager.setTimerState(STOPPED)
+                preferenceManager.setAlarmSetTime(0)
                 notificationsManager.hideTimerNotification()
             }
-            AppConstants.ACTION_PAUSE -> {
+            ACTION_PAUSE -> {
                 var secondsRemaining = preferenceManager.getRemainingSeconds()
                 val alarmSetTime = preferenceManager.getAlarmSetTime()
                 val nowSeconds = alarmsManager.nowSeconds
@@ -39,13 +40,13 @@ class TimerNotificationReceiver : BroadcastReceiver() {
                 preferenceManager.setTimerState(PAUSED)
                 notificationsManager.showTimerPaused()
             }
-            AppConstants.ACTION_RESUME -> {
+            ACTION_RESUME -> {
                 val secondsRemaining = preferenceManager.getRemainingSeconds()
                 val wakeUpTime = alarmsManager.setAlarm(alarmsManager.nowSeconds, secondsRemaining)
                 preferenceManager.setTimerState(RUNNING)
                 notificationsManager.showTimerRunning(wakeUpTime)
             }
-            AppConstants.ACTION_START -> {
+            ACTION_START -> {
                 val minutesRemaining = preferenceManager.getNewestTimerLength()
                 val secondsRemaining = minutesRemaining * 60L
                 val wakeUpTime = alarmsManager.setAlarm(alarmsManager.nowSeconds, secondsRemaining)

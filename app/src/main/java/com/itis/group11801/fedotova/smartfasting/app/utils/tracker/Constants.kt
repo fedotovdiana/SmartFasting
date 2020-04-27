@@ -13,4 +13,10 @@ const val FIRST_DIET_TIME_ID = 1
 const val SECOND_DIET_TIME_ID = 840
 const val THIRD_DIET_TIME_ID = 960
 const val FOURTH_DIET_TIME_ID = 1200
-
+const val ACTION_STOP = "stop"
+const val ACTION_PAUSE = "pause"
+const val ACTION_RESUME = "resume"
+const val ACTION_START = "start"
+const val CHANNEL_ID_TIMER = "channel_id"
+const val CHANNEL_NAME_TIMER = "timer_smartfasting"
+const val TIMER_ID = 0

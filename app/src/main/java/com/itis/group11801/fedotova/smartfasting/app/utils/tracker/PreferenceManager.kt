@@ -82,14 +82,6 @@ class PreferenceManager @Inject constructor(
         return 2000
     }
 
-    //TODO set in settings
-    fun setDayWaterWVolume(volume: Int) {
-        with(preferences.edit()) {
-            putInt(DAY_WATER_VOLUME_ID, volume)
-            apply()
-        }
-    }
-
     fun getWaterVolume(): Int {
         return preferences.getInt(WATER_VOLUME_ID, 0)
     }

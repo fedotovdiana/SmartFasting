@@ -12,9 +12,6 @@ import androidx.core.app.NotificationCompat
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.AppConstants.Companion.CHANNEL_ID_TIMER
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.AppConstants.Companion.CHANNEL_NAME_TIMER
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.AppConstants.Companion.TIMER_ID
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -25,13 +22,13 @@ class NotificationsManager @Inject constructor(
 ) {
     fun showTimerRunning(wakeUpTime: Long) {
         val stopIntent = Intent(context, TimerNotificationReceiver::class.java)
-        stopIntent.action = AppConstants.ACTION_STOP
+        stopIntent.action = ACTION_STOP
         val stopPendingIntent = PendingIntent.getBroadcast(
             context, 0, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         val pauseIntent = Intent(context, TimerNotificationReceiver::class.java)
-        pauseIntent.action = AppConstants.ACTION_PAUSE
+        pauseIntent.action = ACTION_PAUSE
         val pausePendingIntent = PendingIntent.getBroadcast(
             context, 0, pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT
         )
@@ -53,7 +50,7 @@ class NotificationsManager @Inject constructor(
 
     fun showTimerPaused() {
         val resumeIntent = Intent(context, TimerNotificationReceiver::class.java)
-        resumeIntent.action = AppConstants.ACTION_RESUME
+        resumeIntent.action = ACTION_RESUME
         val resumePendingIntent = PendingIntent.getBroadcast(
             context, 0, resumeIntent, PendingIntent.FLAG_UPDATE_CURRENT
         )
@@ -72,7 +69,7 @@ class NotificationsManager @Inject constructor(
 
     fun showTimerExpired() {
         val startIntent = Intent(context, TimerNotificationReceiver::class.java)
-        startIntent.action = AppConstants.ACTION_START
+        startIntent.action = ACTION_START
         val startPendingIntent = PendingIntent.getBroadcast(
             context,
             0, startIntent, PendingIntent.FLAG_UPDATE_CURRENT

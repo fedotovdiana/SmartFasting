@@ -38,6 +38,8 @@ class DrinkTrackerFragment : Fragment() {
         subscribeUI()
     }
 
+//  TODO change dayWaterVolume
+
     private fun subscribeUI() {
         viewModel.progress.observe(viewLifecycleOwner, Observer {
             progress_drink.progress = it
