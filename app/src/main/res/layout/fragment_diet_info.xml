@@ -2,13 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/tv_fast_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@id/btn_choose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +20,7 @@
 
     <Button
         android:id="@+id/btn_choose"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="36dp"
         android:layout_gravity="center"
         android:background="@drawable/custom_btn"
@@ -26,9 +28,9 @@
         android:text="@string/title_btn_choose"
         android:textColor="@android:color/white"
         android:textSize="16sp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_fast_info" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,9 +17,7 @@ var colors = arrayOf(
     R.color.colorGradientPurpleSecond
 )
 
-fun getRandomDrawableColor() = colors[Random.nextInt(
-    colors.size
-)]
+fun getRandomDrawableColor() = colors[Random.nextInt(colors.size)]
 
 fun dateFormat(oldStringDate: String): String {
     val newDate: String

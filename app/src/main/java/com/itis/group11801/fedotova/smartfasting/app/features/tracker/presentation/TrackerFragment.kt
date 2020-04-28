@@ -12,6 +12,7 @@ import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.*
 import kotlinx.android.synthetic.main.content_timer.*
 import kotlinx.android.synthetic.main.fragment_tracker.*
 import javax.inject.Inject
+import kotlin.random.Random
 
 class TrackerFragment : Fragment() {
 
@@ -45,6 +46,7 @@ class TrackerFragment : Fragment() {
         tv_open_diets.setOnClickListener {
             viewModel.openDiets()
         }
+        tv_open_diets.text = Random.nextInt().toString()
         subscribeUI()
     }
 

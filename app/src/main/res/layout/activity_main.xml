@@ -10,9 +10,10 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
         android:background="@color/colorPrimary"
-        android:theme="@style/Toolbar" />
+        android:elevation="4dp"
+        android:theme="@style/Toolbar"
+        app:menu="@menu/toolbar_menu" />
 
     <fragment
         android:id="@+id/nav_host_fragment"
