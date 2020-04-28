@@ -22,28 +22,29 @@ class DrinkJournalViewModel @Inject constructor(
 
     private fun convertToJournal(notes: List<DrinkNote>): LiveData<List<JournalParent>> {
         val parentItems: MutableList<JournalParent> = ArrayList()
-        var childItems: MutableList<JournalChild>
-
-        var i = 0
-        var totalVolume = 0
-        var curDate = dateFormatToDate(notes[0].date)
-        childItems = ArrayList()
-        while (i < notes.size) {
-            val date = dateFormatToDate(notes[i].date)
-            if (date == curDate) {
-                childItems.add(JournalChild(notes[i].drinkSort.name, notes[i].volume))
-                totalVolume += notes[i].volume
-                i++
-            } else {
-                val dummyParentDataItem = JournalParent(curDate, totalVolume, childItems)
-                parentItems.add(dummyParentDataItem)
-                totalVolume = 0
-                curDate = date
-                childItems = ArrayList()
+        if (notes.isNotEmpty()) {
+            var childItems: MutableList<JournalChild>
+            var i = 0
+            var totalVolume = 0
+            var curDate = dateFormatToDate(notes[0].date)
+            childItems = ArrayList()
+            while (i < notes.size) {
+                val date = dateFormatToDate(notes[i].date)
+                if (date == curDate) {
+                    childItems.add(JournalChild(notes[i].drinkSort.name, notes[i].volume))
+                    totalVolume += notes[i].volume
+                    i++
+                } else {
+                    val dummyParentDataItem = JournalParent(curDate, totalVolume, childItems)
+                    parentItems.add(dummyParentDataItem)
+                    totalVolume = 0
+                    curDate = date
+                    childItems = ArrayList()
+                }
             }
+            val dummyParentDataItem = JournalParent(curDate, totalVolume, childItems)
+            parentItems.add(dummyParentDataItem)
         }
-        val dummyParentDataItem = JournalParent(curDate, totalVolume, childItems)
-        parentItems.add(dummyParentDataItem)
         return MutableLiveData(parentItems)
     }
 }

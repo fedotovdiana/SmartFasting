@@ -44,6 +44,6 @@ class DrinkJournalFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        AppInjector.clearNewsComponent()
+        AppInjector.clearDrinkJournalComponent()
     }
 }
