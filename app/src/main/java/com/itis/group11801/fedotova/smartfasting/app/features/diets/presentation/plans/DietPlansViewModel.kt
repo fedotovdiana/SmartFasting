@@ -12,7 +12,6 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.model.DietPlanUI
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,14 +22,12 @@ class DietPlansViewModel @Inject constructor(
     private val resourceManager: ResourceManager
 ) : ViewModel() {
 
-    private lateinit var job: Job
-
     private var _dietPlans = MutableLiveData<List<DietPlanUI>>()
     val dietPlans: LiveData<List<DietPlanUI>>
         get() = _dietPlans
 
     fun getDietPlans() {
-        job = viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             val dietPlans =
                 interactor.getDietPlans().map {
                     mapDietToDietPlanUI(resourceManager, it)
@@ -42,10 +39,5 @@ class DietPlansViewModel @Inject constructor(
     fun showDietPlan(id: Int) {
         val bundle = bundleOf("dietPlanId" to id)
         router.openDietInfoFragment(bundle)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        job.cancel()
     }
 }

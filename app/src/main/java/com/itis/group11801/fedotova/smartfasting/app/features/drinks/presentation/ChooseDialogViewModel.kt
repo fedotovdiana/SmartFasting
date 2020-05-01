@@ -10,7 +10,6 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.mode
 import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatToDate
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.PreferenceManager
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -21,8 +20,6 @@ class ChooseDialogViewModel @Inject constructor(
     private val router: DrinkRouter,
     private val preferenceManager: PreferenceManager
 ) : ViewModel() {
-
-    private val job = Job()
 
     fun saveDrink(drinkSort: String, volume: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -46,10 +43,5 @@ class ChooseDialogViewModel @Inject constructor(
 
     fun closeDialog() {
         router.closeDrinkDialog()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        job.cancel()
     }
 }

@@ -13,7 +13,6 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.PreferenceManager
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -26,13 +25,11 @@ class DietInfoViewModel @Inject constructor(
     private val preferenceManager: PreferenceManager
 ) : ViewModel() {
 
-    private lateinit var job: Job
-
     private var _diet = MutableLiveData<DietInfoUI>()
     var diet: LiveData<DietInfoUI> = _diet
 
     fun setDietPlan(id: Int) {
-        job = viewModelScope.launch {
+        viewModelScope.launch {
             _diet.value = mapDietToDietInfoUI(
                 resourceManager,
                 withContext(Dispatchers.IO) { interactor.getDietPlan(id) })
@@ -45,10 +42,5 @@ class DietInfoViewModel @Inject constructor(
 
     fun getDefaultColor(): Int {
         return resourceManager.getColor(R.color.colorPrimary)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        job.cancel()
     }
 }

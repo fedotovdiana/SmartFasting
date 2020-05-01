@@ -31,10 +31,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = findNavController(R.id.nav_host_fragment)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            toolbar.menu.findItem(R.id.navigation_settings).isVisible =
-                destination.id != R.id.navigation_settings
-        }
         navigator.attachNavController(navController, R.navigation.mobile_navigation)
 
         appBarConfiguration = AppBarConfiguration(
@@ -54,6 +50,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            menu?.findItem(R.id.navigation_settings)?.isVisible =
+                destination.id != R.id.navigation_settings
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
