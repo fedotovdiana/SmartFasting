@@ -9,10 +9,12 @@ const val DIET_PLAN_ID = "smartfasting.diet_plan"
 const val DAY_WATER_VOLUME_ID = "smartfasting.day_water_volume"
 const val WATER_VOLUME_ID = "smartfasting.water_volume"
 const val DATE_ID = "smartfasting.date"
+
 const val FIRST_DIET_TIME_ID = 1
 const val SECOND_DIET_TIME_ID = 840
 const val THIRD_DIET_TIME_ID = 960
 const val FOURTH_DIET_TIME_ID = 1200
+
 const val ACTION_STOP = "stop"
 const val ACTION_PAUSE = "pause"
 const val ACTION_RESUME = "resume"

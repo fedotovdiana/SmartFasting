@@ -7,7 +7,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.mode
 import javax.inject.Inject
 
 @AppScope
-class StatisticsInteractorImpl @Inject constructor(
+class StatisticsInteractor @Inject constructor(
     private val drinkRepository: DrinkRepository
 ) {
     fun getDrinkNotes(): LiveData<List<DrinkNote>> {

@@ -5,7 +5,6 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.domain.model
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info.model.DietInfoUI
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
 
-
 fun mapDietToDietInfoUI(
     resourceManager: ResourceManager,
     diet: Diet

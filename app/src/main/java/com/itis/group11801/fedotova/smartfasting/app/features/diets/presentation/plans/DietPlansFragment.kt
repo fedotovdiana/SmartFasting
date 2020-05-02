@@ -38,10 +38,7 @@ class DietPlansFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.dietPlans.observe(viewLifecycleOwner, Observer { result ->
             if (rv_fasts.adapter == null) {
-                rv_fasts.adapter =
-                    DietPlansAdapter {
-                        viewModel.showDietPlan(it.id)
-                    }
+                rv_fasts.adapter = DietPlansAdapter { viewModel.showDietPlan(it.id) }
             }
             (rv_fasts.adapter as DietPlansAdapter).submitList(result)
         })

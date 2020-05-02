@@ -16,7 +16,6 @@
         android:name="com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.TrackerFragment"
         android:label="@string/title_tracker"
         tools:layout="@layout/fragment_tracker">
-
         <action
             android:id="@+id/open_diet_plans_fragment"
             app:destination="@id/navigation_diet_plans" />
@@ -59,12 +58,10 @@
         android:name="com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info.DietInfoFragment"
         android:label="@string/title_fasts"
         tools:layout="@layout/fragment_diet_info">
-
         <argument
             android:name="dietPlanId"
             android:defaultValue="0"
             app:argType="integer" />
-
     </fragment>
 
     <fragment

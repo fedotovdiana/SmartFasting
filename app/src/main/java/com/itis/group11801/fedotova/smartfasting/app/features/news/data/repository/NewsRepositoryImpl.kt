@@ -19,9 +19,7 @@ class NewsRepositoryImpl @Inject constructor(
 ) : NewsRepository {
 
     override fun getLocalNews(): LiveData<List<News>> {
-        return newsDao.getAll().map { list ->
-            list.map { mapNewsLocalToNews(it) }
-        }
+        return newsDao.getAll().map { list -> list.map { mapNewsLocalToNews(it) } }
     }
 
     override suspend fun updateDb() {

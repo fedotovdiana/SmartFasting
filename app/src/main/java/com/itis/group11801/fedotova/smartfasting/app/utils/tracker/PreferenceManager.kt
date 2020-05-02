@@ -10,7 +10,7 @@ class PreferenceManager @Inject constructor(
 ) {
     //свеженастроенное время в минутах
     fun getNewestTimerLength(): Int {
-        return when (getDietPlan()) {
+        return when (getDietID()) {
             0 -> FIRST_DIET_TIME_ID
             1 -> SECOND_DIET_TIME_ID
             2 -> THIRD_DIET_TIME_ID
@@ -66,11 +66,11 @@ class PreferenceManager @Inject constructor(
         }
     }
 
-    fun getDietPlan(): Int {
+    private fun getDietID(): Int {
         return preferences.getInt(DIET_PLAN_ID, 0)
     }
 
-    fun setDietPlan(id: Int) {
+    fun setDietID(id: Int) {
         with(preferences.edit()) {
             putInt(DIET_PLAN_ID, id)
             apply()

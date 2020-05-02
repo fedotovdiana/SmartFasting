@@ -4,7 +4,9 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.domain.model
 
 interface DietRepository {
 
-    suspend fun getDietPlans(): List<Diet>
+    suspend fun getDiets(): List<Diet>
 
-    suspend fun getDietPlan(id: Int): Diet
+    suspend fun getDiet(id: Int): Diet
+
+    suspend fun setDietID(id: Int)
 }

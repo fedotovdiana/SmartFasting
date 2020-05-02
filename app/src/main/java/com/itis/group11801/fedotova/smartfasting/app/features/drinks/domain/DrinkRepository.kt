@@ -8,4 +8,8 @@ interface DrinkRepository {
     suspend fun saveDrinkNote(drinkNote: DrinkNote)
 
     fun getDrinkNotes(): LiveData<List<DrinkNote>>
+
+    fun getWaterVolume(): Int
+
+    fun getDayWaterVolume(): Int
 }

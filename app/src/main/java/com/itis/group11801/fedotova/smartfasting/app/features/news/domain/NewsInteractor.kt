@@ -6,7 +6,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.news.domain.model.
 import javax.inject.Inject
 
 @AppScope
-class NewsInteractorImpl @Inject constructor(
+class NewsInteractor @Inject constructor(
     private val newsRepository: NewsRepository
 ) {
 

@@ -13,7 +13,7 @@ import javax.inject.Inject
 class ChooseDialogFragment : DialogFragment() {
 
     @Inject
-    lateinit var viewModel: ChooseDialogViewModel
+    lateinit var viewModel: DrinkTrackerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppInjector.injectChooseDialogFragment(this)
@@ -30,14 +30,11 @@ class ChooseDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btn_save_drink.setOnClickListener {
-            viewModel.saveDrink(
-                spinner.selectedItem.toString(),
-                et_volume.text.toString()
-            )
-            viewModel.closeDialog()
+            viewModel.saveDrink(spinner.selectedItem.toString(), et_volume.text.toString())
+            dismiss()
         }
         tv_cancel_drink.setOnClickListener {
-            viewModel.closeDialog()
+            dismiss()
         }
     }
 }

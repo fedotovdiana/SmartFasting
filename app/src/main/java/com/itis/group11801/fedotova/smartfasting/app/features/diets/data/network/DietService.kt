@@ -4,7 +4,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.data.network
 
 interface DietService {
 
-    suspend fun getDietPlans(): List<DietRemote>
+    suspend fun getDiets(): List<DietRemote>
 
-    suspend fun getDietPlan(id: Int): DietRemote
+    suspend fun getDiet(id: Int): DietRemote
 }

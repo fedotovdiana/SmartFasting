@@ -5,11 +5,19 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.mode
 import javax.inject.Inject
 
 @AppScope
-class DrinkInteractorImpl @Inject constructor(
+class DrinkInteractor @Inject constructor(
     private val drinkRepository: DrinkRepository
 ) {
 
     suspend fun saveDrinkNote(drinkNote: DrinkNote) {
         drinkRepository.saveDrinkNote(drinkNote)
+    }
+
+    fun getWaterVolume(): Int {
+        return drinkRepository.getWaterVolume()
+    }
+
+    fun getDayWaterVolume(): Int {
+        return drinkRepository.getDayWaterVolume()
     }
 }

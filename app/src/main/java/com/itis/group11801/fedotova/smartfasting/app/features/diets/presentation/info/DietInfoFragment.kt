@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.DIET_PLAN_ID
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_diet_info.*
 import javax.inject.Inject
@@ -38,13 +39,13 @@ class DietInfoFragment : Fragment() {
             activity?.toolbar?.title = it.title
             activity?.toolbar?.setBackgroundColor(it.color)
         })
-        viewModel.setDietPlan(arguments?.getInt("dietPlanId") ?: 0)
+        viewModel.setDiet(arguments?.getInt(DIET_PLAN_ID) ?: 0)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         btn_choose.setOnClickListener {
-            viewModel.choosePlan()
+            viewModel.chooseDietPlan()
         }
     }
 

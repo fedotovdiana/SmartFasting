@@ -8,13 +8,13 @@ import javax.inject.Inject
 class DietServiceImpl @Inject constructor() :
     DietService {
 
-    override suspend fun getDietPlans() = mockDietPlans()
+    override suspend fun getDiets() = mockDietPlans()
 
     private fun mockDietPlans(): List<DietRemote> {
         return DietObject.list
     }
 
-    override suspend fun getDietPlan(id: Int): DietRemote {
+    override suspend fun getDiet(id: Int): DietRemote {
         return DietObject.list[id]
     }
 }

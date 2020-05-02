@@ -32,13 +32,9 @@ class DrinkTrackerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btn_add_drink.setOnClickListener {
-            viewModel.openDrinkDialog()
-        }
+        btn_add_drink.setOnClickListener { viewModel.openDialog() }
         subscribeUI()
     }
-
-//  TODO change dayWaterVolume
 
     private fun subscribeUI() {
         viewModel.progress.observe(viewLifecycleOwner, Observer {

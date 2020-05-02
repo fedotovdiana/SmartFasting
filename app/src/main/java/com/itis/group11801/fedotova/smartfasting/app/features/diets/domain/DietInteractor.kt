@@ -5,15 +5,19 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.domain.model
 import javax.inject.Inject
 
 @AppScope
-class DietInteractorImpl @Inject constructor(
+class DietInteractor @Inject constructor(
     private val dietRepository: DietRepository
 ) {
 
-    suspend fun getDietPlans(): List<Diet> {
-        return dietRepository.getDietPlans()
+    suspend fun getDiets(): List<Diet> {
+        return dietRepository.getDiets()
     }
 
-    suspend fun getDietPlan(id: Int): Diet {
-        return dietRepository.getDietPlan(id)
+    suspend fun getDiet(id: Int): Diet {
+        return dietRepository.getDiet(id)
+    }
+
+    suspend fun setDietID(id: Int) {
+        dietRepository.setDietID(id)
     }
 }

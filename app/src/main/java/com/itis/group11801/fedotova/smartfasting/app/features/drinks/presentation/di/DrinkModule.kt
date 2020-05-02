@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.itis.group11801.fedotova.smartfasting.app.di.ViewModelKey
 import com.itis.group11801.fedotova.smartfasting.app.di.common.ViewModelModule
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
-import com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentation.ChooseDialogViewModel
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentation.DrinkTrackerViewModel
 import dagger.Binds
 import dagger.Module
@@ -18,10 +17,4 @@ interface DrinkModule {
     @ScreenScope
     @ViewModelKey(DrinkTrackerViewModel::class)
     fun bindDrinkTrackerViewModel(viewModel: DrinkTrackerViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ScreenScope
-    @ViewModelKey(ChooseDialogViewModel::class)
-    fun bindChooseDialogViewModel(viewModel: ChooseDialogViewModel): ViewModel
 }
