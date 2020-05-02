@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.model.DietPlanUI
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.model.DietUI
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_diet.*
 
 class DietPlansAdapter(
-    private val onClick: (DietPlanUI) -> Unit
-) : ListAdapter<DietPlanUI, DietPlansViewHolder>(
+    private val onClick: (DietUI) -> Unit
+) : ListAdapter<DietUI, DietPlansViewHolder>(
     DiffCallback
 ) {
 
@@ -31,19 +31,19 @@ class DietPlansViewHolder(
     override val containerView: View
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-    fun bind(dietPlanUI: DietPlanUI, onClick: (DietPlanUI) -> Unit) {
-        tv_fast_title.text = dietPlanUI.title
-        itemView.setOnClickListener { onClick(dietPlanUI) }
-        itemView.setBackgroundResource(dietPlanUI.gradient)
+    fun bind(dietUI: DietUI, onClick: (DietUI) -> Unit) {
+        tv_fast_title.text = dietUI.title
+        itemView.setOnClickListener { onClick(dietUI) }
+        itemView.setBackgroundResource(dietUI.gradient)
     }
 }
 
-object DiffCallback : DiffUtil.ItemCallback<DietPlanUI>() {
-    override fun areItemsTheSame(oldItem: DietPlanUI, newItem: DietPlanUI): Boolean {
+object DiffCallback : DiffUtil.ItemCallback<DietUI>() {
+    override fun areItemsTheSame(oldItem: DietUI, newItem: DietUI): Boolean {
         return oldItem.title == newItem.title
     }
 
-    override fun areContentsTheSame(oldItem: DietPlanUI, newItem: DietPlanUI): Boolean {
+    override fun areContentsTheSame(oldItem: DietUI, newItem: DietUI): Boolean {
         return oldItem == newItem
     }
 }

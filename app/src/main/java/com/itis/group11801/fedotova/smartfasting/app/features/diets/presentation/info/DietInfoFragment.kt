@@ -44,9 +44,7 @@ class DietInfoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        btn_choose.setOnClickListener {
-            viewModel.chooseDietPlan()
-        }
+        btn_choose.setOnClickListener { viewModel.chooseDiet() }
     }
 
     override fun onStop() {

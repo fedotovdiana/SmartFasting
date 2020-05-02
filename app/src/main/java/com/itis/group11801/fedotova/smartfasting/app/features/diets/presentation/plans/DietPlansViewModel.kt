@@ -8,10 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.domain.DietInteractor
-import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.mapper.mapDietToDietPlanUI
-import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.model.DietPlanUI
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.mapper.mapDietToDietUI
+import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.model.DietUI
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.DIET_PLAN_ID
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,14 +23,14 @@ class DietPlansViewModel @Inject constructor(
     private val resourceManager: ResourceManager
 ) : ViewModel() {
 
-    private var _dietPlans = MutableLiveData<List<DietPlanUI>>()
-    val dietPlans: LiveData<List<DietPlanUI>>
+    private var _dietPlans = MutableLiveData<List<DietUI>>()
+    val dietPlans: LiveData<List<DietUI>>
         get() = _dietPlans
 
     fun getDietPlans() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val dietPlans =
-                interactor.getDiets().map { mapDietToDietPlanUI(resourceManager, it) }
+                interactor.getDiets().map { mapDietToDietUI(resourceManager, it) }
             _dietPlans.postValue(dietPlans)
         }
     }
