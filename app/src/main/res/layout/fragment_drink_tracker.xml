@@ -6,15 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".app.features.drinks.presentation.DrinkTrackerFragment">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/title_goal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2000 ml"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
     <include
         android:id="@+id/include_drink"
         layout="@layout/content_drink_timer" />
 
     <Button
         android:id="@+id/btn_add_drink"
-        android:layout_width="160dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="120dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="48dp"
         android:background="@drawable/custom_btn"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/title_btn_add"
