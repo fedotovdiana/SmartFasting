@@ -1,59 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_marginVertical="?actionBarSize">
 
     <include
         android:id="@+id/include"
-        layout="@layout/content_timer" />
-
-    <ImageButton
-        android:id="@+id/fab_stop"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/custom_btn"
-        android:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/fab_pause"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_stop" />
-
-    <ImageButton
-        android:id="@+id/fab_pause"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/custom_btn"
-        android:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_pause" />
-
-    <ImageButton
-        android:id="@+id/fab_start"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/custom_btn"
-        android:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/fab_pause"
-        app:srcCompat="@drawable/ic_play_arrow" />
-
-    <TextView
-        android:id="@+id/tv_open_diets"
+        layout="@layout/content_tracker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="@string/title_btn_change"
-        android:textColor="@color/colorAccent"
-        android:textSize="18sp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/fab_stop"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/custom_btn"
+        android:elevation="4dp"
+        android:text="@string/title_btn_stop"
+        android:src="@drawable/ic_stop"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <ImageButton
+        android:id="@+id/fab_start"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/custom_btn"
+        android:elevation="4dp"
+        android:text="@string/title_btn_start"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:src="@drawable/ic_play_arrow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <TextView
+            android:id="@+id/tv_text_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/timer_is_started"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_open_diets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp"
+            android:text="@string/title_btn_change"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

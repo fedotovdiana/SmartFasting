@@ -4,20 +4,20 @@
     <color name="colorPrimaryDark">#ADADAD</color>
     <color name="colorAccent">#F388B0</color>
 
-    <color name="colorBackground">#FBFBFF</color>
+    <color name="colorBackground">#F6F8FA</color>
 
     <color name="colorTextDark">#5B5B5E</color>
     <color name="colorAccentTransparent">#33F388B0</color>
-    <color name="colorPinkLight">#FDE7EF</color>
+    <color name="colorPinkLight">#FBF7F9</color>
     <color name="colorLight">#1D8FC0E1</color>
 
-    <color name="colorGradientPurpleFirst">#E9B1E5</color>
-    <color name="colorGradientPurpleSecond">#8F9FFF</color>
-    <color name="colorGradientGreenFirst">#95E7B8</color>
-    <color name="colorGradientGreenSecond">#2A8196</color>
-    <color name="colorGradientYellowFirst">#E5D78C</color>
-    <color name="colorGradientYellowSecond">#EA5E95</color>
-    <color name="colorGradientBlueFirst">#8FF5E3</color>
-    <color name="colorGradientBlueSecond">#506BC9</color>
+    <color name="colorGradientPurpleFirst">#EFABEA</color>
+    <color name="colorGradientPurpleSecond">#9659BC</color>
+    <color name="colorGradientGreenFirst">#86E6A1</color>
+    <color name="colorGradientGreenSecond">#27859C</color>
+    <color name="colorGradientYellowFirst">#F4E07D</color>
+    <color name="colorGradientYellowSecond">#E69251</color>
+    <color name="colorGradientBlueFirst">#87E8D8</color>
+    <color name="colorGradientBlueSecond">#5773D5</color>
 
 </resources>
