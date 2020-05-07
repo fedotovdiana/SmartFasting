@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
-import kotlinx.android.synthetic.main.content_drink_timer.*
+import kotlinx.android.synthetic.main.content_drink_tracker.*
 import kotlinx.android.synthetic.main.fragment_drink_tracker.*
 import javax.inject.Inject
 
@@ -39,12 +39,16 @@ class DrinkTrackerFragment : Fragment() {
     private fun subscribeUI() {
         viewModel.progress.observe(viewLifecycleOwner, Observer {
             progress_drink.progress = it
+            val text = "$it ml"
+            tv_drink.text = text
         })
         viewModel.progressMax.observe(viewLifecycleOwner, Observer {
             progress_drink.max = it
+            val text = "$it ml"
+            tv_goal.text = text
         })
-        viewModel.progressText.observe(viewLifecycleOwner, Observer {
-            textView_drink.text = it
+        viewModel.progressTextRemain.observe(viewLifecycleOwner, Observer {
+            tv_drink_remain.text = it
         })
     }
 

@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">SmartFasting</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
     <!--titles-->
@@ -18,18 +16,17 @@
     <string name="title_btn_start">Start</string>
     <string name="title_btn_stop">Stop</string>
     <string name="title_btn_choose">Choose</string>
-    <string name="title_btn_choose_fast">Choose your fast</string>
     <string name="title_btn_add">Add</string>
     <string name="title_btn_cancel">Cancel</string>
-    <string name="title_btn_change">Change a fast</string>
+    <string name="title_btn_change">Change a diet plan</string>
     <string name="title_btn_see_more">See more</string>
     <string name="title_btn_show_dj">Show drink journal</string>
 
     <!--fasts-->
-    <string name="title_fast_first">12:12 intermittent</string>
-    <string name="title_fast_second">14:10 intermittent</string>
-    <string name="title_fast_third">16:8 intermittent</string>
-    <string name="title_fast_fourth">20:4 intermittent</string>
+    <string name="title_fast_first">12h:12h</string>
+    <string name="title_fast_second">14h:10h</string>
+    <string name="title_fast_third">16h:8h</string>
+    <string name="title_fast_fourth">20h:4h</string>
 
     <!--settings-->
     <string name="title_settings_gr">Goal Reached</string>
@@ -40,8 +37,8 @@
 
     <!--drink tracker-->
     <string name="title_goal">Your goal</string>
-    <string name="title_water_absorbed">Water absorbed</string>
-    <string name="title_water_to_drink">Water to drink</string>
+    <string name="title_water_absorbed">Сurrent volume</string>
+    <string name="title_water_to_drink">Left to drink</string>
     <string name="title_choose_a_drink">Choose a drink</string>
     <string name="title_drink_water">Water</string>
     <string name="title_drink_energy">Energetic</string>
@@ -55,29 +52,30 @@
 
     <!--tracker-->
     <string name="title_tracker_end">End</string>
-    <string name="title_tracker_rt">Remaining time</string>
+    <string name="title_tracker_rt">Left to end</string>
+    <string name="timer_is_started">Timer is started</string>
 
     <!--statistics-->
     <string name="title_main_statistics">Main statistics</string>
     <string name="title_drink_statistics">Drink statistics</string>
-    <string name="title_total_fasts">Total fast</string>
+    <string name="title_total_diets">Total diet days</string>
     <string name="title_total_drinks">Total drinks</string>
-    <string name="title_longest_fast">Longest fast</string>
+    <string name="title_longest_diet">Longest fast</string>
     <string name="title_average_drink">Average drink</string>
-    <string name="title_fasting_graph">Fasting graph</string>
-    <string name="title_water_graph">Water graph</string>
+    <string name="title_tracker_graph">Tracker graph</string>
+    <string name="journal">Journal</string>
+    <string name="graph">Graph</string>
     <string name="ml">ml</string>
-    <string name="set_ml">2000</string>
 
-    <!--fasts-->
-    <string name="fast_0_title">20:4 fasting plan</string>
-    <string name="fast_1_title">16:8 fasting plan</string>
-    <string name="fast_2_title">16:8 fasting plan</string>
-    <string name="fast_3_title">10:14 fasting plan</string>
-    <string name="fast_0_description">0"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="fast_1_description">1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="fast_2_description">2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="fast_3_description">3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <!--diets-->
+    <string name="diet_0_title">20:4 diet plan</string>
+    <string name="diet_1_title">16:8 diet plan</string>
+    <string name="diet_2_title">16:8 diet plan</string>
+    <string name="diet_3_title">10:14 diet plan</string>
+    <string name="diet_0_description">0"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="diet_1_description">1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="diet_2_description">2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="diet_3_description">3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
     <string-array name="drinks">
         <item>WATER</item>
@@ -178,9 +176,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="action_settings">Settings</string>
-    <string name="timer_is_started">Timer is started</string>
-    <string name="graph">Graph</string>
-    <string name="journal">Journal</string>
 
 </resources>

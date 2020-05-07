@@ -12,11 +12,6 @@ import kotlinx.android.synthetic.main.fragment_statistics.*
 
 class StatisticsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            StatisticsFragment()
-    }
-
     private lateinit var viewModel: StatisticsViewModel
 
     override fun onCreateView(

@@ -6,7 +6,6 @@ import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.DrinkDao
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.mapper.mapDrinkNoteLocalToDrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.mapper.mapDrinkNoteToDrinkNoteLocal
-import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.model.DrinkSort
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatToDate
@@ -50,16 +49,15 @@ class DrinkRepositoryImpl @Inject constructor(
 
     private suspend fun saveToPreference(drinkNote: DrinkNote) {
         withContext(Dispatchers.IO) {
-            if (drinkNote.drinkSort == DrinkSort.WATER) {
-                val date = dateFormatToDate(Date())
-                if (date == preferenceManager.getDate()) {
-                    val newVolume = drinkNote.volume + preferenceManager.getWaterVolume()
-                    preferenceManager.setWaterWVolume(newVolume)
-                } else {
-                    preferenceManager.setWaterWVolume(drinkNote.volume)
-                    preferenceManager.setDate(date)
-                }
+            val date = dateFormatToDate(Date())
+            if (date == preferenceManager.getDate()) {
+                val newVolume = drinkNote.volume + preferenceManager.getWaterVolume()
+                preferenceManager.setWaterWVolume(newVolume)
+            } else {
+                preferenceManager.setWaterWVolume(drinkNote.volume)
+                preferenceManager.setDate(date)
             }
+
         }
     }
 }

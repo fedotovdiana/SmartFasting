@@ -43,10 +43,7 @@ class NewsFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.news.observe(viewLifecycleOwner, Observer { result ->
             if (rvNews.adapter == null) {
-                rvNews.adapter =
-                    NewsAdapter {
-                        viewModel.newsClicked(it)
-                    }
+                rvNews.adapter = NewsAdapter { viewModel.newsClicked(it) }
             }
             (rvNews.adapter as NewsAdapter).submitList(result)
         })
