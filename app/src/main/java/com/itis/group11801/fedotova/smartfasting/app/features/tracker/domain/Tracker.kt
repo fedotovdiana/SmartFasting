@@ -5,10 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.AlarmsManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.NotificationsManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.PreferenceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.*
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.RUNNING
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.STOPPED
 import kotlinx.coroutines.*
@@ -24,34 +21,33 @@ class Tracker @Inject constructor(
     private lateinit var timer: Job
     private var count = 0
     private var countStop = 0
+    private var progressRemain: Long = 0
 
-    private var lengthSeconds: Long = 0
-    private var remainingSeconds: Long = 0
-
-    private var _progress: MutableLiveData<Int> = MutableLiveData(0)
-    val progress: LiveData<Int>
+    private var _progress: MutableLiveData<Long> = MutableLiveData(0)
+    val progress: LiveData<Long>
         get() = _progress
 
-    private var _progressMax: MutableLiveData<Int> = MutableLiveData(0)
-    val progressMax: LiveData<Int>
+    private var _progressMax: MutableLiveData<Long> = MutableLiveData(0)
+    val progressMax: LiveData<Long>
         get() = _progressMax
 
-    private var _text = MutableLiveData(0)
-    val text: LiveData<Int>
-        get() = _text
+//    private var _text = MutableLiveData(0)
+//    val text: LiveData<Int>
+//        get() = _text
 
     private var _state = MutableLiveData(STOPPED)
     val state: LiveData<TimerState>
         get() = _state
 
-    private suspend fun startCoroutineTimer(repeatMillis: Long = 0, remainingSec: Long) {
-        for (ind: Long in remainingSec - 1 downTo 0) {
+    private suspend fun startCoroutineTimer() {
+        for (ind: Long in (progressRemain - 1) downTo 0) {
             Log.d(TAG, "Background - tick $ind")
             withContext(Dispatchers.Main) {
                 Log.d(TAG, "Main thread - tick")
-                _text.value = ind.toInt()
+                progressRemain--
+                _progress.value = _progressMax.value?.minus(progressRemain)
             }
-            delay(repeatMillis)
+            delay(SECOND)
         }
         withContext(Dispatchers.Main) {
             stopTimer()
@@ -60,7 +56,7 @@ class Tracker @Inject constructor(
 
     fun startTimer() {
         timer = scope.launch {
-            startCoroutineTimer(1000, remainingSeconds)
+            startCoroutineTimer()
         }
         Log.e("AS", count.toString())
         _state.value = RUNNING
@@ -70,47 +66,48 @@ class Tracker @Inject constructor(
     fun stopTimer() {
         timer.cancel()
         _state.value = STOPPED
+
         Log.e("AC", countStop.toString())
         countStop = count
 
-//        _progresMax.value = preferenceManager.getTimerLength()
-
-        remainingSeconds = lengthSeconds
-        preferenceManager.setRemainingSeconds(remainingSeconds)
+        preferenceManager.getTimerLength().also {
+            progressRemain = it
+            _progressMax.value = it
+            preferenceManager.setRemainingSeconds(it)
+        }
+        _progress.value = _progressMax.value?.minus(progressRemain)
     }
 
     fun resumeTimer() {
 
-        lengthSeconds = preferenceManager.getTimerLength()
+        _progressMax.value = preferenceManager.getTimerLength()
+        progressRemain = preferenceManager.getRemainingSeconds()
 
-        remainingSeconds = preferenceManager.getRemainingSeconds() -
-                (alarmsManager.nowSeconds - preferenceManager.getAlarmSetTime())
+        if (preferenceManager.getRemainingSeconds() < preferenceManager.getTimerLength()) {
 
-        if (remainingSeconds <= 0) {
-            stopTimer()
-            count++
-        } else if (_state.value == RUNNING && count == countStop) {
-            startTimer()
-        }
-        removeAlarm()
+            progressRemain -= (alarmsManager.nowSeconds - preferenceManager.getAlarmSetTime())
 
-//        if (_state.value == RUNNING && (count == countStop)) {
-//            startTimer()
-//        } else {
-//            count++
-//        }
+            if (progressRemain <= 0) {
+                stopTimer()
+                count++
+            } else {
+                startTimer()
+            }
+            removeAlarm()
+        } else count++
     }
 
     fun pauseTimer() {
         if (_state.value == RUNNING && (count == 1 + countStop)) {
             timer.cancel()
+
+            val wakeUpTime = setAlarm(alarmsManager.nowSeconds, progressRemain)
+            notificationsManager.showTimerRunning(wakeUpTime)
+            preferenceManager.setRemainingSeconds(progressRemain)
+
             Log.e("PAUSE", countStop.toString())
             countStop = count
-
-            val wakeUpTime = setAlarm(alarmsManager.nowSeconds, remainingSeconds)
-            notificationsManager.showTimerRunning(wakeUpTime)
         }
-        preferenceManager.setRemainingSeconds(remainingSeconds)
     }
 
     private fun setAlarm(nowSeconds: Long, remainingSeconds: Long): Long {
