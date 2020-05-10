@@ -23,6 +23,6 @@ class DietRepositoryImpl @Inject constructor(
     }
 
     override suspend fun setDietID(id: Int) {
-        preferenceManager.setDietID(id)
+        preferenceManager.setDiet(id)
     }
 }

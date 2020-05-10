@@ -1,6 +1,7 @@
 package com.itis.group11801.fedotova.smartfasting.app.utils.tracker
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import javax.inject.Inject
 
@@ -8,37 +9,13 @@ import javax.inject.Inject
 class PreferenceManager @Inject constructor(
     private val preferences: SharedPreferences
 ) {
-    //свеженастроенное время в минутах
-    fun getNewestTimerLength(): Int {
-        return when (getDietID()) {
-            0 -> FIRST_DIET_TIME_ID
-            1 -> SECOND_DIET_TIME_ID
-            2 -> THIRD_DIET_TIME_ID
-            else -> FOURTH_DIET_TIME_ID
-        }
+    fun getTimerLength(): Long {
+        return preferences.getLong(TIMER_LENGTH_ID, 0)
     }
 
-    //время незавершенного таймера
-    fun getCurrentTimerLengthSeconds(): Long {
-        return preferences.getLong(CURRENT_TIMER_LENGTH_ID, 0)
-    }
-
-    fun setCurrentTimerLengthSeconds(seconds: Long) {
+    private fun setTimerLength(time: Long) {
         with(preferences.edit()) {
-            putLong(CURRENT_TIMER_LENGTH_ID, seconds)
-            apply()
-        }
-    }
-
-    fun getTimerState(): TimerState {
-        val ordinal = preferences.getInt(TIMER_STATE_ID, 0)
-        return TimerState.values()[ordinal]
-    }
-
-    fun setTimerState(state: TimerState) {
-        val ordinal = state.ordinal
-        with(preferences.edit()) {
-            putInt(TIMER_STATE_ID, ordinal)
+            putLong(TIMER_LENGTH_ID, time)
             apply()
         }
     }
@@ -54,7 +31,6 @@ class PreferenceManager @Inject constructor(
         }
     }
 
-    //время установки таймера (начала отсчета)
     fun getAlarmSetTime(): Long {
         return preferences.getLong(ALARM_SET_TIME_ID, 0)
     }
@@ -66,29 +42,42 @@ class PreferenceManager @Inject constructor(
         }
     }
 
-    private fun getDietID(): Int {
-        return preferences.getInt(DIET_PLAN_ID, 0)
-    }
-
-    fun setDietID(id: Int) {
+    fun setDiet(id: Int) {
         with(preferences.edit()) {
-            putInt(DIET_PLAN_ID, id)
+            when (id) {
+                0 -> {
+                    setTimerLength(FIRST_DIET_TIME_ID)
+                    setRemainingSeconds(FIRST_DIET_TIME_ID)
+                }
+                1 -> {
+                    setTimerLength(SECOND_DIET_TIME_ID)
+                    setRemainingSeconds(SECOND_DIET_TIME_ID)
+                }
+                2 -> {
+                    setTimerLength(THIRD_DIET_TIME_ID)
+                    setRemainingSeconds(THIRD_DIET_TIME_ID)
+                }
+                else -> {
+                    setTimerLength(FOURTH_DIET_TIME_ID)
+                    setRemainingSeconds(FOURTH_DIET_TIME_ID)
+                }
+            }
             apply()
         }
     }
 
     fun getDayWaterVolume(): Int {
-//        return preferences.getInt(DAY_WATER_VOLUME, 0)
-        return 2000
+        Log.e("RRR", preferences.getInt(DAY_DRINK_VOLUME_ID, 12).toString())
+        return preferences.getInt(DAY_DRINK_VOLUME_ID, 0)
     }
 
-    fun getWaterVolume(): Int {
-        return preferences.getInt(WATER_VOLUME_ID, 0)
+    fun getDrinkVolume(): Int {
+        return preferences.getInt(DRINK_VOLUME_ID, 0)
     }
 
-    fun setWaterWVolume(volume: Int) {
+    fun setDrinkVolume(volume: Int) {
         with(preferences.edit()) {
-            putInt(WATER_VOLUME_ID, volume)
+            putInt(DRINK_VOLUME_ID, volume)
             apply()
         }
     }

@@ -26,10 +26,10 @@ class DrinkJournalViewModel @Inject constructor(
     val journal: LiveData<List<JournalParent>> =
         _drinkNotes.map(::mapToJournal)
 
+    val data: LiveData<BarData> = journal.map(::mapToBarChartData)
+
     private val _drinkNotes: LiveData<List<DrinkNote>>
         get() = interactor.getDrinkNotes()
-
-    val data: LiveData<BarData> = journal.map(::mapToBarChartData)
 
     private var _labels = MutableLiveData<MutableList<String>>()
     val labels: LiveData<MutableList<String>>
@@ -44,6 +44,7 @@ class DrinkJournalViewModel @Inject constructor(
             labelsList.add(journal[i].date.substringBeforeLast(" "))
             i++
         }
+        _labels.value = labelsList
 
         val barDataSet = BarDataSet(entities, "")
         barDataSet.highLightAlpha = 40
@@ -54,10 +55,8 @@ class DrinkJournalViewModel @Inject constructor(
         barData.setValueTextSize(10f)
         barData.setDrawValues(false)
         barData.setValueTextColor(resourceManager.getColor(R.color.colorTextDark))
-        _labels.value = labelsList
         return barData
     }
-
 
     private fun mapToJournal(notes: List<DrinkNote>): List<JournalParent> {
         val parentItems: MutableList<JournalParent> = ArrayList()
@@ -85,5 +84,9 @@ class DrinkJournalViewModel @Inject constructor(
             parentItems.add(dummyParentDataItem)
         }
         return parentItems
+    }
+
+    fun getTextColor(): Int {
+        return resourceManager.getColor(R.color.colorTextDark)
     }
 }

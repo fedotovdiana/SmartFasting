@@ -1,26 +1,27 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.*
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.AlarmsManager
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.NotificationsManager
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.SECOND
+import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.RUNNING
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.STOPPED
 import kotlinx.coroutines.*
+import java.util.*
 import javax.inject.Inject
 
 @AppScope
 class Tracker @Inject constructor(
-    private val preferenceManager: PreferenceManager,
+    private val repository: TrackerRepository,
     private val alarmsManager: AlarmsManager,
     private val notificationsManager: NotificationsManager
 ) {
     private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
     private lateinit var timer: Job
-    private var count = 0
-    private var countStop = 0
     private var progressRemain: Long = 0
 
     private var _progress: MutableLiveData<Long> = MutableLiveData(0)
@@ -31,20 +32,62 @@ class Tracker @Inject constructor(
     val progressMax: LiveData<Long>
         get() = _progressMax
 
-//    private var _text = MutableLiveData(0)
-//    val text: LiveData<Int>
-//        get() = _text
+    private var _progressTime: MutableLiveData<Long> = MutableLiveData(0)
+    val progressTime: LiveData<Long>
+        get() = _progressTime
 
     private var _state = MutableLiveData(STOPPED)
     val state: LiveData<TimerState>
         get() = _state
 
+    private val nowSeconds: Long
+        get() = Calendar.getInstance().timeInMillis / 1000
+
+    fun resumeTimer() {
+        progressRemain = repository.getRemainingSeconds()
+        _progressTime.value = progressRemain
+        _progressMax.value = repository.getTimerLength()
+
+        if (repository.getRemainingSeconds() < repository.getTimerLength()) {
+            progressRemain -= (nowSeconds - repository.getAlarmSetTime())
+            if (progressRemain <= 0) stopTimer() else startTimer()
+            removeAlarm()
+        }
+    }
+
+    fun startTimer() {
+        _state.value = RUNNING
+        timer = scope.launch {
+            startCoroutineTimer()
+        }
+    }
+
+    fun stopTimer() {
+        _state.value = STOPPED
+        timer.cancel()
+
+        repository.getTimerLength().also {
+            progressRemain = it
+            _progressMax.value = it
+            _progressTime.value = it
+            repository.setRemainingSeconds(it)
+        }
+        _progress.value = _progressMax.value?.minus(progressRemain)
+    }
+
+    fun cancelTimer() {
+        if (_state.value == RUNNING) {
+            timer.cancel()
+            setAlarm()
+        }
+    }
+
     private suspend fun startCoroutineTimer() {
         for (ind: Long in (progressRemain - 1) downTo 0) {
-            Log.d(TAG, "Background - tick $ind")
+            Log.d("TAG", "Background - tick $ind")
             withContext(Dispatchers.Main) {
-                Log.d(TAG, "Main thread - tick")
                 progressRemain--
+                _progressTime.value = progressRemain
                 _progress.value = _progressMax.value?.minus(progressRemain)
             }
             delay(SECOND)
@@ -54,71 +97,20 @@ class Tracker @Inject constructor(
         }
     }
 
-    fun startTimer() {
-        timer = scope.launch {
-            startCoroutineTimer()
-        }
-        Log.e("AS", count.toString())
-        _state.value = RUNNING
-        count++
-    }
-
-    fun stopTimer() {
-        timer.cancel()
-        _state.value = STOPPED
-
-        Log.e("AC", countStop.toString())
-        countStop = count
-
-        preferenceManager.getTimerLength().also {
-            progressRemain = it
-            _progressMax.value = it
-            preferenceManager.setRemainingSeconds(it)
-        }
-        _progress.value = _progressMax.value?.minus(progressRemain)
-    }
-
-    fun resumeTimer() {
-
-        _progressMax.value = preferenceManager.getTimerLength()
-        progressRemain = preferenceManager.getRemainingSeconds()
-
-        if (preferenceManager.getRemainingSeconds() < preferenceManager.getTimerLength()) {
-
-            progressRemain -= (alarmsManager.nowSeconds - preferenceManager.getAlarmSetTime())
-
-            if (progressRemain <= 0) {
-                stopTimer()
-                count++
-            } else {
-                startTimer()
-            }
-            removeAlarm()
-        } else count++
-    }
-
-    fun pauseTimer() {
-        if (_state.value == RUNNING && (count == 1 + countStop)) {
-            timer.cancel()
-
-            val wakeUpTime = setAlarm(alarmsManager.nowSeconds, progressRemain)
-            notificationsManager.showTimerRunning(wakeUpTime)
-            preferenceManager.setRemainingSeconds(progressRemain)
-
-            Log.e("PAUSE", countStop.toString())
-            countStop = count
-        }
-    }
-
-    private fun setAlarm(nowSeconds: Long, remainingSeconds: Long): Long {
-        val wakeUpTime = alarmsManager.setAlarm(nowSeconds, remainingSeconds)
-        preferenceManager.setAlarmSetTime(nowSeconds)
-        return wakeUpTime
+    private fun setAlarm() {
+        val wakeUpTime = alarmsManager.setAlarm(nowSeconds, progressRemain)
+        repository.setAlarmSetTime(nowSeconds)
+        repository.setRemainingSeconds(progressRemain)
+        notificationsManager.showTimerRunning(wakeUpTime)
     }
 
     private fun removeAlarm() {
         alarmsManager.removeAlarm()
-        preferenceManager.setAlarmSetTime(0)
+        repository.setAlarmSetTime(0)
         notificationsManager.hideTimerNotification()
+    }
+
+    fun getTimerLength(): Long {
+        return repository.getTimerLength()
     }
 }

@@ -32,8 +32,10 @@
     <string name="title_settings_gr">Goal Reached</string>
     <string name="title_settings_ht">Halfway through</string>
     <string name="title_settings_lh">Last hour</string>
-    <string name="title_settings_water">Choose volume per day</string>
+    <string name="title_settings_drinks">Drink volume per day</string>
     <string name="title_drinks">Drinks</string>
+    <string name="title_tap_to_change">Tap to change</string>
+    <string name="title_enter_volume">Enter drink volume, ml</string>
 
     <!--drink tracker-->
     <string name="title_goal">Your goal</string>
@@ -53,7 +55,8 @@
     <!--tracker-->
     <string name="title_tracker_end">End</string>
     <string name="title_tracker_rt">Left to end</string>
-    <string name="timer_is_started">Timer is started</string>
+    <string name="timer_on_start">Timer is started</string>
+    <string name="timer_on_stop">Start your timer</string>
 
     <!--statistics-->
     <string name="title_main_statistics">Main statistics</string>

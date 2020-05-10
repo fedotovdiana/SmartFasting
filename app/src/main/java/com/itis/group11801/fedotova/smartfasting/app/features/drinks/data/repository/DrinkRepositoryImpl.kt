@@ -35,10 +35,10 @@ class DrinkRepositoryImpl @Inject constructor(
     override fun getWaterVolume(): Int {
         val date = dateFormatToDate(Date())
         return if (date == preferenceManager.getDate()) {
-            preferenceManager.getWaterVolume()
+            preferenceManager.getDrinkVolume()
         } else {
             preferenceManager.setDate(date)
-            preferenceManager.setWaterWVolume(0)
+            preferenceManager.setDrinkVolume(0)
             0
         }
     }
@@ -51,10 +51,10 @@ class DrinkRepositoryImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             val date = dateFormatToDate(Date())
             if (date == preferenceManager.getDate()) {
-                val newVolume = drinkNote.volume + preferenceManager.getWaterVolume()
-                preferenceManager.setWaterWVolume(newVolume)
+                val newVolume = drinkNote.volume + preferenceManager.getDrinkVolume()
+                preferenceManager.setDrinkVolume(newVolume)
             } else {
-                preferenceManager.setWaterWVolume(drinkNote.volume)
+                preferenceManager.setDrinkVolume(drinkNote.volume)
                 preferenceManager.setDate(date)
             }
 

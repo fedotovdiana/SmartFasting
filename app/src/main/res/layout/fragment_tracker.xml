@@ -56,10 +56,10 @@
         app:layout_constraintTop_toBottomOf="@+id/include">
 
         <TextView
-            android:id="@+id/tv_text_goal"
+            android:id="@+id/tv_text_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/timer_is_started"
+            tools:text="@string/timer_on_start"
             android:textSize="20sp" />
 
         <TextView

@@ -34,7 +34,7 @@ class DrinkTrackerViewModel @Inject constructor(
     fun saveDrink(sort: String, volume: String) {
         if (volume != "") {
             _progress.value = _progress.value?.plus(volume.toInt())
-            _progressTextRemain.value = "${_progressMax.value!! - _progress.value!!} ml"
+            _progressTextRemain.value = "${_progressMax.value!! - _progress.value!!}ml"
 
             viewModelScope.launch {
                 interactor.saveDrinkNote(DrinkNote(DrinkSort.valueOf(sort), volume.toInt(), Date()))

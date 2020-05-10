@@ -39,13 +39,11 @@ class DrinkTrackerFragment : Fragment() {
     private fun subscribeUI() {
         viewModel.progress.observe(viewLifecycleOwner, Observer {
             progress_drink.progress = it
-            val text = "$it ml"
-            tv_drink.text = text
+            tv_drink.text = "$it ml"
         })
         viewModel.progressMax.observe(viewLifecycleOwner, Observer {
             progress_drink.max = it
-            val text = "$it ml"
-            tv_goal.text = text
+            tv_goal.text = "$it ml"
         })
         viewModel.progressTextRemain.observe(viewLifecycleOwner, Observer {
             tv_drink_remain.text = it

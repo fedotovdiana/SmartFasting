@@ -77,7 +77,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:mpb_progressBackgroundTint="@color/colorLight"
-        app:mpb_progressTint="@color/colorAccent"
+        app:mpb_progressTint="@color/colorPrimary"
         app:mpb_showProgressBackground="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
