@@ -6,36 +6,32 @@
 
         <SwitchPreferenceCompat
             android:key="preference_gr"
-            android:title="@string/title_settings_gr">
-
-        </SwitchPreferenceCompat>
+            android:icon="@drawable/img"
+            android:title="@string/title_settings_gr" />
 
         <SwitchPreferenceCompat
             android:key="preference_ht"
-            android:title="@string/title_settings_ht">
-
-        </SwitchPreferenceCompat>
+            android:icon="@drawable/img"
+            android:title="@string/title_settings_ht" />
 
         <SwitchPreferenceCompat
             android:key="preference_lh"
-            android:title="@string/title_settings_lh">
-
-        </SwitchPreferenceCompat>
+            android:icon="@drawable/img"
+            android:title="@string/title_settings_lh" />
 
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/title_drinks">
 
-        <SeekBarPreference
-            android:summary="@string/title_settings_water"
+        <EditTextPreference
+            android:icon="@drawable/img"
+            android:dialogTitle="@string/title_enter_volume"
+            android:digits="0123456789"
+            android:inputType="numberDecimal"
+            android:summary="@string/title_tap_to_change"
             app:defaultValue="2000"
-            app:key="smartfasting.day_water_volume"
-            app:title="@string/title_drink_water"
-            app:msbp_minValue="0"
-            app:msbp_maxValue="5000"
-            app:msbp_interval="50"
-            app:msbp_measurementUnit="ml"
-            app:msbp_dialogEnabled="true" />
+            app:key="smartfasting.volume"
+            app:title="@string/title_settings_drinks" />
 
     </PreferenceCategory>
 

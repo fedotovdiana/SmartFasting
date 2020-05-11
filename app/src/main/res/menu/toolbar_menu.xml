@@ -5,5 +5,5 @@
         android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_settings_white_24dp"
         app:showAsAction="always"
-        android:title="@string/title_settings"></item>
+        android:title="@string/title_settings" />
 </menu>

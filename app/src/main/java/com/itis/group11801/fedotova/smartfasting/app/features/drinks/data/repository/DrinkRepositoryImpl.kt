@@ -6,11 +6,10 @@ import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.DrinkDao
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.mapper.mapDrinkNoteLocalToDrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.mapper.mapDrinkNoteToDrinkNoteLocal
-import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.model.DrinkSort
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatToDate
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.PreferenceManager
+import com.itis.group11801.fedotova.smartfasting.app.managers.PreferenceManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -33,13 +32,21 @@ class DrinkRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getTotalVolume(): LiveData<Int> {
+        return drinkDao.getTotalVolume()
+    }
+
+    override fun getAverageVolume(): LiveData<Int> {
+        return drinkDao.getAverageVolume()
+    }
+
     override fun getWaterVolume(): Int {
         val date = dateFormatToDate(Date())
         return if (date == preferenceManager.getDate()) {
-            preferenceManager.getWaterVolume()
+            preferenceManager.getDrinkVolume()
         } else {
             preferenceManager.setDate(date)
-            preferenceManager.setWaterWVolume(0)
+            preferenceManager.setDrinkVolume(0)
             0
         }
     }
@@ -50,16 +57,15 @@ class DrinkRepositoryImpl @Inject constructor(
 
     private suspend fun saveToPreference(drinkNote: DrinkNote) {
         withContext(Dispatchers.IO) {
-            if (drinkNote.drinkSort == DrinkSort.WATER) {
-                val date = dateFormatToDate(Date())
-                if (date == preferenceManager.getDate()) {
-                    val newVolume = drinkNote.volume + preferenceManager.getWaterVolume()
-                    preferenceManager.setWaterWVolume(newVolume)
-                } else {
-                    preferenceManager.setWaterWVolume(drinkNote.volume)
-                    preferenceManager.setDate(date)
-                }
+            val date = dateFormatToDate(Date())
+            if (date == preferenceManager.getDate()) {
+                val newVolume = drinkNote.volume + preferenceManager.getDrinkVolume()
+                preferenceManager.setDrinkVolume(newVolume)
+            } else {
+                preferenceManager.setDrinkVolume(drinkNote.volume)
+                preferenceManager.setDate(date)
             }
+
         }
     }
 }

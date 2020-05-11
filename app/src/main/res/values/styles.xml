@@ -20,7 +20,7 @@
 
     <!--Style for Splash Screen-->
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+        <!--        <item name="android:windowBackground">@drawable/splash_screen_background</item>-->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>
@@ -35,5 +35,14 @@
         <item name="android:colorControlActivated">@color/colorTextDark</item>
         <item name="android:colorControlNormal">@color/colorPrimary</item>
     </style>
+
+    <style name="AppTheme.Launcher.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Launcher.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.Launcher.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -1,6 +1,7 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di
 
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.ConfirmStopDialogFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.TrackerFragment
 import dagger.Subcomponent
 
@@ -14,4 +15,6 @@ interface TrackerComponent {
     }
 
     fun inject(fragment: TrackerFragment)
+
+    fun inject(fragment: ConfirmStopDialogFragment)
 }

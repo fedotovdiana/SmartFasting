@@ -76,4 +76,10 @@
         android:label="@string/title_choose_a_drink"
         tools:layout="@layout/dialog_fragment_choose_drink" />
 
+    <dialog
+        android:id="@+id/navigation_confirm_stop_dialog"
+        android:name="com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.ConfirmStopDialogFragment"
+        android:label="@string/timer_confirm_stop"
+        tools:layout="@layout/dialog_fragment_confirm_stop" />
+
 </navigation>

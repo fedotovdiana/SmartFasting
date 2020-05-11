@@ -10,8 +10,8 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentatio
 import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.di.NewsComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.di.DrinkJournalComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerExpiredReceiver
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerNotificationReceiver
+import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerExpiredReceiver
+import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerNotificationReceiver
 import dagger.BindsInstance
 import dagger.Component
 

@@ -7,6 +7,8 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.reposi
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.news.data.repository.NewsRepositoryImpl
 import com.itis.group11801.fedotova.smartfasting.app.features.news.domain.NewsRepository
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.data.repository.TrackerRepositoryImpl
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerRepository
 import dagger.Binds
 import dagger.Module
 
@@ -24,4 +26,8 @@ interface RepositoryModule {
     @Binds
     @AppScope
     fun provideNewsRepository(newsRepository: NewsRepositoryImpl): NewsRepository
+
+    @Binds
+    @AppScope
+    fun provideTrackerRepository(trackerRepository: TrackerRepositoryImpl): TrackerRepository
 }

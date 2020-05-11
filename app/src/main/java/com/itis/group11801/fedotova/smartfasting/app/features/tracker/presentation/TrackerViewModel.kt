@@ -1,161 +1,87 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation
 
-import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.AlarmsManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.NotificationsManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.PreferenceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.*
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerInteractor
+import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @ScreenScope
 class TrackerViewModel @Inject constructor(
-    private val router: DietRouter,
-    private val preferenceManager: PreferenceManager,
-    private val alarmsManager: AlarmsManager,
-    private val notificationsManager: NotificationsManager
+    private val interactor: TrackerInteractor,
+    private val resourceManager: ResourceManager,
+    private val router: DietRouter
 ) : ViewModel() {
 
-    private lateinit var timer: CountDownTimer
-    private var timerLengthSeconds: Long = 0
-    private var remainingSeconds: Long = 0
-
-    private var _progress: MutableLiveData<Int> = MutableLiveData(0)
     val progress: LiveData<Int>
-        get() = _progress
+        get() = interactor.getProgress().map { it.toInt() }
 
-    private var _progressMax: MutableLiveData<Int> = MutableLiveData(0)
     val progressMax: LiveData<Int>
-        get() = _progressMax
+        get() = interactor.getProgressMax().map { it.toInt() }
 
-    private var _progressText: MutableLiveData<String> = MutableLiveData("")
     val progressText: LiveData<String>
-        get() = _progressText
+        get() = interactor.getProgressTime().map { mapProgress(it) }
 
-    private var _timerState: MutableLiveData<TimerState> = MutableLiveData(STOPPED)
     val timerState: LiveData<TimerState>
-        get() = _timerState
+        get() = interactor.getState()
 
-    //блок работы с таймером
-    fun initTimer() {
-        _timerState.value = preferenceManager.getTimerState()
-
-        if (_timerState.value == STOPPED) {
-            setNewestTimerLength()
-        } else {
-            setCurrentTimerLength()
-        }
-
-        //сколько секунд оставалось, когда включали alarm
-        remainingSeconds =
-            if (_timerState.value == STOPPED)
-                timerLengthSeconds
-            else preferenceManager.getRemainingSeconds()
-
-        //пересчитываем оставшиеся секунды
-        val alarmSetTime = preferenceManager.getAlarmSetTime()
-        if (alarmSetTime > 0) remainingSeconds -= alarmsManager.nowSeconds - alarmSetTime
-
-        //если время вышло, обнуляем таймер; иначе запускаем
-        if (remainingSeconds <= 0) {
-            stopTimer()
-        } else if (_timerState.value == RUNNING) {
-            startTimer()
-        }
-        updateProgress()
-        removeAlarm()
-    }
+    val startTime: LiveData<String>
+        get() = interactor.getStartTime().map { mapStartTime(it) }
 
     fun startTimer() {
-        _timerState.value = RUNNING
-
-        timer = object : CountDownTimer(remainingSeconds * 1000, 1000) {
-
-            override fun onFinish() = stopTimer()
-
-            override fun onTick(millisUntilFinished: Long) {
-                remainingSeconds = millisUntilFinished / 1000
-                updateProgress()
-            }
-        }.start()
-    }
-
-    fun pauseTimer() {
-        _timerState.value = PAUSED
-        timer.cancel()
+        interactor.startTimer()
     }
 
     fun stopTimer() {
-        _timerState.value = STOPPED
-        _progress.value = 0
-        timer.cancel()
-        setNewestTimerLength()
-        preferenceManager.setRemainingSeconds(timerLengthSeconds)
-        remainingSeconds = timerLengthSeconds
-        updateProgress()
+        interactor.stopTimer()
     }
 
-    fun saveTimer() {
-        if (_timerState.value == RUNNING) {
-            timer.cancel()
-            val wakeUpTime = setAlarm(alarmsManager.nowSeconds, remainingSeconds)
-            notificationsManager.showTimerRunning(wakeUpTime)
-        } else if (_timerState.value == PAUSED) {
-            notificationsManager.showTimerPaused()
-        }
-        preferenceManager.setCurrentTimerLengthSeconds(timerLengthSeconds)
-        preferenceManager.setRemainingSeconds(remainingSeconds)
-        preferenceManager.setTimerState(timerState.value!!)
+    fun resumeTimer() {
+        interactor.resumeTimer()
     }
 
     fun openDiets() {
         router.openDietPlansFragment()
     }
 
-    //блок обновления preferences
-    private fun setAlarm(nowSeconds: Long, secondsRemaining: Long): Long {
-        val wakeUpTime = alarmsManager.setAlarm(nowSeconds, secondsRemaining)
-        preferenceManager.setAlarmSetTime(nowSeconds)
-        return wakeUpTime
+    fun pauseTimer() {
+        interactor.pauseTimer()
     }
 
-    private fun removeAlarm() {
-        alarmsManager.removeAlarm()
-        preferenceManager.setAlarmSetTime(0)
-        notificationsManager.hideTimerNotification()
+    fun getTimerLength(): String {
+        return "${(interactor.getTimerLength() / 3600)} h"
     }
 
-    private fun setNewestTimerLength() {
-        val lengthInMinutes = preferenceManager.getNewestTimerLength()
-        timerLengthSeconds = (lengthInMinutes * 60L)
-        _progressMax.value = timerLengthSeconds.toInt()
+    fun getStartText(): String {
+        return resourceManager.getString(R.string.timer_on_start)
     }
 
-    private fun setCurrentTimerLength() {
-        timerLengthSeconds = preferenceManager.getCurrentTimerLengthSeconds()
-        _progressMax.value = timerLengthSeconds.toInt()
+    fun getStopText(): String {
+        return resourceManager.getString(R.string.timer_on_stop)
     }
 
-    private fun updateProgress() {
-        //часы
-        val hoursUntilFinished = remainingSeconds / 3600
-        val hoursStr = hoursUntilFinished.toString()
-        //минуты
-        val minutesUntilFinished = remainingSeconds / 60 - hoursUntilFinished * 60
-        val minutesStr = minutesUntilFinished.toString()
-        //секунды
-        val secondsInMinuteUntilFinished =
-            remainingSeconds - hoursUntilFinished * 3600 - minutesUntilFinished * 60
-        val secondsStr = secondsInMinuteUntilFinished.toString()
-        _progressText.value =
-            "${if (hoursStr.length == 2) hoursStr else "0" + hoursStr}:" +
-                    "${if (minutesStr.length == 2) minutesStr else "0" + minutesStr}:" +
-                    "${if (secondsStr.length == 2) secondsStr else "0" + secondsStr}"
-        _progress.value = (timerLengthSeconds - remainingSeconds).toInt()
+    fun openDialog() {
+        router.openConfirmStopDialogFragment()
+    }
+
+    private fun mapProgress(remainingSeconds: Long): String {
+        val hours = remainingSeconds / 3600
+        val minutes = remainingSeconds / 60 - hours * 60
+        val seconds = remainingSeconds - hours * 3600 - minutes * 60
+        return "${if (hours > 9) hours else "0$hours"}:" +
+                "${if (minutes > 9) minutes else "0$minutes"}:" +
+                "${if (seconds > 9) seconds else "0$seconds"}"
+    }
+
+    private fun mapStartTime(time: Long): String {
+        val df = SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT)
+        return "End at ${df.format(Date(time))}"
     }
 }

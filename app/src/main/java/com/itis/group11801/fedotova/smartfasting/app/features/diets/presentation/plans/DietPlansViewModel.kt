@@ -11,7 +11,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.domain.DietI
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.mapper.mapDietToDietUI
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.model.DietUI
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.DIET_PLAN_ID
+import com.itis.group11801.fedotova.smartfasting.app.utils.DIET_PLAN_ID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject

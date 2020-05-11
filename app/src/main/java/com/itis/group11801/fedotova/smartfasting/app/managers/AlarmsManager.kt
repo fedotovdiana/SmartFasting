@@ -1,11 +1,11 @@
-package com.itis.group11801.fedotova.smartfasting.app.utils.tracker
+package com.itis.group11801.fedotova.smartfasting.app.managers
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import java.util.*
+import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerExpiredReceiver
 import javax.inject.Inject
 
 @AppScope
@@ -27,7 +27,4 @@ class AlarmsManager @Inject constructor(
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(pendingIntent)
     }
-
-    val nowSeconds: Long
-        get() = Calendar.getInstance().timeInMillis / 1000
 }

@@ -14,28 +14,28 @@ fun mapDietToDietInfoUI(
             0 -> DietInfoUI(
                 diet.id,
                 diet.title,
-                getString(R.string.fast_0_description),
+                getString(R.string.diet_0_description),
                 getDrawable(R.drawable.custom_btn_purple),
                 getColor(R.color.colorGradientPurpleSecond)
             )
             1 -> DietInfoUI(
                 diet.id,
                 diet.title,
-                getString(R.string.fast_1_description),
+                getString(R.string.diet_1_description),
                 getDrawable(R.drawable.custom_btn_green),
                 getColor(R.color.colorGradientGreenSecond)
             )
             2 -> DietInfoUI(
                 diet.id,
                 diet.title,
-                getString(R.string.fast_2_description),
+                getString(R.string.diet_2_description),
                 getDrawable(R.drawable.custom_btn_yellow),
                 getColor(R.color.colorGradientYellowSecond)
             )
             else -> DietInfoUI(
                 diet.id,
                 diet.title,
-                getString(R.string.fast_3_description),
+                getString(R.string.diet_3_description),
                 getDrawable(R.drawable.custom_btn_blue),
                 getColor(R.color.colorGradientBlueSecond)
             )

@@ -27,23 +27,25 @@ class DrinkTrackerViewModel @Inject constructor(
     val progressMax: LiveData<Int>
         get() = _progressMax
 
-    private var _progressText: MutableLiveData<String> = MutableLiveData("")
-    val progressText: LiveData<String>
-        get() = _progressText
+    private var _progressTextRemain: MutableLiveData<String> = MutableLiveData("")
+    val progressTextRemain: LiveData<String>
+        get() = _progressTextRemain
 
     fun saveDrink(sort: String, volume: String) {
-        _progress.value = _progress.value?.plus(volume.toInt())
-        _progressText.value = "${_progress.value.toString()}/${_progressMax.value.toString()}"
+        if (volume != "") {
+            _progress.value = _progress.value?.plus(volume.toInt())
+            _progressTextRemain.value = "${_progressMax.value!! - _progress.value!!}ml"
 
-        viewModelScope.launch {
-            interactor.saveDrinkNote(DrinkNote(DrinkSort.valueOf(sort), volume.toInt(), Date()))
+            viewModelScope.launch {
+                interactor.saveDrinkNote(DrinkNote(DrinkSort.valueOf(sort), volume.toInt(), Date()))
+            }
         }
     }
 
     fun updateProgress() {
         _progressMax.value = interactor.getDayWaterVolume()
         _progress.value = interactor.getWaterVolume()
-        _progressText.value = "${_progress.value.toString()}/${_progressMax.value.toString()}"
+        _progressTextRemain.value = "${_progressMax.value!! - _progress.value!!} ml"
     }
 
     fun openDialog() {

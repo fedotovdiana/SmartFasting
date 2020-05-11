@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.converter.DateConverter
+import com.itis.group11801.fedotova.smartfasting.app.db.converter.DateConverter
 import java.util.*
 
 @TypeConverters(DateConverter::class)

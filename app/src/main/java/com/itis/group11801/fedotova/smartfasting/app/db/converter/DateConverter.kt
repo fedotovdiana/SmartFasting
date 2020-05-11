@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.converter
+package com.itis.group11801.fedotova.smartfasting.app.db.converter
 
 import androidx.room.TypeConverter
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.model.DrinkSort

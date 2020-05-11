@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
-    android:background="@color/colorBackground"
+    android:background="@android:color/white"
     android:id="@+id/ll_note"
     android:paddingStart="20dp"
     android:paddingEnd="20dp">
@@ -16,7 +17,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/abeezee_regular"
         android:textColor="@color/colorTextDark"
-        android:text="Sort "></TextView>
+        tools:text="Sort "></TextView>
 
     <TextView
         android:id="@+id/tv_volume"
@@ -27,6 +28,6 @@
         android:fontFamily="@font/abeezee_regular"
         android:textAlignment="textEnd"
         android:textColor="@color/colorAccent"
-        android:text="1000"></TextView>
+        tools:text="1000"></TextView>
 
 </LinearLayout>

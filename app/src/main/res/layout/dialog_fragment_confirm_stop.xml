@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="32dp"
+    android:paddingVertical="16dp"
+    app:cardCornerRadius="20dp"
+    tools:showIn=".ui.drink.ChooseDialogFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/abeezee_regular"
+        android:text="@string/timer_confirm_stop"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/colorTextDark"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btn_stop_timer"
+        android:layout_width="100dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_btn"
+        android:fontFamily="@font/abeezee_regular"
+        android:text="@string/title_btn_stop"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_cancel_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:text="@string/title_btn_cancel"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp" />
+</LinearLayout>

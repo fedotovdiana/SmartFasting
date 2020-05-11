@@ -1,5 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +13,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.app.navigator.Navigator
+import com.itis.group11801.fedotova.smartfasting.app.utils.INTENT_EXTRA
+import com.itis.group11801.fedotova.smartfasting.app.utils.OPEN_TRACKER
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -59,6 +62,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent?.getStringExtra(INTENT_EXTRA) == OPEN_TRACKER) navController.navigate(R.id.navigation_tracker)
     }
 
     override fun onDestroy() {
