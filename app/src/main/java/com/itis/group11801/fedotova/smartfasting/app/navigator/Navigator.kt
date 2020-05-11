@@ -16,10 +16,7 @@ import javax.inject.Inject
 @AppScope
 class Navigator @Inject constructor(
     private val context: Context
-) : NewsRouter,
-    DietRouter,
-    DrinkRouter,
-    SettingsRouter {
+) : NewsRouter, DietRouter, DrinkRouter, SettingsRouter {
 
     private var navController: NavController? = null
 
@@ -58,5 +55,9 @@ class Navigator @Inject constructor(
 
     override fun closeDrinkDialog() {
         navController?.navigate(R.id.navigation_drink_tracker)
+    }
+
+    override fun openConfirmStopDialogFragment() {
+        navController?.navigate(R.id.navigation_confirm_stop_dialog)
     }
 }

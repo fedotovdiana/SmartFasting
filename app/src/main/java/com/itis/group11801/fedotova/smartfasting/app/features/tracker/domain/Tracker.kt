@@ -40,6 +40,10 @@ class Tracker @Inject constructor(
     val state: LiveData<TimerState>
         get() = _state
 
+    private var _startTime: MutableLiveData<Long> = MutableLiveData(0)
+    val startTime: LiveData<Long>
+        get() = _startTime
+
     private val nowSeconds: Long
         get() = Calendar.getInstance().timeInMillis / 1000
 
@@ -57,6 +61,7 @@ class Tracker @Inject constructor(
 
     fun startTimer() {
         _state.value = RUNNING
+        _startTime.value = Date().time + progressRemain * 1000
         timer = scope.launch {
             startCoroutineTimer()
         }

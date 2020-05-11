@@ -15,6 +15,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.
 import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.di.NewsComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.DrinkJournalFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.di.DrinkJournalComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.ConfirmStopDialogFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.TrackerFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerExpiredReceiver
@@ -125,6 +126,10 @@ object AppInjector {
     }
 
     fun injectTrackerFragment(fragment: TrackerFragment) {
+        trackerComponent?.inject(fragment)
+    }
+
+    fun injectConfirmStopDialogFragment(fragment: ConfirmStopDialogFragment) {
         trackerComponent?.inject(fragment)
     }
 

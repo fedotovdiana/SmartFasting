@@ -21,3 +21,6 @@ const val TIMER_ID = 0
 const val TIMER_RUNNING = "Timer is Running"
 const val TIMER_BTN_STOP = "Stop"
 const val TIMER_EXPIRED = "Timer expired"
+
+const val INTENT_EXTRA = "smartfasting.intent_extra"
+const val OPEN_TRACKER = "smartfasting.open_tracker"

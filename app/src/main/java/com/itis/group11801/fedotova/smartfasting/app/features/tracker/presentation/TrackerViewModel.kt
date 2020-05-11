@@ -9,6 +9,8 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerInteractor
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
 import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @ScreenScope
@@ -29,6 +31,9 @@ class TrackerViewModel @Inject constructor(
 
     val timerState: LiveData<TimerState>
         get() = interactor.getState()
+
+    val startTime: LiveData<String>
+        get() = interactor.getStartTime().map { mapStartTime(it) }
 
     fun startTimer() {
         interactor.startTimer()
@@ -54,6 +59,18 @@ class TrackerViewModel @Inject constructor(
         return "${(interactor.getTimerLength() / 3600)} h"
     }
 
+    fun getStartText(): String {
+        return resourceManager.getString(R.string.timer_on_start)
+    }
+
+    fun getStopText(): String {
+        return resourceManager.getString(R.string.timer_on_stop)
+    }
+
+    fun openDialog() {
+        router.openConfirmStopDialogFragment()
+    }
+
     private fun mapProgress(remainingSeconds: Long): String {
         val hours = remainingSeconds / 3600
         val minutes = remainingSeconds / 60 - hours * 60
@@ -63,12 +80,8 @@ class TrackerViewModel @Inject constructor(
                 "${if (seconds > 9) seconds else "0$seconds"}"
     }
 
-    fun getStartText(): String {
-        return resourceManager.getString(R.string.timer_on_start)
+    private fun mapStartTime(time: Long): String {
+        val df = SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT)
+        return "End at ${df.format(Date(time))}"
     }
-
-    fun getStopText(): String {
-        return resourceManager.getString(R.string.timer_on_stop)
-    }
-
 }

@@ -44,4 +44,8 @@ class TrackerInteractor @Inject constructor(
     fun getTimerLength(): Long {
         return tracker.getTimerLength()
     }
+
+    fun getStartTime(): LiveData<Long> {
+        return tracker.startTime
+    }
 }

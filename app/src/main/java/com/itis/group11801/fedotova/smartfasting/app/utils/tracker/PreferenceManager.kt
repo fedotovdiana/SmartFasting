@@ -1,7 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.app.utils.tracker
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import javax.inject.Inject
 
@@ -67,8 +66,7 @@ class PreferenceManager @Inject constructor(
     }
 
     fun getDayWaterVolume(): Int {
-        Log.e("RRR", preferences.getInt(DAY_DRINK_VOLUME_ID, 12).toString())
-        return preferences.getInt(DAY_DRINK_VOLUME_ID, 0)
+        return preferences.getString(DAY_DRINK_VOLUME_ID, "2000")?.toInt() ?: 0
     }
 
     fun getDrinkVolume(): Int {

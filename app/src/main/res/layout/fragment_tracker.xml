@@ -68,7 +68,15 @@
             android:layout_height="wrap_content"
             android:paddingVertical="2dp"
             android:text="@string/title_btn_change"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp"
+            tools:visibility="gone"
             android:textColor="@color/colorAccent"
             android:textSize="16sp" />
 

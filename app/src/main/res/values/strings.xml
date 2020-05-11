@@ -57,6 +57,7 @@
     <string name="title_tracker_rt">Left to end</string>
     <string name="timer_on_start">Timer is started</string>
     <string name="timer_on_stop">Start your timer</string>
+    <string name="timer_confirm_stop">Stop timer?</string>
 
     <!--statistics-->
     <string name="title_main_statistics">Main statistics</string>

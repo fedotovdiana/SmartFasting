@@ -63,6 +63,7 @@ class NotificationsManager @Inject constructor(
     private fun getResultIntent(): PendingIntent {
         val intent = Intent(context, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        intent.putExtra(INTENT_EXTRA, OPEN_TRACKER)
         return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 

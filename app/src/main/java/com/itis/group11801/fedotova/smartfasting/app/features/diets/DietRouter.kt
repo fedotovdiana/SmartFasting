@@ -7,4 +7,6 @@ interface DietRouter {
     fun openDietPlansFragment()
 
     fun openDietInfoFragment(bundle: Bundle)
+
+    fun openConfirmStopDialogFragment()
 }

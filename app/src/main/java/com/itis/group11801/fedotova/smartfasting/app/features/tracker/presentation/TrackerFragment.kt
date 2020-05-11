@@ -38,7 +38,7 @@ class TrackerFragment : Fragment() {
             viewModel.startTimer()
         }
         fab_stop.setOnClickListener {
-            viewModel.stopTimer()
+            viewModel.openDialog()
         }
         tv_open_diets.setOnClickListener {
             viewModel.openDiets()
@@ -50,17 +50,17 @@ class TrackerFragment : Fragment() {
         viewModel.timerState.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 RUNNING -> {
-                    fab_start.isEnabled = false
                     fab_start.visibility = View.GONE
-                    fab_stop.isEnabled = true
                     fab_stop.visibility = View.VISIBLE
+                    tv_open_diets.visibility = View.GONE
+                    tv_end_time.visibility = View.VISIBLE
                     tv_text_status.text = viewModel.getStartText()
                 }
                 else -> {
-                    fab_start.isEnabled = true
                     fab_start.visibility = View.VISIBLE
-                    fab_stop.isEnabled = false
                     fab_stop.visibility = View.GONE
+                    tv_open_diets.visibility = View.VISIBLE
+                    tv_end_time.visibility = View.GONE
                     tv_text_status.text = viewModel.getStopText()
                 }
             }
@@ -73,6 +73,9 @@ class TrackerFragment : Fragment() {
         })
         viewModel.progressText.observe(viewLifecycleOwner, Observer {
             tv_countdown.text = it
+        })
+        viewModel.startTime.observe(viewLifecycleOwner, Observer {
+            tv_end_time.text = it
         })
     }
 
