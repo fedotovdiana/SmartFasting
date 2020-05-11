@@ -8,7 +8,7 @@ import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerInteractor
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject

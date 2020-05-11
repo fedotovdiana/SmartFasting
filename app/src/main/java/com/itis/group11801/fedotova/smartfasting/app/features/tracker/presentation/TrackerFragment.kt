@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.RUNNING
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState.RUNNING
 import kotlinx.android.synthetic.main.content_tracker.*
 import kotlinx.android.synthetic.main.fragment_tracker.*
 import javax.inject.Inject

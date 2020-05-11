@@ -1,10 +1,11 @@
-package com.itis.group11801.fedotova.smartfasting.app.utils.tracker
+package com.itis.group11801.fedotova.smartfasting.app.managers
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
+import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerExpiredReceiver
 import javax.inject.Inject
 
 @AppScope

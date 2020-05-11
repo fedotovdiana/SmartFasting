@@ -1,7 +1,8 @@
-package com.itis.group11801.fedotova.smartfasting.app.utils.tracker
+package com.itis.group11801.fedotova.smartfasting.app.managers
 
 import android.content.SharedPreferences
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
+import com.itis.group11801.fedotova.smartfasting.app.utils.*
 import javax.inject.Inject
 
 @AppScope

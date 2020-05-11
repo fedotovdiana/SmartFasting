@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app.utils.tracker
+package com.itis.group11801.fedotova.smartfasting.app.utils
 
 const val REMAINING_SECONDS_ID = "smartfasting.timer.seconds_remaining"
 const val ALARM_SET_TIME_ID = "smartfasting.timer.backgrounded_time"
@@ -12,7 +12,6 @@ const val FIRST_DIET_TIME_ID = 60L
 const val SECOND_DIET_TIME_ID = 50400L
 const val THIRD_DIET_TIME_ID = 57600L
 const val FOURTH_DIET_TIME_ID = 72000L
-const val SECOND = 1000L
 
 const val CHANNEL_ID_TIMER = "smartfasting.channel_id"
 const val CHANNEL_NAME_TIMER = "smartfasting.timer_smartfasting"

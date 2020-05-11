@@ -2,50 +2,49 @@ package com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain
 
 import androidx.lifecycle.LiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState
 import javax.inject.Inject
 
 @AppScope
 class TrackerInteractor @Inject constructor(
-    private val tracker: Tracker
+    private val timer: Timer
 ) {
     fun startTimer() {
-        tracker.startTimer()
+        timer.startTimer()
     }
 
     fun stopTimer() {
-        tracker.stopTimer()
+        timer.stopTimer()
     }
 
     fun resumeTimer() {
-        tracker.resumeTimer()
+        timer.resumeTimer()
     }
 
     fun pauseTimer() {
-        tracker.cancelTimer()
+        timer.cancelTimer()
     }
 
     fun getProgress(): LiveData<Long> {
-        return tracker.progress
+        return timer.progress
     }
 
     fun getProgressMax(): LiveData<Long> {
-        return tracker.progressMax
+        return timer.progressMax
     }
 
     fun getState(): LiveData<TimerState> {
-        return tracker.state
+        return timer.state
     }
 
     fun getProgressTime(): LiveData<Long> {
-        return tracker.progressTime
+        return timer.progressTime
     }
 
     fun getTimerLength(): Long {
-        return tracker.getTimerLength()
+        return timer.getTimerLength()
     }
 
     fun getStartTime(): LiveData<Long> {
-        return tracker.startTime
+        return timer.startTime
     }
 }

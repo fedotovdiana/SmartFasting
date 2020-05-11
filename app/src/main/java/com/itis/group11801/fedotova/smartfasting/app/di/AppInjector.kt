@@ -18,8 +18,8 @@ import com.itis.group11801.fedotova.smartfasting.app.features.statistics.present
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.ConfirmStopDialogFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.TrackerFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerExpiredReceiver
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerNotificationReceiver
+import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerExpiredReceiver
+import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerNotificationReceiver
 
 object AppInjector {
 

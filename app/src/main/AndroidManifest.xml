@@ -23,11 +23,11 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name=".app.utils.tracker.TimerExpiredReceiver"
+            android:name=".app.receivers.TimerExpiredReceiver"
             android:enabled="true"
             android:exported="false" />
         <receiver
-            android:name=".app.utils.tracker.TimerNotificationReceiver"
+            android:name=".app.receivers.TimerNotificationReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

@@ -13,8 +13,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.app.navigator.Navigator
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.INTENT_EXTRA
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.OPEN_TRACKER
+import com.itis.group11801.fedotova.smartfasting.app.utils.INTENT_EXTRA
+import com.itis.group11801.fedotova.smartfasting.app.utils.OPEN_TRACKER
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 

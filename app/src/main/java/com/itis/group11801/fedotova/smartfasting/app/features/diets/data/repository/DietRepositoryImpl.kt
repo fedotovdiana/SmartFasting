@@ -5,7 +5,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.data.mapper.
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.data.network.DietService
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.domain.DietRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.domain.model.Diet
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.PreferenceManager
+import com.itis.group11801.fedotova.smartfasting.app.managers.PreferenceManager
 import javax.inject.Inject
 
 @AppScope

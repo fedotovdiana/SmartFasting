@@ -9,6 +9,10 @@ interface DrinkRepository {
 
     fun getDrinkNotes(): LiveData<List<DrinkNote>>
 
+    fun getTotalVolume(): LiveData<Int>
+
+    fun getAverageVolume(): LiveData<Int>
+
     fun getWaterVolume(): Int
 
     fun getDayWaterVolume(): Int

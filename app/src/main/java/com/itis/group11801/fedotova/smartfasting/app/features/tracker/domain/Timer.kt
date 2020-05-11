@@ -4,18 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.AlarmsManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.NotificationsManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.SECOND
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.RUNNING
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.TimerState.STOPPED
+import com.itis.group11801.fedotova.smartfasting.app.managers.AlarmsManager
+import com.itis.group11801.fedotova.smartfasting.app.managers.NotificationsManager
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState.RUNNING
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState.STOPPED
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject
 
 @AppScope
-class Tracker @Inject constructor(
+class Timer @Inject constructor(
     private val repository: TrackerRepository,
     private val alarmsManager: AlarmsManager,
     private val notificationsManager: NotificationsManager
@@ -117,5 +115,9 @@ class Tracker @Inject constructor(
 
     fun getTimerLength(): Long {
         return repository.getTimerLength()
+    }
+
+    companion object {
+        const val SECOND = 1000L
     }
 }

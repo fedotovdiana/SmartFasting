@@ -9,7 +9,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatToDate
-import com.itis.group11801.fedotova.smartfasting.app.utils.tracker.PreferenceManager
+import com.itis.group11801.fedotova.smartfasting.app.managers.PreferenceManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -30,6 +30,14 @@ class DrinkRepositoryImpl @Inject constructor(
         return drinkDao.getAll().map { list ->
             list.map { mapDrinkNoteLocalToDrinkNote(it) }
         }
+    }
+
+    override fun getTotalVolume(): LiveData<Int> {
+        return drinkDao.getTotalVolume()
+    }
+
+    override fun getAverageVolume(): LiveData<Int> {
+        return drinkDao.getAverageVolume()
     }
 
     override fun getWaterVolume(): Int {
