@@ -1,19 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/btn_dj"
+        android:id="@+id/tv_tracker_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        tools:text="count" />
+
+    <TextView
+        android:id="@+id/tv_tracker_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        tools:text="min" />
+
+    <TextView
+        android:id="@+id/tv_tracker_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        tools:text="max" />
+
+    <TextView
+        android:id="@+id/tv_tracker_average"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        tools:text="avg" />
+
+    <TextView
+        android:id="@+id/tv_stat_total_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:text="total"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_stat_avg_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/abeezee_regular"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        tools:text="avg" />
+
+    <TextView
+        android:id="@+id/tv_to_drink_journal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/title_btn_see_more"
         android:textColor="@color/colorAccent"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="18sp" />
+</LinearLayout>

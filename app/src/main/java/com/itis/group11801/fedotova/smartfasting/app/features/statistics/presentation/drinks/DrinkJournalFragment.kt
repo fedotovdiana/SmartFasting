@@ -50,7 +50,7 @@ class DrinkJournalFragment : Fragment(), OnChartValueSelectedListener {
         viewModel.labels.observe(viewLifecycleOwner, Observer {
             with(barChart.xAxis) {
                 valueFormatter = IndexAxisValueFormatter(it)
-                labelCount = it.size
+                setLabelCount(it.size, true)
             }
         })
         viewModel.data.observe(viewLifecycleOwner, Observer {
@@ -80,6 +80,7 @@ class DrinkJournalFragment : Fragment(), OnChartValueSelectedListener {
                 textSize = 10f
                 setDrawAxisLine(false)
                 setDrawGridLines(false)
+                setCenterAxisLabels(true)
                 textColor = viewModel.getTextColor()
             }
             with(axisRight) {
@@ -88,7 +89,7 @@ class DrinkJournalFragment : Fragment(), OnChartValueSelectedListener {
                 axisMinimum = 0f
                 textColor = viewModel.getTextColor()
                 setDrawAxisLine(false)
-                setDrawGridLines(false)
+                setDrawGridLines(true)
             }
             with(axisLeft) {
                 isEnabled = false

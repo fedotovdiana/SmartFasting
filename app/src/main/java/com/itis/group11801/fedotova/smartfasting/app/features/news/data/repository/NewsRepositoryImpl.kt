@@ -22,7 +22,7 @@ class NewsRepositoryImpl @Inject constructor(
         return newsDao.getAll().map { list -> list.map { mapNewsLocalToNews(it) } }
     }
 
-    override suspend fun updateDb() {
+    override suspend fun update() {
         val news = getRemoteNews()
         newsDao.insertAll(news.map { mapNewsToNewsLocal(it) })
     }

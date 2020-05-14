@@ -25,21 +25,16 @@ import kotlinx.android.synthetic.main.item_news.*
 
 class NewsAdapter(
     private val onClick: (String) -> Unit
-) : ListAdapter<News, NewsViewHolder>(
-    DiffCallback
-) {
+) : ListAdapter<News, NewsViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         NewsViewHolder(
-            LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_news, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
         )
 
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) =
         holder.bind(getItem(position), onClick)
-    }
 }
 
 class NewsViewHolder(

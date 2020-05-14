@@ -7,5 +7,5 @@ interface NewsRepository {
 
     fun getLocalNews(): LiveData<List<News>>
 
-    suspend fun updateDb()
+    suspend fun update()
 }

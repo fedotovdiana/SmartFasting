@@ -32,6 +32,7 @@ class DrinkTrackerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         btn_add_drink.setOnClickListener { viewModel.openDialog() }
         subscribeUI()
     }

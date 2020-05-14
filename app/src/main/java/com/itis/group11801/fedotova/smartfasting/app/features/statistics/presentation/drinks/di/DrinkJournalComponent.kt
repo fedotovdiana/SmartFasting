@@ -4,7 +4,6 @@ import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.DrinkJournalFragment
 import dagger.Subcomponent
 
-
 @Subcomponent(modules = [DrinkJournalModule::class])
 @ScreenScope
 interface DrinkJournalComponent {

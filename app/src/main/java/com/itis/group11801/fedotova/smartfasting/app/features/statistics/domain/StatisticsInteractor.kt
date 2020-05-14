@@ -1,8 +1,8 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.statistics.domain
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
+import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.model.DrinkSort
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerRepository
@@ -17,11 +17,11 @@ class StatisticsInteractor @Inject constructor(
         return drinkRepository.getDrinkNotes()
     }
 
-    fun getTotalDrinkVolume(): LiveData<Int> {
+    fun getDrinkVolumeTotal(): LiveData<Int> {
         return drinkRepository.getTotalVolume()
     }
 
-    fun getAverageDrinkVolume(): LiveData<Int> {
+    fun getDrinkVolumeAverage(): LiveData<DrinkSort> {
         return drinkRepository.getAverageVolume()
     }
 

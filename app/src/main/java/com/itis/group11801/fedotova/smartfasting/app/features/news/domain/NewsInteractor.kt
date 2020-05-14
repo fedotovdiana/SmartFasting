@@ -14,7 +14,7 @@ class NewsInteractor @Inject constructor(
         return newsRepository.getLocalNews()
     }
 
-    suspend fun updateDb() {
-        newsRepository.updateDb()
+    suspend fun update() {
+        newsRepository.update()
     }
 }

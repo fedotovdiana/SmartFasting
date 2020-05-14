@@ -9,6 +9,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentation.di.DrinkComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.di.NewsComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.di.DrinkJournalComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.main.di.StatisticsComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
 import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerExpiredReceiver
 import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerNotificationReceiver
@@ -38,6 +39,8 @@ interface AppComponent {
     fun plusTrackerComponentBuilder(): TrackerComponent.Builder
 
     fun plusDrinkJournalComponentBuilder(): DrinkJournalComponent.Builder
+
+    fun plusStatisticsComponentBuilder(): StatisticsComponent.Builder
 
     @Component.Builder
     interface Builder {
