@@ -20,26 +20,38 @@
 
             <TextView
                 android:id="@+id/tv_date"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
                 android:textColor="@color/colorTextDark"
                 tools:text="Date" />
 
             <TextView
                 android:id="@+id/tv_total_volume"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="16dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
                 android:textAlignment="textEnd"
+                android:paddingVertical="16dp"
                 android:textColor="@color/colorTextDark"
                 tools:text="2000" />
+
+            <ImageButton
+                android:id="@+id/btn_drop_down"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/white"
+                android:src="@drawable/ic_arrow_drop_down_48dp" />
+
+            <ImageButton
+                android:id="@+id/btn_drop_up"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/white"
+                android:src="@drawable/ic_arrow_drop_up_48dp"
+                android:visibility="gone" />
+
         </LinearLayout>
 
         <LinearLayout

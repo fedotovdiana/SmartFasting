@@ -16,6 +16,7 @@
     <string name="title_btn_start">Start</string>
     <string name="title_btn_stop">Stop</string>
     <string name="title_btn_choose">Choose</string>
+    <string name="title_btn_choose_diet">Choose your diet</string>
     <string name="title_btn_add">Add</string>
     <string name="title_btn_cancel">Cancel</string>
     <string name="title_btn_change">Change a diet plan</string>
@@ -82,13 +83,13 @@
     <string name="diet_3_description">3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
     <string-array name="drinks">
-        <item>WATER</item>
-        <item>JUICE</item>
-        <item>SODA</item>
-        <item>TEA</item>
-        <item>COFFEE</item>
-        <item>ALCOHOL</item>
-        <item>MILK</item>
+        <item>Water</item>
+        <item>Juice</item>
+        <item>Soda</item>
+        <item>Tea</item>
+        <item>Coffee</item>
+        <item>Alcohol</item>
+        <item>Milk</item>
     </string-array>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">

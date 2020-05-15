@@ -62,4 +62,8 @@ class TrackerRepositoryImpl @Inject constructor(
     override fun setAlarmSetTime(time: Long) {
         preferenceManager.setAlarmSetTime(time)
     }
+
+    override fun isFirstLaunch(): Boolean {
+        return preferenceManager.isFirstLaunch()
+    }
 }

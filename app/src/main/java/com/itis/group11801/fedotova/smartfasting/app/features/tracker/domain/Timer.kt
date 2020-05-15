@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.managers.AlarmsManager
-import com.itis.group11801.fedotova.smartfasting.app.managers.NotificationsManager
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState.RUNNING
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState.STOPPED
+import com.itis.group11801.fedotova.smartfasting.app.managers.AlarmsManager
+import com.itis.group11801.fedotova.smartfasting.app.managers.NotificationsManager
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject
@@ -115,6 +115,10 @@ class Timer @Inject constructor(
 
     fun getTimerLength(): Long {
         return repository.getTimerLength()
+    }
+
+    fun isFirstLaunch(): Boolean {
+        return repository.isFirstLaunch()
     }
 
     companion object {

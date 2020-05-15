@@ -1,14 +1,15 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerInteractor
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -34,6 +35,14 @@ class TrackerViewModel @Inject constructor(
 
     val startTime: LiveData<String>
         get() = interactor.getStartTime().map { mapStartTime(it) }
+
+    private val _isFirstLaunch = MutableLiveData(true)
+    val isFirstLaunch: LiveData<Boolean>
+        get() = _isFirstLaunch
+
+    init {
+        _isFirstLaunch.value = interactor.isFirstLaunch()
+    }
 
     fun startTimer() {
         interactor.startTimer()

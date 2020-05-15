@@ -18,7 +18,7 @@ class StatisticsViewModel @Inject constructor(
         interactor.getDrinkVolumeTotal().map { it.toString() }
 
     val drinkVolumeAverage: LiveData<String> =
-        interactor.getDrinkVolumeAverage().map { it.name }
+        interactor.getDrinkVolumeAverage().map { it?.name ?: "" }
 
     val trackerNotesCount: LiveData<String> =
         interactor.getTrackerNotesCount().map { it.toString() }
@@ -30,7 +30,7 @@ class StatisticsViewModel @Inject constructor(
         interactor.getTrackerNotesMax().map { it.toString() }
 
     val trackerNotesAverage: LiveData<String> =
-        interactor.getTrackerNotesAverage().map { it?.toString() }
+        interactor.getTrackerNotesAverage().map { it.toString() }
 
     fun openDrinkJournal() {
         router.openDrinkJournal()

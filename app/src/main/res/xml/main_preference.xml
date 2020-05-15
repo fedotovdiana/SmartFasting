@@ -6,17 +6,14 @@
 
         <SwitchPreferenceCompat
             android:key="preference_gr"
-            android:icon="@drawable/img"
             android:title="@string/title_settings_gr" />
 
         <SwitchPreferenceCompat
             android:key="preference_ht"
-            android:icon="@drawable/img"
             android:title="@string/title_settings_ht" />
 
         <SwitchPreferenceCompat
             android:key="preference_lh"
-            android:icon="@drawable/img"
             android:title="@string/title_settings_lh" />
 
     </PreferenceCategory>
@@ -24,7 +21,6 @@
     <PreferenceCategory android:title="@string/title_drinks">
 
         <EditTextPreference
-            android:icon="@drawable/img"
             android:dialogTitle="@string/title_enter_volume"
             android:digits="0123456789"
             android:inputType="numberDecimal"

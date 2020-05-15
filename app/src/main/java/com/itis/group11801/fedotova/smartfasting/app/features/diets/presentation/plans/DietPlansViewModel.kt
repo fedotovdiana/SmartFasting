@@ -1,6 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans
 
-import androidx.core.os.bundleOf
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +11,6 @@ import com.itis.group11801.fedotova.smartfasting.app.features.diets.domain.DietI
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.mapper.mapDietToDietUI
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.model.DietUI
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.DIET_PLAN_ID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,7 +26,7 @@ class DietPlansViewModel @Inject constructor(
     val dietPlans: LiveData<List<DietUI>>
         get() = _dietPlans
 
-    fun getDietPlans() {
+    init {
         viewModelScope.launch(Dispatchers.IO) {
             val dietPlans =
                 interactor.getDiets().map { mapDietToDietUI(resourceManager, it) }
@@ -35,8 +34,7 @@ class DietPlansViewModel @Inject constructor(
         }
     }
 
-    fun showDietPlan(id: Int) {
-        val bundle = bundleOf(DIET_PLAN_ID to id)
+    fun showDietPlan(bundle: Bundle) {
         router.openDietInfoFragment(bundle)
     }
 }

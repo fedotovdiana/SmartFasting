@@ -43,6 +43,9 @@ class TrackerFragment : Fragment() {
         tv_open_diets.setOnClickListener {
             viewModel.openDiets()
         }
+        btn_set_up.setOnClickListener {
+            viewModel.openDiets()
+        }
         tv_goal.text = viewModel.getTimerLength()
     }
 
@@ -76,6 +79,21 @@ class TrackerFragment : Fragment() {
         })
         viewModel.startTime.observe(viewLifecycleOwner, Observer {
             tv_end_time.text = it
+        })
+        viewModel.isFirstLaunch.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                btn_set_up.visibility = View.VISIBLE
+                fab_start.visibility = View.GONE
+                fab_stop.visibility = View.GONE
+                tv_open_diets.visibility = View.GONE
+                tv_text_status.visibility = View.GONE
+            } else {
+                btn_set_up.visibility = View.GONE
+                fab_start.visibility = View.VISIBLE
+                fab_stop.visibility = View.VISIBLE
+                tv_open_diets.visibility = View.VISIBLE
+                tv_text_status.visibility = View.VISIBLE
+            }
         })
     }
 

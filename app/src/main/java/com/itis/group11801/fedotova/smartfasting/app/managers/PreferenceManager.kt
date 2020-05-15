@@ -2,7 +2,6 @@ package com.itis.group11801.fedotova.smartfasting.app.managers
 
 import android.content.SharedPreferences
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.utils.*
 import javax.inject.Inject
 
 @AppScope
@@ -90,5 +89,33 @@ class PreferenceManager @Inject constructor(
             putString(DATE_ID, date)
             apply()
         }
+    }
+
+    fun isFirstLaunch(): Boolean {
+        return preferences.getBoolean(IS_FIRST_LAUNCH_ID, true)
+    }
+
+    fun setIsFirstLaunch() {
+        if (isFirstLaunch()) {
+            with(preferences.edit()) {
+                putBoolean(IS_FIRST_LAUNCH_ID, false)
+                apply()
+            }
+        }
+    }
+
+    companion object {
+        const val REMAINING_SECONDS_ID = "smartfasting.timer.seconds_remaining"
+        const val ALARM_SET_TIME_ID = "smartfasting.timer.backgrounded_time"
+        const val DIET_PLAN_ID = "smartfasting.diet_plan"
+        const val DAY_DRINK_VOLUME_ID = "smartfasting.volume"
+        const val DRINK_VOLUME_ID = "smartfasting.drink_volume"
+        const val DATE_ID = "smartfasting.date"
+        const val TIMER_LENGTH_ID = "smartfasting.timer_length"
+        const val IS_FIRST_LAUNCH_ID = "smartfasting.is_first_launch"
+        const val FIRST_DIET_TIME_ID = 60L
+        const val SECOND_DIET_TIME_ID = 50400L
+        const val THIRD_DIET_TIME_ID = 57600L
+        const val FOURTH_DIET_TIME_ID = 72000L
     }
 }

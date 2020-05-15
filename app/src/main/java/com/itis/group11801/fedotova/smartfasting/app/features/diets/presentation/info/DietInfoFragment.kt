@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.app.utils.DIET_PLAN_ID
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_diet_info.*
 import javax.inject.Inject
@@ -51,5 +50,9 @@ class DietInfoFragment : Fragment() {
         super.onDestroy()
         activity?.toolbar?.setBackgroundColor(viewModel.getDefaultColor())
         AppInjector.clearDietInfoComponent()
+    }
+
+    companion object {
+        const val DIET_PLAN_ID = "smartfasting.diet_plan"
     }
 }

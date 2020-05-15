@@ -47,4 +47,8 @@ class TrackerInteractor @Inject constructor(
     fun getStartTime(): LiveData<Long> {
         return timer.startTime
     }
+
+    fun isFirstLaunch(): Boolean {
+        return timer.isFirstLaunch()
+    }
 }

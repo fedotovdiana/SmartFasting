@@ -12,7 +12,6 @@ import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerNotificationReceiver
-import com.itis.group11801.fedotova.smartfasting.app.utils.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -57,7 +56,8 @@ class NotificationsManager @Inject constructor(
     }
 
     private fun getBasicNotificationBuilder() =
-        NotificationCompat.Builder(context,
+        NotificationCompat.Builder(
+                context,
                 CHANNEL_ID_TIMER
             )
             .setSmallIcon(R.drawable.ic_timer)
@@ -85,5 +85,16 @@ class NotificationsManager @Inject constructor(
                 )
             )
         }
+    }
+
+    companion object {
+        const val CHANNEL_ID_TIMER = "smartfasting.channel_id"
+        const val CHANNEL_NAME_TIMER = "smartfasting.timer_smartfasting"
+        const val INTENT_EXTRA = "smartfasting.intent_extra"
+        const val OPEN_TRACKER = "smartfasting.open_tracker"
+        const val TIMER_RUNNING = "Timer is Running"
+        const val TIMER_BTN_STOP = "Stop"
+        const val TIMER_EXPIRED = "Timer expired"
+        const val TIMER_ID = 0
     }
 }

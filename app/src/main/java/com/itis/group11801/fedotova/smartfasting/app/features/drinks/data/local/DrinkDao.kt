@@ -16,9 +16,9 @@ interface DrinkDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(drinkNoteLocal: DrinkNoteLocal)
 
-    @Query("SELECT SUM(volume) FROM drink_notes")
+    @Query("SELECT IFNULL(SUM(volume), 0) FROM drink_notes")
     fun getTotalVolume(): LiveData<Int>
 
     @Query(" SELECT drink_sort FROM drink_notes GROUP BY drink_sort ORDER BY COUNT(*) DESC")
-    fun getAverageVolume(): LiveData<DrinkSort>
+    fun getAverageVolume(): LiveData<DrinkSort?>
 }

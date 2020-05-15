@@ -13,8 +13,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.app.navigator.Navigator
-import com.itis.group11801.fedotova.smartfasting.app.utils.INTENT_EXTRA
-import com.itis.group11801.fedotova.smartfasting.app.utils.OPEN_TRACKER
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -23,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var navigator: Navigator
 
-    lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     private lateinit var navController: NavController
 
@@ -49,8 +47,6 @@ class MainActivity : AppCompatActivity() {
         bottom_nav.setupWithNavController(navController)
     }
 
-//    override fun onSupportNavigateUp() = navController.navigateUp(appBarConfiguration)
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -72,5 +68,10 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         navigator.detachNavController(navController)
+    }
+
+    companion object {
+        const val INTENT_EXTRA = "smartfasting.intent_extra"
+        const val OPEN_TRACKER = "smartfasting.open_tracker"
     }
 }

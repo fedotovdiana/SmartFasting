@@ -21,7 +21,7 @@ class StatisticsInteractor @Inject constructor(
         return drinkRepository.getTotalVolume()
     }
 
-    fun getDrinkVolumeAverage(): LiveData<DrinkSort> {
+    fun getDrinkVolumeAverage(): LiveData<DrinkSort?> {
         return drinkRepository.getAverageVolume()
     }
 

@@ -20,9 +20,10 @@ class DietRepositoryImpl @Inject constructor(
 
     override suspend fun getDiet(id: Int): Diet {
         return mapDietRemoteToDiet(service.getDiet(id))
-    }
+    } 
 
     override suspend fun setDietID(id: Int) {
         preferenceManager.setDiet(id)
+        preferenceManager.setIsFirstLaunch()
     }
 }

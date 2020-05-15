@@ -37,7 +37,7 @@ class DrinkRepositoryImpl @Inject constructor(
         return drinkDao.getTotalVolume()
     }
 
-    override fun getAverageVolume(): LiveData<DrinkSort> {
+    override fun getAverageVolume(): LiveData<DrinkSort?> {
         return drinkDao.getAverageVolume()
     }
 

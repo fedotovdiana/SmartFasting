@@ -26,4 +26,6 @@ interface TrackerRepository {
     fun getAlarmSetTime(): Long
 
     fun setAlarmSetTime(time: Long)
+
+    fun isFirstLaunch(): Boolean
 }
