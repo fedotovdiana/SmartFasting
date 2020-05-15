@@ -30,6 +30,10 @@ class PreferenceManager @Inject constructor(
         }
     }
 
+    fun resetRemainingSeconds() {
+        setRemainingSeconds(getTimerLength())
+    }
+
     fun getAlarmSetTime(): Long {
         return preferences.getLong(ALARM_SET_TIME_ID, 0)
     }

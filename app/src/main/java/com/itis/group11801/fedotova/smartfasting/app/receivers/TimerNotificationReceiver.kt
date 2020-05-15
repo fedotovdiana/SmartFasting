@@ -26,6 +26,7 @@ class TimerNotificationReceiver : BroadcastReceiver() {
         AppInjector.injectTimerNotificationReceiver(this)
         alarmsManager.removeAlarm()
         preferenceManager.setAlarmSetTime(0)
+        preferenceManager.resetRemainingSeconds()
         notificationsManager.hideTimerNotification()
     }
 }

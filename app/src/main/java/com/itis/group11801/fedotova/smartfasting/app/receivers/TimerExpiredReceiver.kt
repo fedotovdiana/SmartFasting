@@ -21,6 +21,7 @@ class TimerExpiredReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         AppInjector.injectTimerExpiredReceiver(this)
         preferenceManager.setAlarmSetTime(0)
+        preferenceManager.resetRemainingSeconds()
         notificationsManager.showTimerExpired()
     }
 }
