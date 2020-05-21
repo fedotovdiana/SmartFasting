@@ -21,7 +21,7 @@ class TrackerInteractor @Inject constructor(
     }
 
     fun pauseTimer() {
-        timer.cancelTimer()
+        timer.saveTimer()
     }
 
     fun getProgress(): LiveData<Long> {
@@ -36,16 +36,16 @@ class TrackerInteractor @Inject constructor(
         return timer.state
     }
 
-    fun getProgressTime(): LiveData<Long> {
-        return timer.progressTime
+    fun getProgressRemaining(): LiveData<Long> {
+        return timer.progressRemaining
     }
 
     fun getTimerLength(): Long {
         return timer.getTimerLength()
     }
 
-    fun getStartTime(): LiveData<Long> {
-        return timer.startTime
+    fun getEndTime(): LiveData<Long> {
+        return timer.endTime
     }
 
     fun isFirstLaunch(): Boolean {

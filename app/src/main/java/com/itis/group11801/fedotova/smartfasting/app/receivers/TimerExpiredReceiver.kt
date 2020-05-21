@@ -5,23 +5,17 @@ import android.content.Context
 import android.content.Intent
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.managers.NotificationsManager
-import com.itis.group11801.fedotova.smartfasting.app.managers.PreferenceManager
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.Timer
 import javax.inject.Inject
 
 @AppScope
 class TimerExpiredReceiver : BroadcastReceiver() {
 
     @Inject
-    lateinit var preferenceManager: PreferenceManager
-
-    @Inject
-    lateinit var notificationsManager: NotificationsManager
+    lateinit var timer: Timer
 
     override fun onReceive(context: Context, intent: Intent) {
         AppInjector.injectTimerExpiredReceiver(this)
-        preferenceManager.setAlarmSetTime(0)
-        preferenceManager.resetRemainingSeconds()
-        notificationsManager.showTimerExpired()
+        timer.onTimerExpiredReceive()
     }
 }

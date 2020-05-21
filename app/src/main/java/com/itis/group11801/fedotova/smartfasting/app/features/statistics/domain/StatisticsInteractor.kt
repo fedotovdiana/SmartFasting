@@ -6,6 +6,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerRepository
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.model.TrackerNote
 import javax.inject.Inject
 
 @AppScope
@@ -23,6 +24,10 @@ class StatisticsInteractor @Inject constructor(
 
     fun getDrinkVolumeAverage(): LiveData<DrinkSort?> {
         return drinkRepository.getAverageVolume()
+    }
+
+    fun getTrackerNotes(): LiveData<List<TrackerNote>> {
+        return trackerRepository.getTrackerNotes()
     }
 
     fun getTrackerNotesCount(): LiveData<Int> {

@@ -55,6 +55,10 @@ class TrackerRepositoryImpl @Inject constructor(
         preferenceManager.setRemainingSeconds(time)
     }
 
+    override fun resetRemainingSeconds() {
+        preferenceManager.resetRemainingSeconds()
+    }
+
     override fun getAlarmSetTime(): Long {
         return preferenceManager.getAlarmSetTime()
     }

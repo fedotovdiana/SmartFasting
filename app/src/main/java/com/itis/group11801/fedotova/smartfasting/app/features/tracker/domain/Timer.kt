@@ -4,8 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState.RUNNING
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState.STOPPED
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.model.TrackerNote
 import com.itis.group11801.fedotova.smartfasting.app.managers.AlarmsManager
 import com.itis.group11801.fedotova.smartfasting.app.managers.NotificationsManager
 import kotlinx.coroutines.*
@@ -20,7 +19,8 @@ class Timer @Inject constructor(
 ) {
     private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
     private lateinit var timer: Job
-    private var progressRemain: Long = 0
+    private var remTime: Long = 0
+    private var maxTime: Long = 0
 
     private var _progress: MutableLiveData<Long> = MutableLiveData(0)
     val progress: LiveData<Long>
@@ -30,95 +30,115 @@ class Timer @Inject constructor(
     val progressMax: LiveData<Long>
         get() = _progressMax
 
-    private var _progressTime: MutableLiveData<Long> = MutableLiveData(0)
-    val progressTime: LiveData<Long>
-        get() = _progressTime
+    private var _progressRemaining: MutableLiveData<Long> = MutableLiveData(0)
+    val progressRemaining: LiveData<Long>
+        get() = _progressRemaining
 
-    private var _state = MutableLiveData(STOPPED)
+    private var _state = MutableLiveData(TimerState.STOPPED)
     val state: LiveData<TimerState>
         get() = _state
 
-    private var _startTime: MutableLiveData<Long> = MutableLiveData(0)
-    val startTime: LiveData<Long>
-        get() = _startTime
+    private var _endTime: MutableLiveData<Long> = MutableLiveData(0)
+    val endTime: LiveData<Long>
+        get() = _endTime
 
     private val nowSeconds: Long
         get() = Calendar.getInstance().timeInMillis / 1000
 
     fun resumeTimer() {
-        progressRemain = repository.getRemainingSeconds()
-        _progressTime.value = progressRemain
-        _progressMax.value = repository.getTimerLength()
-
-        if (repository.getRemainingSeconds() < repository.getTimerLength()) {
-            progressRemain -= (nowSeconds - repository.getAlarmSetTime())
-            if (progressRemain <= 0) stopTimer() else startTimer()
+        remTime = repository.getRemainingSeconds()
+        maxTime = repository.getTimerLength()
+        if (remTime < maxTime) {
+            remTime -= (nowSeconds - repository.getAlarmSetTime())
+            if (remTime > 0) {
+                startTimer()
+            } else {
+                remTime = maxTime
+                updateUI(TimerState.STOPPED)
+            }
             removeAlarm()
+        } else {
+            updateUI(TimerState.STOPPED)
         }
     }
 
     fun startTimer() {
-        _state.value = RUNNING
-        _startTime.value = Date().time + progressRemain * 1000
+        updateUI(TimerState.RUNNING)
         timer = scope.launch {
-            startCoroutineTimer()
+            for (ind: Long in (remTime - 1) downTo 0) {
+                withContext(Dispatchers.Main) {
+                    remTime--
+                    _progressRemaining.value = remTime
+                    _progress.value = maxTime - remTime
+                }
+                delay(SECOND)
+            }
+            withContext(Dispatchers.Main) {
+                stopTimer()
+            }
         }
     }
 
     fun stopTimer() {
-        _state.value = STOPPED
         timer.cancel()
-
-        repository.getTimerLength().also {
-            progressRemain = it
-            _progressMax.value = it
-            _progressTime.value = it
-            repository.setRemainingSeconds(it)
-        }
-        _progress.value = _progressMax.value?.minus(progressRemain)
+        saveToDb(maxTime - remTime)
+        remTime = maxTime
+        repository.setRemainingSeconds(maxTime)
+        updateUI(TimerState.STOPPED)
     }
 
-    fun cancelTimer() {
-        if (_state.value == RUNNING) {
+    fun saveTimer() {
+        if (_state.value == TimerState.RUNNING) {
             timer.cancel()
+            repository.setRemainingSeconds(remTime)
             setAlarm()
         }
     }
 
-    private suspend fun startCoroutineTimer() {
-        for (ind: Long in (progressRemain - 1) downTo 0) {
-            Log.d("TAG", "Background - tick $ind")
-            withContext(Dispatchers.Main) {
-                progressRemain--
-                _progressTime.value = progressRemain
-                _progress.value = _progressMax.value?.minus(progressRemain)
-            }
-            delay(SECOND)
-        }
-        withContext(Dispatchers.Main) {
-            stopTimer()
-        }
+    fun onTimerExpiredReceive() {
+        notificationsManager.showTimerExpired()
+        saveToDb(repository.getTimerLength())
+        removeAlarm()
+        repository.resetRemainingSeconds()
     }
 
+    fun onTimerStopReceive() {
+        notificationsManager.hideTimerNotification()
+        val time = repository.getTimerLength() -
+                (repository.getRemainingSeconds() - (nowSeconds - repository.getAlarmSetTime()))
+        saveToDb(time)
+        removeAlarm()
+        repository.resetRemainingSeconds()
+    }
+
+    fun getTimerLength() = repository.getTimerLength()
+
+    fun isFirstLaunch() = repository.isFirstLaunch()
+
+
     private fun setAlarm() {
-        val wakeUpTime = alarmsManager.setAlarm(nowSeconds, progressRemain)
+        val wakeUpTime = alarmsManager.setAlarm(nowSeconds, remTime)
         repository.setAlarmSetTime(nowSeconds)
-        repository.setRemainingSeconds(progressRemain)
+        repository.setRemainingSeconds(remTime)
         notificationsManager.showTimerRunning(wakeUpTime)
     }
 
     private fun removeAlarm() {
         alarmsManager.removeAlarm()
         repository.setAlarmSetTime(0)
-        notificationsManager.hideTimerNotification()
     }
 
-    fun getTimerLength(): Long {
-        return repository.getTimerLength()
+    private fun saveToDb(time: Long) {
+        Log.e("TIME", time.toString())
+        scope.launch { repository.saveTrackerNote(TrackerNote(time, Date())) }
     }
 
-    fun isFirstLaunch(): Boolean {
-        return repository.isFirstLaunch()
+    private fun updateUI(state: TimerState) {
+        _progressRemaining.value = remTime
+        _progressMax.value = maxTime
+        _progress.value = maxTime - remTime
+        _state.value = state
+        _endTime.value = Date().time + remTime * 1000
     }
 
     companion object {

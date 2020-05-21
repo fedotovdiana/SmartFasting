@@ -77,7 +77,7 @@ class TrackerFragment : Fragment() {
         viewModel.progressText.observe(viewLifecycleOwner, Observer {
             tv_countdown.text = it
         })
-        viewModel.startTime.observe(viewLifecycleOwner, Observer {
+        viewModel.endTime.observe(viewLifecycleOwner, Observer {
             tv_end_time.text = it
         })
         viewModel.isFirstLaunch.observe(viewLifecycleOwner, Observer {

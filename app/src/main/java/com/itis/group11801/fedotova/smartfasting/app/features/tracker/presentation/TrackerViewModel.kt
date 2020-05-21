@@ -28,13 +28,13 @@ class TrackerViewModel @Inject constructor(
         get() = interactor.getProgressMax().map { it.toInt() }
 
     val progressText: LiveData<String>
-        get() = interactor.getProgressTime().map { mapProgress(it) }
+        get() = interactor.getProgressRemaining().map { mapRemainTime(it) }
 
     val timerState: LiveData<TimerState>
         get() = interactor.getState()
 
-    val startTime: LiveData<String>
-        get() = interactor.getStartTime().map { mapStartTime(it) }
+    val endTime: LiveData<String>
+        get() = interactor.getEndTime().map { mapStartTime(it) }
 
     private val _isFirstLaunch = MutableLiveData(true)
     val isFirstLaunch: LiveData<Boolean>
@@ -80,7 +80,7 @@ class TrackerViewModel @Inject constructor(
         router.openConfirmStopDialogFragment()
     }
 
-    private fun mapProgress(remainingSeconds: Long): String {
+    private fun mapRemainTime(remainingSeconds: Long): String {
         val hours = remainingSeconds / 3600
         val minutes = remainingSeconds / 60 - hours * 60
         val seconds = remainingSeconds - hours * 3600 - minutes * 60

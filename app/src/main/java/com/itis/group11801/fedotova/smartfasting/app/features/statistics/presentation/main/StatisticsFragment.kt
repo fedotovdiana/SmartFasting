@@ -1,6 +1,7 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,9 @@ class StatisticsFragment : Fragment() {
     }
 
     private fun subscribeUI() {
+        viewModel.trackerNotes.observe(viewLifecycleOwner, Observer {
+            Log.e("NOTE", it)
+        })
         viewModel.drinkVolumeTotal.observe(viewLifecycleOwner, Observer {
             tv_stat_total_volume.text = it
         })

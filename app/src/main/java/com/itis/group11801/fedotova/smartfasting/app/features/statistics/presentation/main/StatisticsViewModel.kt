@@ -14,6 +14,9 @@ class StatisticsViewModel @Inject constructor(
     private val router: StatisticsRouter
 ) : ViewModel() {
 
+    val trackerNotes: LiveData<String> =
+        interactor.getTrackerNotes().map { it.toString() }
+
     val drinkVolumeTotal: LiveData<String> =
         interactor.getDrinkVolumeTotal().map { it.toString() }
 
