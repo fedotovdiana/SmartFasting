@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".app.MainActivity"
+    tools:layout_marginVertical="64dp">
 
     <TextView
         android:id="@+id/tv_fast_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
+        android:layout_marginTop="32dp"
+        android:paddingHorizontal="24dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@id/btn_choose"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_timer"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/title_tracker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/tv_fast_info"
+        tools:src="@drawable/timer_pink" />
 
     <Button
         android:id="@+id/btn_choose"
-        android:layout_width="120dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="48dp"
+        android:layout_width="168dp"
+        android:layout_height="40dp"
         android:background="@drawable/custom_btn"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/title_btn_choose"
@@ -31,6 +39,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_timer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

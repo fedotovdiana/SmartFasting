@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
@@ -31,10 +32,15 @@ class ConfirmStopDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btn_stop_timer.setOnClickListener {
             viewModel.stopTimer()
+            Toast.makeText(context, TIMER_STOPPED, Toast.LENGTH_SHORT).show()
             dismiss()
         }
         tv_cancel_timer.setOnClickListener {
             dismiss()
         }
+    }
+
+    companion object {
+        const val TIMER_STOPPED = "Timer stopped"
     }
 }

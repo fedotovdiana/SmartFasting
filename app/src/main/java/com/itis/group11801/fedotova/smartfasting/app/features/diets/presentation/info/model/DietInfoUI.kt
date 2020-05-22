@@ -7,5 +7,6 @@ data class DietInfoUI(
     val title: String,
     val desc: String,
     val gradient: Drawable?,
-    val color: Int
+    val color: Int,
+    val img: Int
 )

@@ -70,7 +70,7 @@ class StatisticsViewModel @Inject constructor(
         var i = 0
         while (i < list.size) {
             entities.add(BarEntry(i.toFloat(), list[i].time.toFloat()))
-            labelsList.add(dateFormat(list[i].date))
+            labelsList.add(dateFormat(list[i].date).substringBeforeLast(" "))
             i++
         }
         _labels.value = labelsList

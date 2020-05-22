@@ -35,6 +35,7 @@ class DietPlansViewHolder(
         tv_fast_title.text = dietUI.title
         itemView.setOnClickListener { onClick(dietUI) }
         itemView.setBackgroundResource(dietUI.gradient)
+        iv_diet.setImageResource(dietUI.img)
     }
 }
 

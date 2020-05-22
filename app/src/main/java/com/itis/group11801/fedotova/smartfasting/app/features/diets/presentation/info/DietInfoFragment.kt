@@ -37,6 +37,7 @@ class DietInfoFragment : Fragment() {
             btn_choose.background = it.gradient
             activity?.toolbar?.title = it.title
             activity?.toolbar?.setBackgroundColor(it.color)
+            iv_timer.setImageResource(it.img)
         })
         viewModel.setDiet(arguments?.getInt(DIET_PLAN_ID) ?: 0)
     }
