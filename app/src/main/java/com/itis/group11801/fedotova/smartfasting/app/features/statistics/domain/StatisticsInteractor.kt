@@ -26,6 +26,10 @@ class StatisticsInteractor @Inject constructor(
         return drinkRepository.getAverageVolume()
     }
 
+    fun isDrinkAdded(): Boolean {
+        return drinkRepository.isDrinkAdded()
+    }
+
     fun getTrackerNotes(): LiveData<List<TrackerNote>> {
         return trackerRepository.getTrackerNotes()
     }
@@ -44,5 +48,9 @@ class StatisticsInteractor @Inject constructor(
 
     fun getTrackerNotesAverage(): LiveData<Long> {
         return trackerRepository.getTrackerNotesAverage()
+    }
+
+    fun isTrackerNoteAdded(): Boolean {
+        return trackerRepository.isTrackerNoteAdded()
     }
 }

@@ -56,6 +56,10 @@ class DrinkRepositoryImpl @Inject constructor(
         return preferenceManager.getDayWaterVolume()
     }
 
+    override fun isDrinkAdded(): Boolean {
+        return preferenceManager.isDrinkAdded()
+    }
+
     private suspend fun saveToPreference(drinkNote: DrinkNote) {
         withContext(Dispatchers.IO) {
             val date = dateFormat(Date())
@@ -66,7 +70,7 @@ class DrinkRepositoryImpl @Inject constructor(
                 preferenceManager.setDrinkVolume(drinkNote.volume)
                 preferenceManager.setDate(date)
             }
-
+            preferenceManager.setIsDrinkAdded()
         }
     }
 }

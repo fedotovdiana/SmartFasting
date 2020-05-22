@@ -29,5 +29,7 @@ interface TrackerRepository {
 
     fun setAlarmSetTime(time: Long)
 
-    fun isFirstLaunch(): Boolean
+    fun isDietAdded(): Boolean
+
+    fun isTrackerNoteAdded(): Boolean
 }

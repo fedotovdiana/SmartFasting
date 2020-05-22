@@ -23,13 +23,10 @@ class StatisticsViewModel @Inject constructor(
     private val router: StatisticsRouter
 ) : ViewModel() {
 
-    val trackerNotes: LiveData<String> =
-        interactor.getTrackerNotes().map { it.toString() }
-
     val data: LiveData<BarData> = interactor.getTrackerNotes().map(::mapToChartData)
 
     val drinkVolumeTotal: LiveData<String> =
-        interactor.getDrinkVolumeTotal().map { it.toString() }
+        interactor.getDrinkVolumeTotal().map { "$it ml" }
 
     val drinkVolumeAverage: LiveData<String> =
         interactor.getDrinkVolumeAverage().map { it?.name ?: "" }
@@ -38,20 +35,33 @@ class StatisticsViewModel @Inject constructor(
         interactor.getTrackerNotesCount().map { it.toString() }
 
     val trackerNotesMin: LiveData<String> =
-        interactor.getTrackerNotesMin().map { it.toString() }
+        interactor.getTrackerNotesMin().map { mapTime(it) }
 
     val trackerNotesMax: LiveData<String> =
-        interactor.getTrackerNotesMax().map { it.toString() }
+        interactor.getTrackerNotesMax().map { mapTime(it) }
 
     val trackerNotesAverage: LiveData<String> =
-        interactor.getTrackerNotesAverage().map { it.toString() }
+        interactor.getTrackerNotesAverage().map { mapTime(it) }
 
     private var _labels = MutableLiveData<MutableList<String>>()
     val labels: LiveData<MutableList<String>>
         get() = _labels
 
+    fun checkTrackerNoteAdded() = interactor.isTrackerNoteAdded()
+
+    fun checkDrinkAdded() = interactor.isDrinkAdded()
+
     fun openDrinkJournal() {
         router.openDrinkJournal()
+    }
+
+    private fun mapTime(time: Long): String {
+        val hours = time / 3600
+        val minutes = time / 60 - hours * 60
+        val seconds = time - hours * 3600 - minutes * 60
+        return "${if (hours > 9) hours else "0$hours"}:" +
+                "${if (minutes > 9) minutes else "0$minutes"}:" +
+                "${if (seconds > 9) seconds else "0$seconds"}"
     }
 
     private fun mapToChartData(list: List<TrackerNote>): BarData {

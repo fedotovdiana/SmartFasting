@@ -95,14 +95,40 @@ class PreferenceManager @Inject constructor(
         }
     }
 
-    fun isFirstLaunch(): Boolean {
-        return preferences.getBoolean(IS_FIRST_LAUNCH_ID, true)
+    fun isDietAdded(): Boolean {
+        return preferences.getBoolean(IS_DIET_ADDED_ID, false)
     }
 
-    fun setIsFirstLaunch() {
-        if (isFirstLaunch()) {
+    fun setIsDietAdded() {
+        if (!isDietAdded()) {
             with(preferences.edit()) {
-                putBoolean(IS_FIRST_LAUNCH_ID, false)
+                putBoolean(IS_DIET_ADDED_ID, true)
+                apply()
+            }
+        }
+    }
+
+    fun isDrinkAdded(): Boolean {
+        return preferences.getBoolean(IS_DRINK_ADDED_ID, false)
+    }
+
+    fun setIsDrinkAdded() {
+        if (!isDrinkAdded()) {
+            with(preferences.edit()) {
+                putBoolean(IS_DRINK_ADDED_ID, true)
+                apply()
+            }
+        }
+    }
+
+    fun isTrackerNoteAdded(): Boolean {
+        return preferences.getBoolean(IS_TRACKER_NOTE_ADDED_ID, false)
+    }
+
+    fun setIsTrackerNoteAdded() {
+        if (!isTrackerNoteAdded()) {
+            with(preferences.edit()) {
+                putBoolean(IS_TRACKER_NOTE_ADDED_ID, true)
                 apply()
             }
         }
@@ -116,7 +142,9 @@ class PreferenceManager @Inject constructor(
         const val DRINK_VOLUME_ID = "smartfasting.drink_volume"
         const val DATE_ID = "smartfasting.date"
         const val TIMER_LENGTH_ID = "smartfasting.timer_length"
-        const val IS_FIRST_LAUNCH_ID = "smartfasting.is_first_launch"
+        const val IS_DIET_ADDED_ID = "smartfasting.is_diet_added"
+        const val IS_DRINK_ADDED_ID = "smartfasting.is_drink_added"
+        const val IS_TRACKER_NOTE_ADDED_ID = "smartfasting.is_tracker_note_added"
         const val FIRST_DIET_TIME_ID = 60L
         const val SECOND_DIET_TIME_ID = 50400L
         const val THIRD_DIET_TIME_ID = 57600L

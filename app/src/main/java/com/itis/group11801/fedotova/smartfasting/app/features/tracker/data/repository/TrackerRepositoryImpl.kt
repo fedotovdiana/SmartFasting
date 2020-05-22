@@ -19,6 +19,7 @@ class TrackerRepositoryImpl @Inject constructor(
 
     override suspend fun saveTrackerNote(trackerNote: TrackerNote) {
         trackerDao.insert(mapTrackerNoteToTrackerNoteLocal(trackerNote))
+        preferenceManager.setIsTrackerNoteAdded()
     }
 
     override fun getTrackerNotes(): LiveData<List<TrackerNote>> {
@@ -67,7 +68,11 @@ class TrackerRepositoryImpl @Inject constructor(
         preferenceManager.setAlarmSetTime(time)
     }
 
-    override fun isFirstLaunch(): Boolean {
-        return preferenceManager.isFirstLaunch()
+    override fun isDietAdded(): Boolean {
+        return preferenceManager.isDietAdded()
+    }
+
+    override fun isTrackerNoteAdded(): Boolean {
+        return preferenceManager.isTrackerNoteAdded()
     }
 }

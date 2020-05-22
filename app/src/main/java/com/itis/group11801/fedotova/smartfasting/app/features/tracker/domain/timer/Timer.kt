@@ -114,7 +114,7 @@ class Timer @Inject constructor(
 
     fun getTimerLength() = repository.getTimerLength()
 
-    fun isFirstLaunch() = repository.isFirstLaunch()
+    fun isDietAdded() = repository.isDietAdded()
 
 
     private fun setAlarm() {

@@ -65,11 +65,11 @@
     <string name="title_main_statistics">Main statistics</string>
     <string name="title_drink_statistics">Drink statistics</string>
     <string name="title_tracker_graph">Tracker graph</string>
-    <string name="title_total_diets">Total diet time</string>
+    <string name="title_total_diets">Number of days</string>
     <string name="title_average_diets">Average time</string>
     <string name="title_max_diet">Longest time</string>
     <string name="title_min_diet">Shortest time</string>
-    <string name="title_total_drink">Total drinks, ml</string>
+    <string name="title_total_drink">Total drinks</string>
     <string name="title_average_drink">Most popular</string>
     <string name="journal">Journal</string>
     <string name="drink_graph">Drink graph</string>
@@ -184,4 +184,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="welcome_to_smartfasting">Welcome to SmartFasting</string>
 </resources>

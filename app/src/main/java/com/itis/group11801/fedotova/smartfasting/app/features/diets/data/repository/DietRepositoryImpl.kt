@@ -24,6 +24,6 @@ class DietRepositoryImpl @Inject constructor(
 
     override suspend fun setDietID(id: Int) {
         preferenceManager.setDiet(id)
-        preferenceManager.setIsFirstLaunch()
+        preferenceManager.setIsDietAdded()
     }
 }

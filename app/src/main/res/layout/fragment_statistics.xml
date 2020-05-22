@@ -13,7 +13,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="480dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/welcome_to_smartfasting"
+            android:textSize="18sp"
+            tools:visibility="gone" />
+
         <LinearLayout
+            android:id="@+id/ll_stat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -28,6 +39,7 @@
                 android:textSize="18sp" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_tracker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
@@ -139,6 +151,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_drink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
@@ -203,12 +216,12 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/tv_to_drink_journal"
+                android:id="@+id/tv_see_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/abeezee_regular"
                 android:text="@string/title_btn_see_more"
                 android:textColor="@color/colorAccent"
@@ -216,10 +229,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_graph"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"

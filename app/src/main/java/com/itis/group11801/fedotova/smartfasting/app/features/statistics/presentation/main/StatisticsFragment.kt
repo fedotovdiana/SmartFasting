@@ -1,7 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,15 +37,30 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tv_to_drink_journal.setOnClickListener { viewModel.openDrinkJournal() }
+        val isDrinkAdded = viewModel.checkDrinkAdded()
+        val isTrackerNoteAdded = viewModel.checkTrackerNoteAdded()
+        if (!(isDrinkAdded || isTrackerNoteAdded)) {
+            tv_welcome.visibility = View.VISIBLE
+            ll_stat.visibility = View.GONE
+            ll_graph.visibility = View.GONE
+        } else if (!isDrinkAdded) {
+            tv_welcome.visibility = View.GONE
+            cv_drink.visibility = View.GONE
+            tv_see_more.visibility = View.GONE
+        } else if (!isTrackerNoteAdded) {
+            tv_welcome.visibility = View.GONE
+            cv_tracker.visibility = View.GONE
+            ll_graph.visibility = View.GONE
+        } else {
+            tv_welcome.visibility = View.GONE
+            ll_stat.visibility = View.VISIBLE
+            ll_graph.visibility = View.VISIBLE
+        }
         observeViewModel()
         setupBarChart()
     }
 
     private fun observeViewModel() {
-        viewModel.trackerNotes.observe(viewLifecycleOwner, Observer {
-            Log.e("NOTE", it)
-        })
         viewModel.drinkVolumeTotal.observe(viewLifecycleOwner, Observer {
             tv_stat_total_volume.text = it
         })
@@ -74,6 +88,7 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
         viewModel.data.observe(viewLifecycleOwner, Observer {
             chart_tracker.data = it
         })
+        tv_see_more.setOnClickListener { viewModel.openDrinkJournal() }
     }
 
     private fun setupBarChart() {

@@ -17,4 +17,6 @@ interface DrinkRepository {
     fun getWaterVolume(): Int
 
     fun getDayWaterVolume(): Int
+
+    fun isDrinkAdded(): Boolean
 }

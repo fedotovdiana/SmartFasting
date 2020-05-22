@@ -50,7 +50,7 @@ class TrackerInteractor @Inject constructor(
         return timer.endTime
     }
 
-    fun isFirstLaunch(): Boolean {
-        return timer.isFirstLaunch()
+    fun isDietAdded(): Boolean {
+        return timer.isDietAdded()
     }
 }

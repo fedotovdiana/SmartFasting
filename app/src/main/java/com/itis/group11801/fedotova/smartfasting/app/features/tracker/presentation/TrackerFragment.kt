@@ -63,15 +63,7 @@ class TrackerFragment : Fragment() {
             tv_end_time.text = it
         })
         viewModel.timerState.observe(viewLifecycleOwner, Observer { state ->
-            if (viewModel.checkFirstLaunch()) {
-                btn_set_up.visibility = View.VISIBLE
-                tv_text_start.visibility = View.VISIBLE
-                cl.visibility = View.GONE
-                fab_start.visibility = View.GONE
-                fab_stop.visibility = View.GONE
-                tv_open_diets.visibility = View.GONE
-                ll.visibility = View.GONE
-            } else {
+            if (viewModel.checkDietAdded()) {
                 btn_set_up.visibility = View.GONE
                 tv_text_start.visibility = View.GONE
                 cl.visibility = View.VISIBLE
@@ -91,6 +83,14 @@ class TrackerFragment : Fragment() {
                         tv_text_status.text = viewModel.getStopText()
                     }
                 }
+            } else {
+                btn_set_up.visibility = View.VISIBLE
+                tv_text_start.visibility = View.VISIBLE
+                cl.visibility = View.GONE
+                fab_start.visibility = View.GONE
+                fab_stop.visibility = View.GONE
+                tv_open_diets.visibility = View.GONE
+                ll.visibility = View.GONE
             }
         })
     }

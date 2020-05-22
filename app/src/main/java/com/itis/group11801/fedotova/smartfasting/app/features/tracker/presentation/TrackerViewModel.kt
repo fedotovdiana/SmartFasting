@@ -35,7 +35,7 @@ class TrackerViewModel @Inject constructor(
     val endTime: LiveData<String>
         get() = interactor.getEndTime().map { mapStartTime(it) }
 
-    fun checkFirstLaunch() = interactor.isFirstLaunch()
+    fun checkDietAdded() = interactor.isDietAdded()
 
     fun startTimer() {
         interactor.startTimer()
