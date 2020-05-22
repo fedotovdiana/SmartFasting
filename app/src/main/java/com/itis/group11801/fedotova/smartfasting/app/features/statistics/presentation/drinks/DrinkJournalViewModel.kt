@@ -14,7 +14,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.statistics.domain.
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalChild
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalParent
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatToDate
+import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormat
 import javax.inject.Inject
 
 @ScreenScope
@@ -64,10 +64,10 @@ class DrinkJournalViewModel @Inject constructor(
             var childItems: MutableList<JournalChild>
             var i = 0
             var totalVolume = 0
-            var curDate = dateFormatToDate(notes[0].date)
+            var curDate = dateFormat(notes[0].date)
             childItems = ArrayList()
             while (i < notes.size) {
-                val date = dateFormatToDate(notes[i].date)
+                val date = dateFormat(notes[i].date)
                 if (date == curDate) {
                     childItems.add(JournalChild(notes[i].drinkSort.name, notes[i].volume))
                     totalVolume += notes[i].volume
@@ -86,7 +86,5 @@ class DrinkJournalViewModel @Inject constructor(
         return parentItems
     }
 
-    fun getTextColor(): Int {
-        return resourceManager.getColor(R.color.colorTextDark)
-    }
+    fun getTextColor() = resourceManager.getColor(R.color.colorTextDark)
 }

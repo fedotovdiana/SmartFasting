@@ -6,7 +6,20 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/fragment_tracker">
 
+    <TextView
+        android:id="@+id/tv_text_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_start"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/progress_countdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progress_countdown" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl"
         android:layout_width="212dp"
         android:layout_height="212dp"
         android:background="@drawable/round"
@@ -32,14 +45,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:paddingVertical="2dp"
-            android:text="10:00:09"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="@color/colorAccent"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10:00:09" />
 
         <TextView
             android:id="@+id/tv_text_goal"
@@ -56,12 +69,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="19 h"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_text_goal" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_text_goal"
+            tools:text="19 h" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar

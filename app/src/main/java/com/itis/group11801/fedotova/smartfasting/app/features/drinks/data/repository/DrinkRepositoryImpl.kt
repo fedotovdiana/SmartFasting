@@ -10,7 +10,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.managers.PreferenceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatToDate
+import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -42,7 +42,7 @@ class DrinkRepositoryImpl @Inject constructor(
     }
 
     override fun getWaterVolume(): Int {
-        val date = dateFormatToDate(Date())
+        val date = dateFormat(Date())
         return if (date == preferenceManager.getDate()) {
             preferenceManager.getDrinkVolume()
         } else {
@@ -58,7 +58,7 @@ class DrinkRepositoryImpl @Inject constructor(
 
     private suspend fun saveToPreference(drinkNote: DrinkNote) {
         withContext(Dispatchers.IO) {
-            val date = dateFormatToDate(Date())
+            val date = dateFormat(Date())
             if (date == preferenceManager.getDate()) {
                 val newVolume = drinkNote.volume + preferenceManager.getDrinkVolume()
                 preferenceManager.setDrinkVolume(newVolume)

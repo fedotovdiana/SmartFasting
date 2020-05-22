@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState.RUNNING
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.TimerState.RUNNING
 import kotlinx.android.synthetic.main.content_tracker.*
 import kotlinx.android.synthetic.main.fragment_tracker.*
 import javax.inject.Inject
@@ -50,24 +50,6 @@ class TrackerFragment : Fragment() {
     }
 
     private fun subscribeUI() {
-        viewModel.timerState.observe(viewLifecycleOwner, Observer { state ->
-            when (state) {
-                RUNNING -> {
-                    fab_start.visibility = View.GONE
-                    fab_stop.visibility = View.VISIBLE
-                    tv_open_diets.visibility = View.GONE
-                    tv_end_time.visibility = View.VISIBLE
-                    tv_text_status.text = viewModel.getStartText()
-                }
-                else -> {
-                    fab_start.visibility = View.VISIBLE
-                    fab_stop.visibility = View.GONE
-                    tv_open_diets.visibility = View.VISIBLE
-                    tv_end_time.visibility = View.GONE
-                    tv_text_status.text = viewModel.getStopText()
-                }
-            }
-        })
         viewModel.progress.observe(viewLifecycleOwner, Observer {
             progress_countdown.progress = it
         })
@@ -80,19 +62,35 @@ class TrackerFragment : Fragment() {
         viewModel.endTime.observe(viewLifecycleOwner, Observer {
             tv_end_time.text = it
         })
-        viewModel.isFirstLaunch.observe(viewLifecycleOwner, Observer {
-            if (it) {
+        viewModel.timerState.observe(viewLifecycleOwner, Observer { state ->
+            if (viewModel.checkFirstLaunch()) {
                 btn_set_up.visibility = View.VISIBLE
+                tv_text_start.visibility = View.VISIBLE
+                cl.visibility = View.GONE
                 fab_start.visibility = View.GONE
                 fab_stop.visibility = View.GONE
                 tv_open_diets.visibility = View.GONE
-                tv_text_status.visibility = View.GONE
+                ll.visibility = View.GONE
             } else {
                 btn_set_up.visibility = View.GONE
-                fab_start.visibility = View.VISIBLE
-                fab_stop.visibility = View.VISIBLE
-                tv_open_diets.visibility = View.VISIBLE
-                tv_text_status.visibility = View.VISIBLE
+                tv_text_start.visibility = View.GONE
+                cl.visibility = View.VISIBLE
+                when (state) {
+                    RUNNING -> {
+                        fab_start.visibility = View.GONE
+                        fab_stop.visibility = View.VISIBLE
+                        tv_open_diets.visibility = View.GONE
+                        tv_end_time.visibility = View.VISIBLE
+                        tv_text_status.text = viewModel.getStartText()
+                    }
+                    else -> {
+                        fab_start.visibility = View.VISIBLE
+                        fab_stop.visibility = View.GONE
+                        tv_open_diets.visibility = View.VISIBLE
+                        tv_end_time.visibility = View.GONE
+                        tv_text_status.text = viewModel.getStopText()
+                    }
+                }
             }
         })
     }

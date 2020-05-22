@@ -1,9 +1,10 @@
-package com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain
+package com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.model.TrackerNote
 import com.itis.group11801.fedotova.smartfasting.app.managers.AlarmsManager
 import com.itis.group11801.fedotova.smartfasting.app.managers.NotificationsManager

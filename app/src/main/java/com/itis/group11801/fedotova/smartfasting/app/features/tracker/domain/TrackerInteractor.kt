@@ -2,6 +2,8 @@ package com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain
 
 import androidx.lifecycle.LiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.Timer
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.TimerState
 import javax.inject.Inject
 
 @AppScope

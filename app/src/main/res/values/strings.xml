@@ -23,7 +23,7 @@
     <string name="title_btn_see_more">See more</string>
     <string name="title_btn_show_dj">Show drink journal</string>
 
-    <!--fasts-->
+    <!--diets-->
     <string name="title_fast_first">12h:12h</string>
     <string name="title_fast_second">14h:10h</string>
     <string name="title_fast_third">16h:8h</string>
@@ -59,17 +59,20 @@
     <string name="timer_on_start">Timer is started</string>
     <string name="timer_on_stop">Start your timer</string>
     <string name="timer_confirm_stop">Stop timer?</string>
+    <string name="text_start">Choose a diet \n to launch your tracker</string>
 
     <!--statistics-->
     <string name="title_main_statistics">Main statistics</string>
     <string name="title_drink_statistics">Drink statistics</string>
-    <string name="title_total_diets">Total diet days</string>
-    <string name="title_total_drinks">Total drinks</string>
-    <string name="title_longest_diet">Longest fast</string>
-    <string name="title_average_drink">Average drink</string>
     <string name="title_tracker_graph">Tracker graph</string>
+    <string name="title_total_diets">Total diet time</string>
+    <string name="title_average_diets">Average time</string>
+    <string name="title_max_diet">Longest time</string>
+    <string name="title_min_diet">Shortest time</string>
+    <string name="title_total_drink">Total drinks, ml</string>
+    <string name="title_average_drink">Most popular</string>
     <string name="journal">Journal</string>
-    <string name="graph">Graph</string>
+    <string name="drink_graph">Drink graph</string>
     <string name="ml">ml</string>
 
     <!--diets-->
@@ -181,5 +184,4 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-
 </resources>
