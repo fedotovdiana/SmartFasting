@@ -41,11 +41,18 @@ class DrinkJournalAdapter(private val items: List<JournalParent>) :
         private var context: Context? = null
 
         override fun onClick(view: View?) {
-            if (view?.id == R.id.ll_parent_content) {
+            if (view?.id == R.id.btn_drop_down ||
+                view?.id == R.id.btn_drop_up ||
+                view?.id == R.id.ll_parent_content
+            ) {
                 if (itemView.ll_child_items?.visibility == View.VISIBLE) {
                     itemView.ll_child_items?.visibility = View.GONE
+                    itemView.btn_drop_up?.visibility = View.GONE
+                    itemView.btn_drop_down?.visibility = View.VISIBLE
                 } else {
                     itemView.ll_child_items?.visibility = View.VISIBLE
+                    itemView.btn_drop_up?.visibility = View.VISIBLE
+                    itemView.btn_drop_down?.visibility = View.GONE
                 }
             } else {
                 val clicked = view as LinearLayout
@@ -59,6 +66,8 @@ class DrinkJournalAdapter(private val items: List<JournalParent>) :
             itemView.tv_date.text = item.date
             itemView.tv_total_volume.text = item.totalVolume.toString()
             itemView.ll_parent_content.setOnClickListener(this)
+            itemView.btn_drop_up.setOnClickListener(this)
+            itemView.btn_drop_down.setOnClickListener(this)
             itemView.ll_child_items?.visibility = View.GONE
 
             val size = item.list.size

@@ -4,5 +4,6 @@ data class DietUI(
     val id: Int,
     val title: String,
     val desc: String,
-    val gradient: Int
+    val gradient: Int,
+    val img: Int
 )

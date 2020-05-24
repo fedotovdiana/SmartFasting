@@ -2,6 +2,8 @@ package com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain
 
 import androidx.lifecycle.LiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.Timer
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.TimerState
 import javax.inject.Inject
 
 @AppScope
@@ -21,7 +23,7 @@ class TrackerInteractor @Inject constructor(
     }
 
     fun pauseTimer() {
-        timer.cancelTimer()
+        timer.saveTimer()
     }
 
     fun getProgress(): LiveData<Long> {
@@ -36,15 +38,19 @@ class TrackerInteractor @Inject constructor(
         return timer.state
     }
 
-    fun getProgressTime(): LiveData<Long> {
-        return timer.progressTime
+    fun getProgressRemaining(): LiveData<Long> {
+        return timer.progressRemaining
     }
 
     fun getTimerLength(): Long {
         return timer.getTimerLength()
     }
 
-    fun getStartTime(): LiveData<Long> {
-        return timer.startTime
+    fun getEndTime(): LiveData<Long> {
+        return timer.endTime
+    }
+
+    fun isDietAdded(): Boolean {
+        return timer.isDietAdded()
     }
 }

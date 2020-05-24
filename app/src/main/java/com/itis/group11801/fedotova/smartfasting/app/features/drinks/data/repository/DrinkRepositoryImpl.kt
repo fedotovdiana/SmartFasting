@@ -6,10 +6,11 @@ import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.DrinkDao
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.mapper.mapDrinkNoteLocalToDrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.mapper.mapDrinkNoteToDrinkNoteLocal
+import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.model.DrinkSort
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
-import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatToDate
 import com.itis.group11801.fedotova.smartfasting.app.managers.PreferenceManager
+import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -36,12 +37,12 @@ class DrinkRepositoryImpl @Inject constructor(
         return drinkDao.getTotalVolume()
     }
 
-    override fun getAverageVolume(): LiveData<Int> {
+    override fun getAverageVolume(): LiveData<DrinkSort?> {
         return drinkDao.getAverageVolume()
     }
 
     override fun getWaterVolume(): Int {
-        val date = dateFormatToDate(Date())
+        val date = dateFormat(Date())
         return if (date == preferenceManager.getDate()) {
             preferenceManager.getDrinkVolume()
         } else {
@@ -55,9 +56,13 @@ class DrinkRepositoryImpl @Inject constructor(
         return preferenceManager.getDayWaterVolume()
     }
 
+    override fun isDrinkAdded(): Boolean {
+        return preferenceManager.isDrinkAdded()
+    }
+
     private suspend fun saveToPreference(drinkNote: DrinkNote) {
         withContext(Dispatchers.IO) {
-            val date = dateFormatToDate(Date())
+            val date = dateFormat(Date())
             if (date == preferenceManager.getDate()) {
                 val newVolume = drinkNote.volume + preferenceManager.getDrinkVolume()
                 preferenceManager.setDrinkVolume(newVolume)
@@ -65,7 +70,7 @@ class DrinkRepositoryImpl @Inject constructor(
                 preferenceManager.setDrinkVolume(drinkNote.volume)
                 preferenceManager.setDate(date)
             }
-
+            preferenceManager.setIsDrinkAdded()
         }
     }
 }

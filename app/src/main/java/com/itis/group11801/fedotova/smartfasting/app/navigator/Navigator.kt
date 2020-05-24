@@ -10,23 +10,19 @@ import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.DrinkRouter
 import com.itis.group11801.fedotova.smartfasting.app.features.news.NewsRouter
-import com.itis.group11801.fedotova.smartfasting.app.features.settings.SettingsRouter
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.StatisticsRouter
 import javax.inject.Inject
 
 @AppScope
 class Navigator @Inject constructor(
     private val context: Context
-) : NewsRouter, DietRouter, DrinkRouter, SettingsRouter {
+) : NewsRouter, DietRouter, DrinkRouter, StatisticsRouter {
 
     private var navController: NavController? = null
 
     fun attachNavController(navController: NavController?, graph: Int) {
         navController?.setGraph(graph)
         this.navController = navController
-    }
-
-    override fun openSettings() {
-        navController?.navigate(R.id.navigation_settings)
     }
 
     fun detachNavController(navController: NavController) {
@@ -59,5 +55,9 @@ class Navigator @Inject constructor(
 
     override fun openConfirmStopDialogFragment() {
         navController?.navigate(R.id.navigation_confirm_stop_dialog)
+    }
+
+    override fun openDrinkJournal() {
+        navController?.navigate(R.id.navigation_drink_journal)
     }
 }

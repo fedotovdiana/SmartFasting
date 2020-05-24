@@ -7,8 +7,8 @@ import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerInteractor
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.TimerState
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TimerState
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -27,13 +27,15 @@ class TrackerViewModel @Inject constructor(
         get() = interactor.getProgressMax().map { it.toInt() }
 
     val progressText: LiveData<String>
-        get() = interactor.getProgressTime().map { mapProgress(it) }
+        get() = interactor.getProgressRemaining().map { mapRemainTime(it) }
 
     val timerState: LiveData<TimerState>
         get() = interactor.getState()
 
-    val startTime: LiveData<String>
-        get() = interactor.getStartTime().map { mapStartTime(it) }
+    val endTime: LiveData<String>
+        get() = interactor.getEndTime().map { mapStartTime(it) }
+
+    fun checkDietAdded() = interactor.isDietAdded()
 
     fun startTimer() {
         interactor.startTimer()
@@ -71,7 +73,7 @@ class TrackerViewModel @Inject constructor(
         router.openConfirmStopDialogFragment()
     }
 
-    private fun mapProgress(remainingSeconds: Long): String {
+    private fun mapRemainTime(remainingSeconds: Long): String {
         val hours = remainingSeconds / 3600
         val minutes = remainingSeconds / 60 - hours * 60
         val seconds = remainingSeconds - hours * 3600 - minutes * 60

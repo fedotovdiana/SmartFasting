@@ -9,8 +9,13 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.
 import com.itis.group11801.fedotova.smartfasting.app.features.news.data.local.NewsDao
 import com.itis.group11801.fedotova.smartfasting.app.features.news.data.local.model.NewsLocal
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.data.local.TrackerDao
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.data.local.model.TrackerNoteLocal
 
-@Database(entities = [NewsLocal::class, DrinkNoteLocal::class], version = 1, exportSchema = false)
+@Database(
+    entities = [NewsLocal::class, DrinkNoteLocal::class, TrackerNoteLocal::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun newsDao(): NewsDao
@@ -23,7 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
         fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(AppDatabase::class) {
                 INSTANCE ?: Room.databaseBuilder(
-                    context.applicationContext, AppDatabase::class.java, "sm1.db"
+                    context.applicationContext, AppDatabase::class.java, "sm2.db"
                 ).build()
             }
         }

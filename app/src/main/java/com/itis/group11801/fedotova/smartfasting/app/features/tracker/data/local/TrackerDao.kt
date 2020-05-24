@@ -18,12 +18,12 @@ interface TrackerDao {
     @Query("SELECT COUNT(*) FROM tracker_notes")
     fun getCount(): LiveData<Int>
 
-    @Query("SELECT MIN(time) FROM tracker_notes")
+    @Query("SELECT IFNULL(MIN(time), 0) FROM tracker_notes")
     fun getMin(): LiveData<Long>
 
-    @Query("SELECT MAX(time) FROM tracker_notes")
+    @Query("SELECT IFNULL(MAX(time), 0) FROM tracker_notes")
     fun getMax(): LiveData<Long>
 
-    @Query("SELECT AVG(time) FROM tracker_notes")
+    @Query("SELECT IFNULL(AVG(time), 0) FROM tracker_notes")
     fun getAverage(): LiveData<Long>
 }

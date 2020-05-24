@@ -37,7 +37,7 @@ class NewsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.updateDb()
+        viewModel.update()
     }
 
     private fun observeViewModel() {

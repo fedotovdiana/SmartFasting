@@ -15,6 +15,8 @@ import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.
 import com.itis.group11801.fedotova.smartfasting.app.features.news.presentation.di.NewsComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.DrinkJournalFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.di.DrinkJournalComponent
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.main.StatisticsFragment
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.main.di.StatisticsComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.ConfirmStopDialogFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.TrackerFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
@@ -30,6 +32,7 @@ object AppInjector {
     private var newsComponent: NewsComponent? = null
     private var trackerComponent: TrackerComponent? = null
     private var drinkJournalComponent: DrinkJournalComponent? = null
+    private var statisticsComponent: StatisticsComponent? = null
 
     fun init(application: App) {
         DaggerAppComponent
@@ -105,6 +108,15 @@ object AppInjector {
             }
     }
 
+    fun initStatisticsComponent() {
+        statisticsComponent ?: appComponent
+            .plusStatisticsComponentBuilder()
+            .build()
+            .also {
+                statisticsComponent = it
+            }
+    }
+
     fun injectDrinkTrackerFragment(fragment: DrinkTrackerFragment) {
         drinkComponent?.inject(fragment)
     }
@@ -137,6 +149,10 @@ object AppInjector {
         drinkJournalComponent?.inject(fragment)
     }
 
+    fun injectStatisticsFragment(fragment: StatisticsFragment) {
+        statisticsComponent?.inject(fragment)
+    }
+
     fun clearDietPlansComponent() {
         dietPlansComponent = null
     }
@@ -159,5 +175,9 @@ object AppInjector {
 
     fun clearDrinkJournalComponent() {
         drinkJournalComponent = null
+    }
+
+    fun clearStatisticsComponent() {
+        statisticsComponent = null
     }
 }

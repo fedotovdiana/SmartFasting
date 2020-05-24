@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="8dp"
+    android:paddingHorizontal="8dp"
     android:orientation="vertical"
     tools:context=".app.features.statistics.presentation.drinks.DrinkJournalFragment">
 
@@ -14,9 +14,9 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/graph"
+            android:text="@string/drink_graph"
             android:layout_marginTop="24dp"
             android:textSize="18sp"
             android:layout_marginStart="16dp" />

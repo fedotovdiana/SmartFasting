@@ -18,28 +18,23 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.features.news.domain.model.News
-import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormat
+import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatFromString
 import com.itis.group11801.fedotova.smartfasting.app.utils.getRandomDrawableColor
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_news.*
 
 class NewsAdapter(
     private val onClick: (String) -> Unit
-) : ListAdapter<News, NewsViewHolder>(
-    DiffCallback
-) {
+) : ListAdapter<News, NewsViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         NewsViewHolder(
-            LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_news, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
         )
 
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) =
         holder.bind(getItem(position), onClick)
-    }
 }
 
 class NewsViewHolder(
@@ -55,7 +50,7 @@ class NewsViewHolder(
             tv_description.text = description
             tv_source.text = source
             publishedAt.let {
-                val time = dateFormat(publishedAt)
+                val time = dateFormatFromString(publishedAt)
                 tv_time.text = time
             }
         }

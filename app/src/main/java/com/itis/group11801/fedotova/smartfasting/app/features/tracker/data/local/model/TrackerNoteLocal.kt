@@ -9,7 +9,8 @@ import java.util.*
 @TypeConverters(DateConverter::class)
 @Entity(tableName = "tracker_notes")
 data class TrackerNoteLocal(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val time: Long,
     val date: Date
 )

@@ -20,9 +20,9 @@ class NewsViewModel @Inject constructor(
     val news: LiveData<List<News>>
         get() = interactor.getNews()
 
-    fun updateDb() {
+    fun update() {
         viewModelScope.launch(Dispatchers.IO) {
-            interactor.updateDb()
+            interactor.update()
         }
     }
 

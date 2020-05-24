@@ -1,36 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".app.MainActivity"
+    tools:layout_marginVertical="64dp">
 
-    <TextView
-        android:id="@+id/tv_fast_info"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_tracker"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@id/btn_choose"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp">
 
-    </TextView>
+        <TextView
+            android:id="@+id/tv_fast_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:paddingHorizontal="16dp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/diet_0_description" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/iv_timer"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/title_tracker"
+        tools:src="@drawable/timer_pink" />
 
     <Button
         android:id="@+id/btn_choose"
-        android:layout_width="120dp"
-        android:layout_height="32dp"
+        android:layout_width="168dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/custom_btn"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/title_btn_choose"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="16sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

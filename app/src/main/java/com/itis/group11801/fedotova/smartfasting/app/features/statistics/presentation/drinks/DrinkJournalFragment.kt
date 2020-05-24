@@ -88,7 +88,7 @@ class DrinkJournalFragment : Fragment(), OnChartValueSelectedListener {
                 axisMinimum = 0f
                 textColor = viewModel.getTextColor()
                 setDrawAxisLine(false)
-                setDrawGridLines(false)
+                setDrawGridLines(true)
             }
             with(axisLeft) {
                 isEnabled = false

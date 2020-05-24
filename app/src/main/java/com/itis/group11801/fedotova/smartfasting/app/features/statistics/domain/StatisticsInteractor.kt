@@ -1,11 +1,12 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.statistics.domain
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
+import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.model.DrinkSort
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerRepository
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.model.TrackerNote
 import javax.inject.Inject
 
 @AppScope
@@ -17,12 +18,20 @@ class StatisticsInteractor @Inject constructor(
         return drinkRepository.getDrinkNotes()
     }
 
-    fun getTotalDrinkVolume(): LiveData<Int> {
+    fun getDrinkVolumeTotal(): LiveData<Int> {
         return drinkRepository.getTotalVolume()
     }
 
-    fun getAverageDrinkVolume(): LiveData<Int> {
+    fun getDrinkVolumeAverage(): LiveData<DrinkSort?> {
         return drinkRepository.getAverageVolume()
+    }
+
+    fun isDrinkAdded(): Boolean {
+        return drinkRepository.isDrinkAdded()
+    }
+
+    fun getTrackerNotes(): LiveData<List<TrackerNote>> {
+        return trackerRepository.getTrackerNotes()
     }
 
     fun getTrackerNotesCount(): LiveData<Int> {
@@ -39,5 +48,9 @@ class StatisticsInteractor @Inject constructor(
 
     fun getTrackerNotesAverage(): LiveData<Long> {
         return trackerRepository.getTrackerNotesAverage()
+    }
+
+    fun isTrackerNoteAdded(): Boolean {
+        return trackerRepository.isTrackerNoteAdded()
     }
 }

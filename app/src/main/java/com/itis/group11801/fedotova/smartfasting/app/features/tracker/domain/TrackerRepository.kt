@@ -23,7 +23,13 @@ interface TrackerRepository {
 
     fun setRemainingSeconds(time: Long)
 
+    fun resetRemainingSeconds()
+
     fun getAlarmSetTime(): Long
 
     fun setAlarmSetTime(time: Long)
+
+    fun isDietAdded(): Boolean
+
+    fun isTrackerNoteAdded(): Boolean
 }
