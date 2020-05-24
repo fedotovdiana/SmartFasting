@@ -82,7 +82,7 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
         viewModel.labels.observe(viewLifecycleOwner, Observer {
             with(chart_tracker.xAxis) {
                 valueFormatter = IndexAxisValueFormatter(it)
-                setLabelCount(it.size, true)
+                labelCount = it.size
             }
         })
         viewModel.data.observe(viewLifecycleOwner, Observer {
@@ -108,7 +108,6 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
                 textSize = 10f
                 setDrawAxisLine(false)
                 setDrawGridLines(false)
-                setCenterAxisLabels(true)
                 textColor = viewModel.getTextColor()
             }
             with(axisRight) {
