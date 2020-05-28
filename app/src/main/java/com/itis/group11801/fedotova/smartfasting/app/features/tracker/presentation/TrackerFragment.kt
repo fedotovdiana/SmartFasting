@@ -4,25 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.TimerState.RUNNING
 import kotlinx.android.synthetic.main.content_tracker.*
 import kotlinx.android.synthetic.main.fragment_tracker.*
-import javax.inject.Inject
 
-class TrackerFragment : Fragment() {
-
-    @Inject
-    lateinit var viewModel: TrackerViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.initTrackerComponent()
-        AppInjector.injectTrackerFragment(this)
-        super.onCreate(savedInstanceState)
-    }
+class TrackerFragment : BaseFragment<TrackerViewModel>() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +22,12 @@ class TrackerFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_tracker, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        subscribeUI()
+    override fun inject() {
+        AppInjector.initTrackerComponent()
+        AppInjector.injectTrackerFragment(this)
+    }
+
+    override fun initViews() {
         fab_start.setOnClickListener {
             viewModel.startTimer()
         }
@@ -49,20 +43,20 @@ class TrackerFragment : Fragment() {
         tv_goal.text = viewModel.getTimerLength()
     }
 
-    private fun subscribeUI() {
-        viewModel.progress.observe(viewLifecycleOwner, Observer {
+    override fun subscribe(viewModel: TrackerViewModel) {
+        observe(viewModel.progress, Observer {
             progress_countdown.progress = it
         })
-        viewModel.progressMax.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.progressMax, Observer {
             progress_countdown.max = it
         })
-        viewModel.progressText.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.progressText, Observer {
             tv_countdown.text = it
         })
-        viewModel.endTime.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.endTime, Observer {
             tv_end_time.text = it
         })
-        viewModel.timerState.observe(viewLifecycleOwner, Observer { state ->
+        observe(viewModel.timerState, Observer { state ->
             if (viewModel.checkDietAdded()) {
                 btn_set_up.visibility = View.GONE
                 tv_text_start.visibility = View.GONE

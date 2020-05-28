@@ -32,7 +32,6 @@ class NewsAdapter(
             LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
         )
 
-
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) =
         holder.bind(getItem(position), onClick)
 }
@@ -40,11 +39,8 @@ class NewsAdapter(
 class NewsViewHolder(
     override val containerView: View
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-
     fun bind(news: News, onClick: (String) -> Unit) {
-
         setImg(news)
-
         news.apply {
             tv_title.text = title
             tv_description.text = description
@@ -54,10 +50,7 @@ class NewsViewHolder(
                 tv_time.text = time
             }
         }
-
-        itemView.setOnClickListener {
-            onClick(news.url)
-        }
+        itemView.setOnClickListener { onClick(news.url) }
     }
 
     private fun setImg(news: News) {

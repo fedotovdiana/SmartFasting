@@ -11,8 +11,8 @@ import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.domain.StatisticsInteractor
-import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalChild
-import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalParent
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalChildUI
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalParentUI
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
 import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormat
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class DrinkJournalViewModel @Inject constructor(
     private val resourceManager: ResourceManager
 ) : ViewModel() {
 
-    val journal: LiveData<List<JournalParent>> =
+    val journal: LiveData<List<JournalParentUI>> =
         _drinkNotes.map(::mapToJournal)
 
     val data: LiveData<BarData> = journal.map(::mapToBarChartData)
@@ -35,7 +35,7 @@ class DrinkJournalViewModel @Inject constructor(
     val labels: LiveData<MutableList<String>>
         get() = _labels
 
-    private fun mapToBarChartData(journal: List<JournalParent>): BarData {
+    private fun mapToBarChartData(journal: List<JournalParentUI>): BarData {
         val entities = ArrayList<BarEntry>()
         val labelsList = ArrayList<String>()
         var i = 0
@@ -58,32 +58,32 @@ class DrinkJournalViewModel @Inject constructor(
         return barData
     }
 
-    private fun mapToJournal(notes: List<DrinkNote>): List<JournalParent> {
-        val parentItems: MutableList<JournalParent> = ArrayList()
+    private fun mapToJournal(notes: List<DrinkNote>): List<JournalParentUI> {
+        val parentUIItems: MutableList<JournalParentUI> = ArrayList()
         if (notes.isNotEmpty()) {
-            var childItems: MutableList<JournalChild>
+            var childUIItems: MutableList<JournalChildUI>
             var i = 0
             var totalVolume = 0
             var curDate = dateFormat(notes[0].date)
-            childItems = ArrayList()
+            childUIItems = ArrayList()
             while (i < notes.size) {
                 val date = dateFormat(notes[i].date)
                 if (date == curDate) {
-                    childItems.add(JournalChild(notes[i].drinkSort.name, notes[i].volume))
+                    childUIItems.add(JournalChildUI(notes[i].drinkSort.name, notes[i].volume))
                     totalVolume += notes[i].volume
                     i++
                 } else {
-                    val dummyParentDataItem = JournalParent(curDate, totalVolume, childItems)
-                    parentItems.add(dummyParentDataItem)
+                    val dummyParentDataItem = JournalParentUI(curDate, totalVolume, childUIItems)
+                    parentUIItems.add(dummyParentDataItem)
                     totalVolume = 0
                     curDate = date
-                    childItems = ArrayList()
+                    childUIItems = ArrayList()
                 }
             }
-            val dummyParentDataItem = JournalParent(curDate, totalVolume, childItems)
-            parentItems.add(dummyParentDataItem)
+            val dummyParentDataItem = JournalParentUI(curDate, totalVolume, childUIItems)
+            parentUIItems.add(dummyParentDataItem)
         }
-        return parentItems
+        return parentUIItems
     }
 
     fun getTextColor() = resourceManager.getColor(R.color.colorTextDark)

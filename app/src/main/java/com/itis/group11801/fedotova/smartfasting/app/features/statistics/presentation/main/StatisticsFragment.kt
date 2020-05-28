@@ -4,28 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import kotlinx.android.synthetic.main.fragment_statistics.*
-import javax.inject.Inject
 
-class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
-
-    @Inject
-    lateinit var viewModel: StatisticsViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.initStatisticsComponent()
-        AppInjector.injectStatisticsFragment(this)
-        super.onCreate(savedInstanceState)
-    }
+class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSelectedListener {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,8 +26,12 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
         return inflater.inflate(R.layout.fragment_statistics, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun inject() {
+        AppInjector.initStatisticsComponent()
+        AppInjector.injectStatisticsFragment(this)
+    }
+
+    override fun initViews() {
         val isDrinkAdded = viewModel.checkDrinkAdded()
         val isTrackerNoteAdded = viewModel.checkTrackerNoteAdded()
         if (!(isDrinkAdded || isTrackerNoteAdded)) {
@@ -56,39 +51,46 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
             ll_stat.visibility = View.VISIBLE
             ll_graph.visibility = View.VISIBLE
         }
-        observeViewModel()
+        tv_see_more.setOnClickListener {
+            viewModel.openDrinkJournal()
+        }
         setupBarChart()
     }
 
-    private fun observeViewModel() {
-        viewModel.drinkVolumeTotal.observe(viewLifecycleOwner, Observer {
+    override fun subscribe(viewModel: StatisticsViewModel) {
+        observe(viewModel.drinkVolumeTotal, Observer {
             tv_stat_total_volume.text = it
         })
-        viewModel.drinkVolumeAverage.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.drinkVolumeAverage, Observer {
             tv_stat_pop_drink.text = it
         })
-        viewModel.trackerNotesCount.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.trackerNotesCount, Observer {
             tv_tracker_count.text = it
         })
-        viewModel.trackerNotesMin.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.trackerNotesMin, Observer {
             tv_tracker_min.text = it
         })
-        viewModel.trackerNotesMax.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.trackerNotesMax, Observer {
             tv_tracker_max.text = it
         })
-        viewModel.trackerNotesAverage.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.trackerNotesAverage, Observer {
             tv_tracker_average.text = it
         })
-        viewModel.labels.observe(viewLifecycleOwner, Observer {
-            with(chart_tracker.xAxis) {
-                valueFormatter = IndexAxisValueFormatter(it)
-                labelCount = it.size
-            }
-        })
-        viewModel.data.observe(viewLifecycleOwner, Observer {
-            chart_tracker.data = it
-        })
-        tv_see_more.setOnClickListener { viewModel.openDrinkJournal() }
+        observe(viewModel.labels, Observer { setLabels(it) })
+        observe(viewModel.data, Observer { setData(it) })
+    }
+
+    override fun onDestroy() {
+        AppInjector.clearStatisticsComponent()
+        super.onDestroy()
+    }
+
+    override fun onNothingSelected() {
+        chart_tracker.data.setDrawValues(false)
+    }
+
+    override fun onValueSelected(e: Entry?, h: Highlight?) {
+        chart_tracker.data.setDrawValues(true)
     }
 
     private fun setupBarChart() {
@@ -97,10 +99,8 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
             description.isEnabled = false
             legend.isEnabled = false
             setDrawBarShadow(true)
-            moveViewToX(100f)
             animateY(500)
             setDrawGridBackground(false)
-            setVisibleXRangeMaximum(8f)
             setNoDataText("")
             setDrawBarShadow(false)
             with(xAxis) {
@@ -126,11 +126,21 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
         }
     }
 
-    override fun onNothingSelected() {
-        chart_tracker.data.setDrawValues(false)
+    private fun setData(barData: BarData?) {
+        with(chart_tracker) {
+            data = barData
+            moveViewToX(100f)
+            setVisibleXRangeMaximum(6f)
+        }
     }
 
-    override fun onValueSelected(e: Entry?, h: Highlight?) {
-        chart_tracker.data.setDrawValues(true)
+    private fun setLabels(labels: MutableList<String>) {
+        with(chart_tracker.xAxis) {
+            if (labels.size < 2) isEnabled = false
+            else {
+                valueFormatter = IndexAxisValueFormatter(labels)
+                labelCount = labels.size
+            }
+        }
     }
 }

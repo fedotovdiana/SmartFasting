@@ -9,11 +9,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalParent
+import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalParentUI
 import kotlinx.android.synthetic.main.item_journal_child.view.*
 import kotlinx.android.synthetic.main.item_journal_parent.view.*
 
-class DrinkJournalAdapter(private val items: List<JournalParent>) :
+class DrinkJournalAdapter(private val items: List<JournalParentUI>) :
     RecyclerView.Adapter<DrinkJournalAdapter.JournalViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -61,7 +61,7 @@ class DrinkJournalAdapter(private val items: List<JournalParent>) :
             }
         }
 
-        fun bind(item: JournalParent) {
+        fun bind(item: JournalParentUI) {
             context = itemView.context
             itemView.tv_date.text = item.date
             itemView.tv_total_volume.text = item.totalVolume.toString()

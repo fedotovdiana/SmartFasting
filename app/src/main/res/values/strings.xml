@@ -19,7 +19,7 @@
     <string name="title_btn_choose_diet">Choose your diet</string>
     <string name="title_btn_add">Add</string>
     <string name="title_btn_cancel">Cancel</string>
-    <string name="title_btn_change">Change a diet plan</string>
+    <string name="title_btn_change">Change fasting plan</string>
     <string name="title_btn_see_more">See more</string>
     <string name="title_btn_show_dj">Show drink journal</string>
 
@@ -62,7 +62,7 @@
     <string name="text_start">Choose a diet \n to launch your tracker</string>
 
     <!--statistics-->
-    <string name="welcome_to_smartfasting">Welcome to SmartFasting</string>
+    <string name="welcome_to_smartfasting">Welcome to SmartFasting \n You have no statistics to display</string>
     <string name="title_main_statistics">Main statistics</string>
     <string name="title_drink_statistics">Drink statistics</string>
     <string name="title_tracker_graph">Tracker graph</string>
@@ -77,10 +77,6 @@
     <string name="ml">ml</string>
 
     <!--diets-->
-    <string name="diet_0_title">20:4 diet plan</string>
-    <string name="diet_1_title">16:8 diet plan</string>
-    <string name="diet_2_title">16:8 diet plan</string>
-    <string name="diet_3_title">10:14 diet plan</string>
     <string name="diet_0_description">This one is probably the most beginner-friendly \n intermittent fasting method. \n A 12-hour fast means that you eat within the first 12 h of the day and abstain from food for the next 12 h. \n You can start with this one, see how you’re doing and then extend your fasting time bit by bit until you’re ready to follow other methods!</string>
     <string name="diet_1_description">Fasting 14:10 has an eating window of 10 hours and fasting window of 14 hours. During the feeding period, \n you can eat your usual meals and snacks. Likewise, during the fasting window, you are not allowed to eat any calories. Taking all your calories within the 10-hour window can help repair genetic defects associated with obesity and chronic diseases.</string>
     <string name="diet_2_description">You should hold off from any food for 16 hours and eat during the remaining 8 hours of the day.\n  When following this method of fasting, you have to consume lots of high-protein foods and eat carbohydrates on rotation. \n This fasting method would probably be the most popular one and it has the best easy-to-follow \n and effectiveness ratio!</string>

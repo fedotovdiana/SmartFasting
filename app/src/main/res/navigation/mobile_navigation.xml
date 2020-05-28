@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.itis.group11801.fedotova.smartfasting.app.features.settings.presentation.SettingsFragment"
+        android:name="com.itis.group11801.fedotova.smartfasting.app.features.settings.SettingsFragment"
         android:label="@string/title_settings" />
 
     <fragment

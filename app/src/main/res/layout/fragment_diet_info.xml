@@ -20,8 +20,9 @@
         <TextView
             android:id="@+id/tv_fast_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="208dp"
             android:layout_marginVertical="16dp"
+            android:gravity="center"
             android:paddingHorizontal="16dp"
             android:textAlignment="center"
             android:textSize="16sp"
@@ -46,7 +47,6 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:background="@drawable/custom_btn"
         android:fontFamily="@font/abeezee_regular"
         android:text="@string/title_btn_choose"
         android:textColor="@android:color/white"

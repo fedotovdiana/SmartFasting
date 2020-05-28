@@ -4,24 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import kotlinx.android.synthetic.main.content_drink_tracker.*
 import kotlinx.android.synthetic.main.fragment_drink_tracker.*
-import javax.inject.Inject
 
-class DrinkTrackerFragment : Fragment() {
-
-    @Inject
-    lateinit var viewModel: DrinkTrackerViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.initDrinkComponent()
-        AppInjector.injectDrinkTrackerFragment(this)
-        super.onCreate(savedInstanceState)
-    }
+class DrinkTrackerFragment : BaseFragment<DrinkTrackerViewModel>() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,22 +21,25 @@ class DrinkTrackerFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_drink_tracker, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        btn_add_drink.setOnClickListener { viewModel.openDialog() }
-        subscribeUI()
+    override fun inject() {
+        AppInjector.initDrinkComponent()
+        AppInjector.injectDrinkTrackerFragment(this)
     }
 
-    private fun subscribeUI() {
-        viewModel.progress.observe(viewLifecycleOwner, Observer {
+    override fun initViews() {
+        btn_add_drink.setOnClickListener { viewModel.openDialog() }
+    }
+
+    override fun subscribe(viewModel: DrinkTrackerViewModel) {
+        observe(viewModel.progress, Observer {
             progress_drink.progress = it
-            tv_drink.text = "$it ml"
+            tv_drink.text = "$it " + ML
         })
-        viewModel.progressMax.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.progressMax, Observer {
             progress_drink.max = it
-            tv_goal.text = "$it ml"
+            tv_goal.text = "$it " + ML
         })
-        viewModel.progressTextRemain.observe(viewLifecycleOwner, Observer {
+        observe(viewModel.progressTextRemain, Observer {
             tv_drink_remain.text = it
         })
     }
@@ -59,5 +52,9 @@ class DrinkTrackerFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         AppInjector.clearDrinkComponent()
+    }
+
+    companion object {
+        const val ML = "ml"
     }
 }

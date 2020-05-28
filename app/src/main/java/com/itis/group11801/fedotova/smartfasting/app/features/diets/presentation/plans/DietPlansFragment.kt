@@ -5,23 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import kotlinx.android.synthetic.main.fragment_diet_plans.*
-import javax.inject.Inject
 
-class DietPlansFragment : Fragment() {
-
-    @Inject
-    lateinit var viewModel: DietPlansViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.initDietPlansComponent()
-        AppInjector.injectDietPlansFragment(this)
-        super.onCreate(savedInstanceState)
-    }
+class DietPlansFragment : BaseFragment<DietPlansViewModel>() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,16 +21,18 @@ class DietPlansFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_diet_plans, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        observeViewModel()
+    override fun inject() {
+        AppInjector.initDietPlansComponent()
+        AppInjector.injectDietPlansFragment(this)
     }
 
-    private fun observeViewModel() {
-        viewModel.dietPlans.observe(viewLifecycleOwner, Observer { result ->
+    override fun initViews() {}
+
+    override fun subscribe(viewModel: DietPlansViewModel) {
+        observe(viewModel.dietPlans, Observer { result ->
             if (rv_fasts.adapter == null) {
                 rv_fasts.adapter = DietPlansAdapter {
-                    viewModel.showDietPlan(bundleOf(DIET_PLAN_ID to it.id))
+                    viewModel.showDietPlan(createBundle(it.id))
                 }
             }
             (rv_fasts.adapter as DietPlansAdapter).submitList(result)
@@ -53,6 +45,10 @@ class DietPlansFragment : Fragment() {
     }
 
     companion object {
-        const val DIET_PLAN_ID = "smartfasting.diet_plan"
+        private const val DIET_PLAN_ID = "smartfasting.diet_plan"
+
+        fun createBundle(dietId: Int): Bundle {
+            return bundleOf(DIET_PLAN_ID to dietId)
+        }
     }
 }

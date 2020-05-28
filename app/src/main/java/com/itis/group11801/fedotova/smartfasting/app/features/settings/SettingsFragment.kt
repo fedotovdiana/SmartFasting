@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app.features.settings.presentation
+package com.itis.group11801.fedotova.smartfasting.app.features.settings
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat

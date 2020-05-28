@@ -4,47 +4,40 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_diet_info.*
-import javax.inject.Inject
 
-class DietInfoFragment : Fragment() {
-
-    @Inject
-    lateinit var viewModel: DietInfoViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.initDietInfoComponent()
-        AppInjector.injectDietInfoFragment(this)
-        super.onCreate(savedInstanceState)
-    }
+class DietInfoFragment : BaseFragment<DietInfoViewModel>() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        observeViewModel()
         return inflater.inflate(R.layout.fragment_diet_info, container, false)
     }
 
-    private fun observeViewModel() {
-        viewModel.diet.observe(viewLifecycleOwner, Observer {
+    override fun inject() {
+        AppInjector.initDietInfoComponent()
+        AppInjector.injectDietInfoFragment(this)
+    }
+
+    override fun initViews() {
+        viewModel.setDiet(requireArguments().getInt(DIET_PLAN_ID))
+        btn_choose.setOnClickListener { viewModel.chooseDiet() }
+    }
+
+    override fun subscribe(viewModel: DietInfoViewModel) {
+        observe(viewModel.diet, Observer {
             tv_fast_info.text = it.desc
             btn_choose.background = it.gradient
             activity?.toolbar?.title = it.title
             activity?.toolbar?.setBackgroundColor(it.color)
             iv_timer.setImageResource(it.img)
         })
-        viewModel.setDiet(arguments?.getInt(DIET_PLAN_ID) ?: 0)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        btn_choose.setOnClickListener { viewModel.chooseDiet() }
     }
 
     override fun onDestroy() {

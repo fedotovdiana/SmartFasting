@@ -4,21 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.app.base.BaseDialogFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import kotlinx.android.synthetic.main.dialog_fragment_choose_drink.*
-import javax.inject.Inject
 
-class ChooseDialogFragment : DialogFragment() {
-
-    @Inject
-    lateinit var viewModel: DrinkTrackerViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.injectChooseDialogFragment(this)
-        super.onCreate(savedInstanceState)
-    }
+class ChooseDialogFragment : BaseDialogFragment<DrinkTrackerViewModel>() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +19,11 @@ class ChooseDialogFragment : DialogFragment() {
         return inflater.inflate(R.layout.dialog_fragment_choose_drink, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun inject() {
+        AppInjector.injectChooseDialogFragment(this)
+    }
+
+    override fun initViews() {
         btn_save_drink.setOnClickListener {
             viewModel.saveDrink(spinner.selectedItem.toString(), et_volume.text.toString())
             dismiss()

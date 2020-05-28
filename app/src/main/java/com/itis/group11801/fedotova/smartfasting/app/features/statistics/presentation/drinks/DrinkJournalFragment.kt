@@ -4,63 +4,57 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.itis.group11801.fedotova.smartfasting.R
+import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import kotlinx.android.synthetic.main.fragment_drink_journal.*
-import javax.inject.Inject
 
-class DrinkJournalFragment : Fragment(), OnChartValueSelectedListener {
-
-    @Inject
-    lateinit var viewModel: DrinkJournalViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AppInjector.initDrinkJournalComponent()
-        AppInjector.injectDrinkJournalFragment(this)
-        super.onCreate(savedInstanceState)
-    }
+class DrinkJournalFragment : BaseFragment<DrinkJournalViewModel>(), OnChartValueSelectedListener {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_drink_journal, container, false)
-        observeViewModel()
-        return view
+        return inflater.inflate(R.layout.fragment_drink_journal, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun inject() {
+        AppInjector.initDrinkJournalComponent()
+        AppInjector.injectDrinkJournalFragment(this)
+    }
+
+    override fun initViews() {
         setupBarChart()
     }
 
-    private fun observeViewModel() {
-        viewModel.journal.observe(viewLifecycleOwner, Observer {
+    override fun subscribe(viewModel: DrinkJournalViewModel) {
+        observe(viewModel.journal, Observer {
             rv_journal.adapter = DrinkJournalAdapter(it)
             rv_journal.setHasFixedSize(true)
         })
-        viewModel.labels.observe(viewLifecycleOwner, Observer {
-            with(barChart.xAxis) {
-                valueFormatter = IndexAxisValueFormatter(it)
-                labelCount = it.size
-            }
-        })
-        viewModel.data.observe(viewLifecycleOwner, Observer {
-            barChart.data = it
-        })
+        observe(viewModel.labels, Observer { setLabels(it) })
+        observe(viewModel.data, Observer { setData(it) })
     }
 
     override fun onDestroy() {
         super.onDestroy()
         AppInjector.clearDrinkJournalComponent()
+    }
+
+    override fun onNothingSelected() {
+        barChart.data.setDrawValues(false)
+    }
+
+    override fun onValueSelected(e: Entry?, h: Highlight?) {
+        barChart.data.setDrawValues(true)
     }
 
     private fun setupBarChart() {
@@ -69,10 +63,8 @@ class DrinkJournalFragment : Fragment(), OnChartValueSelectedListener {
             description.isEnabled = false
             legend.isEnabled = false
             setDrawBarShadow(true)
-            moveViewToX(100f)
             animateY(500)
             setDrawGridBackground(false)
-            setVisibleXRangeMaximum(8f)
             setNoDataText("")
             setDrawBarShadow(false)
             with(xAxis) {
@@ -98,11 +90,21 @@ class DrinkJournalFragment : Fragment(), OnChartValueSelectedListener {
         }
     }
 
-    override fun onNothingSelected() {
-        barChart.data.setDrawValues(false)
+    private fun setData(barData: BarData?) {
+        with(barChart) {
+            data = barData
+            moveViewToX(100f)
+            setVisibleXRangeMaximum(6f)
+        }
     }
 
-    override fun onValueSelected(e: Entry?, h: Highlight?) {
-        barChart.data.setDrawValues(true)
+    private fun setLabels(labels: MutableList<String>) {
+        with(barChart.xAxis) {
+            if (labels.size < 2) isEnabled = false
+            else {
+                valueFormatter = IndexAxisValueFormatter(labels)
+                labelCount = labels.size
+            }
+        }
     }
 }
