@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1045116399922",
+    "firebase_url": "https://smart-fasting.firebaseio.com",
+    "project_id": "smart-fasting",
+    "storage_bucket": "smart-fasting.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045116399922:android:712f5dd6205759c513a72b",
+        "android_client_info": {
+          "package_name": "com.itis.group11801.fedotova.smartfasting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045116399922-ccmcabppga7seka95okdc1fhg0rlvmgk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY2eJ1vV0dix0FWDE4nXXbfmguGibqwt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045116399922-ccmcabppga7seka95okdc1fhg0rlvmgk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

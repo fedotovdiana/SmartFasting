@@ -39,7 +39,7 @@ class DrinkJournalFragment : BaseFragment<DrinkJournalViewModel>(), OnChartValue
         observe(viewModel.journal, Observer {
             rv_journal.adapter = DrinkJournalAdapter(it)
             rv_journal.setHasFixedSize(true)
-        })
+        })   
         observe(viewModel.labels, Observer { setLabels(it) })
         observe(viewModel.data, Observer { setData(it) })
     }
