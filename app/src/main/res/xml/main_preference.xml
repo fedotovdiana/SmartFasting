@@ -2,32 +2,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/title_notifications">
-
-        <SwitchPreferenceCompat
-            android:key="preference_gr"
-            android:title="@string/title_settings_gr" />
-
-        <SwitchPreferenceCompat
-            android:key="preference_ht"
-            android:title="@string/title_settings_ht" />
-
-        <SwitchPreferenceCompat
-            android:key="preference_lh"
-            android:title="@string/title_settings_lh" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/title_drinks">
 
         <EditTextPreference
+            app:defaultValue="2000"
+            app:key="smartfasting.volume"
+            app:title="@string/title_settings_drinks"
             android:dialogTitle="@string/title_enter_volume"
             android:digits="0123456789"
             android:inputType="numberDecimal"
-            android:summary="@string/title_tap_to_change"
-            app:defaultValue="2000"
-            app:key="smartfasting.volume"
-            app:title="@string/title_settings_drinks" />
+            android:summary="@string/title_tap_to_change" />
 
     </PreferenceCategory>
 

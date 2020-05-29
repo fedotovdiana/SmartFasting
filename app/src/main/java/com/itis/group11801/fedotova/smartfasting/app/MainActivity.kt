@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             menu?.findItem(R.id.navigation_settings)?.isVisible =
-                destination.id != R.id.navigation_settings
+                destination.id == R.id.navigation_drink_tracker || destination.id == R.id.navigation_choose_dialog
         }
         return super.onCreateOptionsMenu(menu)
     }
