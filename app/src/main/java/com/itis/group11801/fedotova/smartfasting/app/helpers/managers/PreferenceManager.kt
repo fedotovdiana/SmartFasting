@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app.managers
+package com.itis.group11801.fedotova.smartfasting.app.helpers.managers
 
 import android.content.SharedPreferences
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
@@ -145,7 +145,7 @@ class PreferenceManager @Inject constructor(
         const val IS_DIET_ADDED_ID = "smartfasting.is_diet_added"
         const val IS_DRINK_ADDED_ID = "smartfasting.is_drink_added"
         const val IS_TRACKER_NOTE_ADDED_ID = "smartfasting.is_tracker_note_added"
-        const val FIRST_DIET_TIME_ID = 60L
+        const val FIRST_DIET_TIME_ID = 43200L
         const val SECOND_DIET_TIME_ID = 50400L
         const val THIRD_DIET_TIME_ID = 57600L
         const val FOURTH_DIET_TIME_ID = 72000L

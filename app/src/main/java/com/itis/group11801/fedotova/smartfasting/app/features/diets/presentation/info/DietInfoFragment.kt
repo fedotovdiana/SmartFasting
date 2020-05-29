@@ -40,9 +40,13 @@ class DietInfoFragment : BaseFragment<DietInfoViewModel>() {
         })
     }
 
+    override fun onStop() {
+        super.onStop()
+        activity?.toolbar?.setBackgroundColor(viewModel.getDefaultColor())
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        activity?.toolbar?.setBackgroundColor(viewModel.getDefaultColor())
         AppInjector.clearDietInfoComponent()
     }
 

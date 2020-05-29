@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app.managers
+package com.itis.group11801.fedotova.smartfasting.app.helpers.managers
 
 import android.annotation.TargetApi
 import android.app.NotificationChannel
@@ -11,7 +11,7 @@ import androidx.core.app.NotificationCompat
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerNotificationReceiver
+import com.itis.group11801.fedotova.smartfasting.app.helpers.receivers.TimerStopReceiver
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -21,7 +21,7 @@ class NotificationsManager @Inject constructor(
     val context: Context
 ) {
     fun showTimerRunning(wakeUpTime: Long) {
-        val stopIntent = Intent(context, TimerNotificationReceiver::class.java)
+        val stopIntent = Intent(context, TimerStopReceiver::class.java)
         val stopPendingIntent = PendingIntent.getBroadcast(
             context, 0, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT
         )

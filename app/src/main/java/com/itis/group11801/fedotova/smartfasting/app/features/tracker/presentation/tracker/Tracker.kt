@@ -1,20 +1,19 @@
-package com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer
+package com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.tracker
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerRepository
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerInteractor
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.model.TrackerNote
-import com.itis.group11801.fedotova.smartfasting.app.managers.AlarmsManager
-import com.itis.group11801.fedotova.smartfasting.app.managers.NotificationsManager
+import com.itis.group11801.fedotova.smartfasting.app.helpers.managers.AlarmsManager
+import com.itis.group11801.fedotova.smartfasting.app.helpers.managers.NotificationsManager
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject
 
 @AppScope
-class Timer @Inject constructor(
-    private val repository: TrackerRepository,
+class Tracker @Inject constructor(
+    private val interactor: TrackerInteractor,
     private val alarmsManager: AlarmsManager,
     private val notificationsManager: NotificationsManager
 ) {
@@ -35,8 +34,8 @@ class Timer @Inject constructor(
     val progressRemaining: LiveData<Long>
         get() = _progressRemaining
 
-    private var _state = MutableLiveData(TimerState.STOPPED)
-    val state: LiveData<TimerState>
+    private var _state = MutableLiveData(TrackerState.STOPPED)
+    val state: LiveData<TrackerState>
         get() = _state
 
     private var _endTime: MutableLiveData<Long> = MutableLiveData(0)
@@ -47,24 +46,24 @@ class Timer @Inject constructor(
         get() = Calendar.getInstance().timeInMillis / 1000
 
     fun resumeTimer() {
-        remTime = repository.getRemainingSeconds()
-        maxTime = repository.getTimerLength()
+        remTime = interactor.getRemainingSeconds()
+        maxTime = interactor.getTimerLength()
         if (remTime < maxTime) {
-            remTime -= (nowSeconds - repository.getAlarmSetTime())
+            remTime -= (nowSeconds - interactor.getAlarmSetTime())
             if (remTime > 0) {
                 startTimer()
             } else {
                 remTime = maxTime
-                updateUI(TimerState.STOPPED)
+                update(TrackerState.STOPPED)
             }
             removeAlarm()
         } else {
-            updateUI(TimerState.STOPPED)
+            update(TrackerState.STOPPED)
         }
     }
 
     fun startTimer() {
-        updateUI(TimerState.RUNNING)
+        update(TrackerState.RUNNING)
         timer = scope.launch {
             for (ind: Long in (remTime - 1) downTo 0) {
                 withContext(Dispatchers.Main) {
@@ -82,59 +81,57 @@ class Timer @Inject constructor(
 
     fun stopTimer() {
         timer.cancel()
-        saveToDb(maxTime - remTime)
+        saveNote(maxTime - remTime)
         remTime = maxTime
-        repository.setRemainingSeconds(maxTime)
-        updateUI(TimerState.STOPPED)
+        interactor.setRemainingSeconds(maxTime)
+        update(TrackerState.STOPPED)
     }
 
     fun saveTimer() {
-        if (_state.value == TimerState.RUNNING) {
+        if (_state.value == TrackerState.RUNNING) {
             timer.cancel()
-            repository.setRemainingSeconds(remTime)
+            interactor.setRemainingSeconds(remTime)
             setAlarm()
         }
     }
 
     fun onTimerExpiredReceive() {
         notificationsManager.showTimerExpired()
-        saveToDb(repository.getTimerLength())
+        saveNote(interactor.getTimerLength())
         removeAlarm()
-        repository.resetRemainingSeconds()
+        interactor.resetRemainingSeconds()
     }
 
     fun onTimerStopReceive() {
         notificationsManager.hideTimerNotification()
-        val time = repository.getTimerLength() -
-                (repository.getRemainingSeconds() - (nowSeconds - repository.getAlarmSetTime()))
-        saveToDb(time)
+        val time = interactor.getTimerLength() -
+                (interactor.getRemainingSeconds() - (nowSeconds - interactor.getAlarmSetTime()))
+        saveNote(time)
         removeAlarm()
-        repository.resetRemainingSeconds()
+        interactor.resetRemainingSeconds()
     }
 
-    fun getTimerLength() = repository.getTimerLength()
+    fun getTimerLength() = interactor.getTimerLength()
 
-    fun isDietAdded() = repository.isDietAdded()
-
+    fun isDietAdded() = interactor.isDietAdded()
 
     private fun setAlarm() {
         val wakeUpTime = alarmsManager.setAlarm(nowSeconds, remTime)
-        repository.setAlarmSetTime(nowSeconds)
-        repository.setRemainingSeconds(remTime)
+        interactor.setAlarmSetTime(nowSeconds)
+        interactor.setRemainingSeconds(remTime)
         notificationsManager.showTimerRunning(wakeUpTime)
     }
 
     private fun removeAlarm() {
         alarmsManager.removeAlarm()
-        repository.setAlarmSetTime(0)
+        interactor.setAlarmSetTime(0)
     }
 
-    private fun saveToDb(time: Long) {
-        Log.e("TIME", time.toString())
-        scope.launch { repository.saveTrackerNote(TrackerNote(time, Date())) }
+    private fun saveNote(time: Long) {
+        scope.launch { interactor.saveTrackerNote(TrackerNote(time, Date())) }
     }
 
-    private fun updateUI(state: TimerState) {
+    private fun update(state: TrackerState) {
         _progressRemaining.value = remTime
         _progressMax.value = maxTime
         _progress.value = maxTime - remTime

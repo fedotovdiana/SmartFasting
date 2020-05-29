@@ -6,8 +6,8 @@ import androidx.lifecycle.map
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.ScreenScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.DietRouter
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerInteractor
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.TimerState
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.tracker.Tracker
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.tracker.TrackerState
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
 import java.text.SimpleDateFormat
 import java.util.*
@@ -15,50 +15,46 @@ import javax.inject.Inject
 
 @ScreenScope
 class TrackerViewModel @Inject constructor(
-    private val interactor: TrackerInteractor,
+    private val tracker: Tracker,
     private val resourceManager: ResourceManager,
     private val router: DietRouter
 ) : ViewModel() {
 
     val progress: LiveData<Int>
-        get() = interactor.getProgress().map { it.toInt() }
+        get() = tracker.progress.map { it.toInt() }
 
     val progressMax: LiveData<Int>
-        get() = interactor.getProgressMax().map { it.toInt() }
+        get() = tracker.progressMax.map { it.toInt() }
 
     val progressText: LiveData<String>
-        get() = interactor.getProgressRemaining().map { mapRemainTime(it) }
+        get() = tracker.progressRemaining.map { mapRemainTime(it) }
 
-    val timerState: LiveData<TimerState>
-        get() = interactor.getState()
+    val trackerState: LiveData<TrackerState>
+        get() = tracker.state
 
     val endTime: LiveData<String>
-        get() = interactor.getEndTime().map { mapStartTime(it) }
+        get() = tracker.endTime.map { mapStartTime(it) }
 
-    fun checkDietAdded() = interactor.isDietAdded()
+    fun checkDietAdded() = tracker.isDietAdded()
 
     fun startTimer() {
-        interactor.startTimer()
+        tracker.startTimer()
     }
 
     fun stopTimer() {
-        interactor.stopTimer()
+        tracker.stopTimer()
     }
 
     fun resumeTimer() {
-        interactor.resumeTimer()
-    }
-
-    fun openDiets() {
-        router.openDietPlansFragment()
+        tracker.resumeTimer()
     }
 
     fun pauseTimer() {
-        interactor.pauseTimer()
+        tracker.saveTimer()
     }
 
     fun getTimerLength(): String {
-        return "${(interactor.getTimerLength() / 3600)} h"
+        return "${(tracker.getTimerLength() / 3600)} h"
     }
 
     fun getStartText(): String {
@@ -71,6 +67,10 @@ class TrackerViewModel @Inject constructor(
 
     fun openDialog() {
         router.openConfirmStopDialogFragment()
+    }
+
+    fun openDiets() {
+        router.openDietPlansFragment()
     }
 
     private fun mapRemainTime(remainingSeconds: Long): String {

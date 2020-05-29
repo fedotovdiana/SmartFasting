@@ -1,12 +1,11 @@
 package com.itis.group11801.fedotova.smartfasting.app.utils
 
 import android.view.View
-import android.widget.ProgressBar
 
-fun ProgressBar.hide() {
+fun View.hide() {
     visibility = View.GONE
 }
 
-fun ProgressBar.show() {
+fun View.show() {
     visibility = View.VISIBLE
 }

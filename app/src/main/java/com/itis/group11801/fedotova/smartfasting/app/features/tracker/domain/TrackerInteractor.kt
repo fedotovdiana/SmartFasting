@@ -1,56 +1,42 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain
 
-import androidx.lifecycle.LiveData
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.Timer
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.TimerState
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.model.TrackerNote
 import javax.inject.Inject
 
 @AppScope
 class TrackerInteractor @Inject constructor(
-    private val timer: Timer
+    private val repository: TrackerRepository
 ) {
-    fun startTimer() {
-        timer.startTimer()
-    }
-
-    fun stopTimer() {
-        timer.stopTimer()
-    }
-
-    fun resumeTimer() {
-        timer.resumeTimer()
-    }
-
-    fun pauseTimer() {
-        timer.saveTimer()
-    }
-
-    fun getProgress(): LiveData<Long> {
-        return timer.progress
-    }
-
-    fun getProgressMax(): LiveData<Long> {
-        return timer.progressMax
-    }
-
-    fun getState(): LiveData<TimerState> {
-        return timer.state
-    }
-
-    fun getProgressRemaining(): LiveData<Long> {
-        return timer.progressRemaining
+    fun getRemainingSeconds(): Long {
+        return repository.getRemainingSeconds()
     }
 
     fun getTimerLength(): Long {
-        return timer.getTimerLength()
+        return repository.getTimerLength()
     }
 
-    fun getEndTime(): LiveData<Long> {
-        return timer.endTime
+    fun getAlarmSetTime(): Long {
+        return repository.getAlarmSetTime()
+    }
+
+    fun setRemainingSeconds(time: Long) {
+        repository.setRemainingSeconds(time)
+    }
+
+    fun resetRemainingSeconds() {
+        repository.resetRemainingSeconds()
     }
 
     fun isDietAdded(): Boolean {
-        return timer.isDietAdded()
+        return repository.isDietAdded()
+    }
+
+    fun setAlarmSetTime(time: Long) {
+        repository.setAlarmSetTime(time)
+    }
+
+    suspend fun saveTrackerNote(trackerNote: TrackerNote) {
+        repository.saveTrackerNote(trackerNote)
     }
 }

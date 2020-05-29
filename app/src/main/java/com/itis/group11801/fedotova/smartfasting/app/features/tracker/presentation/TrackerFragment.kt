@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
-import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.timer.TimerState.RUNNING
+import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.tracker.TrackerState.RUNNING
 import kotlinx.android.synthetic.main.content_tracker.*
 import kotlinx.android.synthetic.main.fragment_tracker.*
 
@@ -56,7 +56,7 @@ class TrackerFragment : BaseFragment<TrackerViewModel>() {
         observe(viewModel.endTime, Observer {
             tv_end_time.text = it
         })
-        observe(viewModel.timerState, Observer { state ->
+        observe(viewModel.trackerState, Observer { state ->
             if (viewModel.checkDietAdded()) {
                 btn_set_up.visibility = View.GONE
                 tv_text_start.visibility = View.GONE

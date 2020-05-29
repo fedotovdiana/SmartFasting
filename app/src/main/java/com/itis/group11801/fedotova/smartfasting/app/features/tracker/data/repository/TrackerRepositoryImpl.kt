@@ -8,7 +8,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.tracker.data.local
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.data.local.mapper.mapTrackerNoteToTrackerNoteLocal
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.TrackerRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.model.TrackerNote
-import com.itis.group11801.fedotova.smartfasting.app.managers.PreferenceManager
+import com.itis.group11801.fedotova.smartfasting.app.helpers.managers.PreferenceManager
 import javax.inject.Inject
 
 @AppScope

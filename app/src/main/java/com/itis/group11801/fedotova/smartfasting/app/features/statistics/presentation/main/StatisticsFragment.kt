@@ -1,6 +1,7 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,8 +77,12 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSele
         observe(viewModel.trackerNotesAverage, Observer {
             tv_tracker_average.text = it
         })
-        observe(viewModel.labels, Observer { setLabels(it) })
-        observe(viewModel.data, Observer { setData(it) })
+        observe(viewModel.labels, Observer {
+            setLabels(it)
+        })
+        observe(viewModel.data, Observer {
+            setData(it)
+        })
     }
 
     override fun onDestroy() {
@@ -140,6 +145,8 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSele
             else {
                 valueFormatter = IndexAxisValueFormatter(labels)
                 labelCount = labels.size
+                Log.e("DDD", labels.size.toString())
+                Log.e("DDD", labels.toString())
             }
         }
     }
