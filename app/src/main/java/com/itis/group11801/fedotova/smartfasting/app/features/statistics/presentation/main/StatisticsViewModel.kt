@@ -13,7 +13,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.statistics.Statist
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.domain.StatisticsInteractor
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.domain.model.TrackerNote
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormat
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.dateFormat
 import javax.inject.Inject
 
 @ScreenScope

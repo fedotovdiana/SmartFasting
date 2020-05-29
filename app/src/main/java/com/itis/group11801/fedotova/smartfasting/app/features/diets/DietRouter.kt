@@ -9,4 +9,6 @@ interface DietRouter {
     fun openDietInfoFragment(bundle: Bundle)
 
     fun openConfirmStopDialogFragment()
+
+    fun openTracker()
 }

@@ -1,7 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.app.di
 
 import com.itis.group11801.fedotova.smartfasting.app.App
-import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.common.AppComponent
 import com.itis.group11801.fedotova.smartfasting.app.di.common.DaggerAppComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info.DietInfoFragment
@@ -20,12 +19,13 @@ import com.itis.group11801.fedotova.smartfasting.app.features.statistics.present
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.ConfirmStopDialogFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.TrackerFragment
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
-import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerExpiredReceiver
-import com.itis.group11801.fedotova.smartfasting.app.receivers.TimerNotificationReceiver
+import com.itis.group11801.fedotova.smartfasting.app.helpers.services.TimerExpiredJobIntentService
+import com.itis.group11801.fedotova.smartfasting.app.helpers.services.TimerStopJobIntentService
+import com.itis.group11801.fedotova.smartfasting.app.ui.MainActivity
 
 object AppInjector {
 
-    lateinit var appComponent: AppComponent
+    private lateinit var appComponent: AppComponent
     private var dietPlansComponent: DietPlansComponent? = null
     private var dietInfoComponent: DietInfoComponent? = null
     private var drinkComponent: DrinkComponent? = null
@@ -46,12 +46,12 @@ object AppInjector {
         appComponent.inject(activity)
     }
 
-    fun injectTimerExpiredReceiver(receiver: TimerExpiredReceiver) {
-        appComponent.inject(receiver)
+    fun injectTimerStopJobIntentService(service: TimerStopJobIntentService) {
+        appComponent.inject(service)
     }
 
-    fun injectTimerNotificationReceiver(receiver: TimerNotificationReceiver) {
-        appComponent.inject(receiver)
+    fun injectTimerExpiredJobIntentService(service: TimerExpiredJobIntentService) {
+        appComponent.inject(service)
     }
 
     fun initDietPlansComponent() {

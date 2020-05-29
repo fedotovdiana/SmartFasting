@@ -9,8 +9,8 @@ import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.data.local.model.DrinkSort
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.DrinkRepository
 import com.itis.group11801.fedotova.smartfasting.app.features.drinks.domain.model.DrinkNote
-import com.itis.group11801.fedotova.smartfasting.app.managers.PreferenceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormat
+import com.itis.group11801.fedotova.smartfasting.app.helpers.managers.PreferenceManager
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.dateFormat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*

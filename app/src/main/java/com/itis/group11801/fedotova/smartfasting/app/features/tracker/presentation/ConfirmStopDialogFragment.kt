@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.app.base.BaseDialogFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
+import com.itis.group11801.fedotova.smartfasting.app.ui.base.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_fragment_confirm_stop.*
 
 class ConfirmStopDialogFragment : BaseDialogFragment<TrackerViewModel>() {

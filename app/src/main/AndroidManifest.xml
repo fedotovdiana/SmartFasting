@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".app.App"
@@ -14,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
         <activity
-            android:name=".app.MainActivity"
+            android:name=".app.ui.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,12 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver
-            android:name=".app.receivers.TimerExpiredReceiver"
+            android:name=".app.helpers.receivers.TimerExpiredReceiver"
             android:enabled="true"
             android:exported="false" />
         <receiver
-            android:name=".app.receivers.TimerNotificationReceiver"
+            android:name=".app.helpers.receivers.TimerStopReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -37,6 +39,13 @@
                 <action android:name="start" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name=".app.helpers.services.TimerStopJobIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".app.helpers.services.TimerExpiredJobIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

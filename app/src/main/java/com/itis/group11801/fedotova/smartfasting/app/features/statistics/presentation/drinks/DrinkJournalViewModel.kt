@@ -14,7 +14,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.statistics.domain.
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalChildUI
 import com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.drinks.model.JournalParentUI
 import com.itis.group11801.fedotova.smartfasting.app.resources.ResourceManager
-import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormat
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.dateFormat
 import javax.inject.Inject
 
 @ScreenScope

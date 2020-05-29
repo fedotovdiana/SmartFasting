@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app.utils
+package com.itis.group11801.fedotova.smartfasting.app.ui.utils
 
 import com.itis.group11801.fedotova.smartfasting.R
 import java.text.ParseException

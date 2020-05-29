@@ -45,6 +45,10 @@ class Navigator @Inject constructor(
         navController?.navigate(R.id.open_diet_info, bundle)
     }
 
+    override fun openTracker() {
+        navController?.navigate(R.id.action_navigation_diet_info_to_navigation_tracker)
+    }
+
     override fun openDrinkDialog() {
         navController?.navigate(R.id.navigation_choose_dialog)
     }

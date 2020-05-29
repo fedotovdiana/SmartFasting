@@ -62,7 +62,7 @@
     <string name="text_start">Choose a diet \n to launch your tracker</string>
 
     <!--statistics-->
-    <string name="welcome_to_smartfasting">Welcome to SmartFasting \n You have no statistics to display</string>
+    <string name="welcome_to_smartfasting">Welcome to SmartFasting! \n You have no statistics to display</string>
     <string name="title_main_statistics">Main statistics</string>
     <string name="title_drink_statistics">Drink statistics</string>
     <string name="title_tracker_graph">Tracker graph</string>
