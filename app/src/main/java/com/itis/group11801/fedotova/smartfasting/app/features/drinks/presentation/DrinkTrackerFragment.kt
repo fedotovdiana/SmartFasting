@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
+import com.itis.group11801.fedotova.smartfasting.app.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.content_drink_tracker.*
 import kotlinx.android.synthetic.main.fragment_drink_tracker.*
 

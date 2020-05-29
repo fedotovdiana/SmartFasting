@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app.base
+package com.itis.group11801.fedotova.smartfasting.app.ui.base
 
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment

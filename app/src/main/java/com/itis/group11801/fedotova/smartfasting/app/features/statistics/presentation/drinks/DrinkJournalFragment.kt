@@ -12,8 +12,8 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
+import com.itis.group11801.fedotova.smartfasting.app.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_drink_journal.*
 
 class DrinkJournalFragment : BaseFragment<DrinkJournalViewModel>(), OnChartValueSelectedListener {

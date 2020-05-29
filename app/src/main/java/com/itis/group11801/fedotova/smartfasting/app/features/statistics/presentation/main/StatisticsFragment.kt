@@ -1,7 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.app.features.statistics.presentation.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +12,10 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.app.base.BaseFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
+import com.itis.group11801.fedotova.smartfasting.app.ui.base.BaseFragment
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.hide
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.show
 import kotlinx.android.synthetic.main.fragment_statistics.*
 
 class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSelectedListener {
@@ -36,21 +37,21 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSele
         val isDrinkAdded = viewModel.checkDrinkAdded()
         val isTrackerNoteAdded = viewModel.checkTrackerNoteAdded()
         if (!(isDrinkAdded || isTrackerNoteAdded)) {
-            tv_welcome.visibility = View.VISIBLE
-            ll_stat.visibility = View.GONE
-            ll_graph.visibility = View.GONE
+            tv_welcome.show()
+            ll_stat.hide()
+            ll_graph.hide()
         } else if (!isDrinkAdded) {
-            tv_welcome.visibility = View.GONE
-            cv_drink.visibility = View.GONE
-            tv_see_more.visibility = View.GONE
+            tv_welcome.hide()
+            cv_drink.hide()
+            tv_see_more.hide()
         } else if (!isTrackerNoteAdded) {
-            tv_welcome.visibility = View.GONE
-            cv_tracker.visibility = View.GONE
-            ll_graph.visibility = View.GONE
+            tv_welcome.hide()
+            cv_tracker.hide()
+            ll_graph.hide()
         } else {
-            tv_welcome.visibility = View.GONE
-            ll_stat.visibility = View.VISIBLE
-            ll_graph.visibility = View.VISIBLE
+            tv_welcome.hide()
+            ll_stat.show()
+            ll_graph.show()
         }
         tv_see_more.setOnClickListener {
             viewModel.openDrinkJournal()
@@ -145,8 +146,6 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSele
             else {
                 valueFormatter = IndexAxisValueFormatter(labels)
                 labelCount = labels.size
-                Log.e("DDD", labels.size.toString())
-                Log.e("DDD", labels.toString())
             }
         }
     }

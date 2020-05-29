@@ -1,7 +1,6 @@
 package com.itis.group11801.fedotova.smartfasting.app.di
 
 import com.itis.group11801.fedotova.smartfasting.app.App
-import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.common.AppComponent
 import com.itis.group11801.fedotova.smartfasting.app.di.common.DaggerAppComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info.DietInfoFragment
@@ -22,6 +21,7 @@ import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentati
 import com.itis.group11801.fedotova.smartfasting.app.features.tracker.presentation.di.TrackerComponent
 import com.itis.group11801.fedotova.smartfasting.app.helpers.services.TimerExpiredJobIntentService
 import com.itis.group11801.fedotova.smartfasting.app.helpers.services.TimerStopJobIntentService
+import com.itis.group11801.fedotova.smartfasting.app.ui.MainActivity
 
 object AppInjector {
 

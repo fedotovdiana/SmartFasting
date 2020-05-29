@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.app.base.BaseDialogFragment
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
+import com.itis.group11801.fedotova.smartfasting.app.ui.base.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_fragment_choose_drink.*
 
 class ChooseDialogFragment : BaseDialogFragment<DrinkTrackerViewModel>() {

@@ -9,9 +9,9 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.itis.group11801.fedotova.smartfasting.R
-import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.app.helpers.receivers.TimerStopReceiver
+import com.itis.group11801.fedotova.smartfasting.app.ui.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject

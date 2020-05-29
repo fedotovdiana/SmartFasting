@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app.utils
+package com.itis.group11801.fedotova.smartfasting.app.ui.utils
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

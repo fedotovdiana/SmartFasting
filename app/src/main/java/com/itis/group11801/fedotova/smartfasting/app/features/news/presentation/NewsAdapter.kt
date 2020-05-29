@@ -18,8 +18,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.features.news.domain.model.News
-import com.itis.group11801.fedotova.smartfasting.app.utils.dateFormatFromString
-import com.itis.group11801.fedotova.smartfasting.app.utils.getRandomDrawableColor
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.dateFormatFromString
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.getRandomDrawableColor
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_news.*
 

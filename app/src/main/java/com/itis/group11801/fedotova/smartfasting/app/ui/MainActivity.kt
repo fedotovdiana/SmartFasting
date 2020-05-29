@@ -1,4 +1,4 @@
-package com.itis.group11801.fedotova.smartfasting.app
+package com.itis.group11801.fedotova.smartfasting.app.ui
 
 import android.content.Intent
 import android.os.Bundle

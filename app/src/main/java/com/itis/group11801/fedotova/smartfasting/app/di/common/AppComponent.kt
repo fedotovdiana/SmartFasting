@@ -2,7 +2,6 @@ package com.itis.group11801.fedotova.smartfasting.app.di.common
 
 import android.app.Application
 import com.itis.group11801.fedotova.smartfasting.app.App
-import com.itis.group11801.fedotova.smartfasting.app.MainActivity
 import com.itis.group11801.fedotova.smartfasting.app.di.scope.AppScope
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.info.di.DietInfoComponent
 import com.itis.group11801.fedotova.smartfasting.app.features.diets.presentation.plans.di.DietPlansComponent
@@ -15,6 +14,7 @@ import com.itis.group11801.fedotova.smartfasting.app.helpers.receivers.TimerExpi
 import com.itis.group11801.fedotova.smartfasting.app.helpers.receivers.TimerStopReceiver
 import com.itis.group11801.fedotova.smartfasting.app.helpers.services.TimerExpiredJobIntentService
 import com.itis.group11801.fedotova.smartfasting.app.helpers.services.TimerStopJobIntentService
+import com.itis.group11801.fedotova.smartfasting.app.ui.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 
