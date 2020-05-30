@@ -25,7 +25,11 @@
         android:id="@+id/navigation_drink_tracker"
         android:name="com.itis.group11801.fedotova.smartfasting.app.features.drinks.presentation.DrinkTrackerFragment"
         android:label="@string/title_drink_tracker"
-        tools:layout="@layout/fragment_drink_tracker" />
+        tools:layout="@layout/fragment_drink_tracker">
+        <action
+            android:id="@+id/action_navigation_drink_tracker_to_navigation_settings"
+            app:destination="@id/navigation_settings" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_statistics"

@@ -123,6 +123,7 @@ class Tracker @Inject constructor(
     }
 
     private fun removeAlarm() {
+        notificationsManager.hideTimerNotification()
         alarmsManager.removeAlarm()
         interactor.setAlarmSetTime(0)
     }
