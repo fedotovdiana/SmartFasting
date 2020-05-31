@@ -29,7 +29,7 @@ class StatisticsViewModel @Inject constructor(
         interactor.getDrinkVolumeTotal().map { "$it ml" }
 
     val drinkVolumeAverage: LiveData<String> =
-        interactor.getDrinkVolumeAverage().map { it?.name ?: "" }
+        interactor.getDrinkMostPopular().map { it?.name ?: "" }
 
     val trackerNotesCount: LiveData<String> =
         interactor.getTrackerNotesCount().map { it.toString() }
@@ -55,6 +55,10 @@ class StatisticsViewModel @Inject constructor(
         router.openDrinkJournal()
     }
 
+    fun getTextColor(): Int {
+        return resourceManager.getColor(R.color.colorTextDark)
+    }
+
     private fun mapTime(time: Long): String {
         val hours = time / 3600
         val minutes = time / 60 - hours * 60
@@ -76,16 +80,17 @@ class StatisticsViewModel @Inject constructor(
         _labels.value = labelsList
 
         val barDataSet = BarDataSet(entities, "")
-        barDataSet.highLightAlpha = 40
-        barDataSet.color = resourceManager.getColor(R.color.colorAccent)
-
+        with(barDataSet) {
+            highLightAlpha = 40
+            color = resourceManager.getColor(R.color.colorAccent)
+        }
         val barData = BarData(barDataSet)
-        barData.barWidth = 0.3f
-        barData.setValueTextSize(10f)
-        barData.setDrawValues(false)
-        barData.setValueTextColor(resourceManager.getColor(R.color.colorTextDark))
+        with(barData) {
+            barWidth = 0.2f
+            setValueTextSize(10f)
+            setDrawValues(false)
+            setValueTextColor(resourceManager.getColor(R.color.colorTextDark))
+        }
         return barData
     }
-
-    fun getTextColor() = resourceManager.getColor(R.color.colorTextDark)
 }

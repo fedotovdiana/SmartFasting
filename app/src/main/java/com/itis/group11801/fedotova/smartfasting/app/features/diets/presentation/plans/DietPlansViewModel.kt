@@ -34,7 +34,7 @@ class DietPlansViewModel @Inject constructor(
         }
     }
 
-    fun showDietPlan(bundle: Bundle) {
+    fun showDietInfo(bundle: Bundle) {
         router.openDietInfoFragment(bundle)
     }
 }

@@ -32,7 +32,7 @@ class DietPlansFragment : BaseFragment<DietPlansViewModel>() {
         observe(viewModel.dietPlans, Observer { result ->
             if (rv_fasts.adapter == null) {
                 rv_fasts.adapter = DietPlansAdapter {
-                    viewModel.showDietPlan(createBundle(it.id))
+                    viewModel.showDietInfo(createBundle(it.id))
                 }
             }
             (rv_fasts.adapter as DietPlansAdapter).submitList(result)

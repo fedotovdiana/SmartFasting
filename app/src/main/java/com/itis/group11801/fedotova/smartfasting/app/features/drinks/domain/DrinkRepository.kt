@@ -12,7 +12,7 @@ interface DrinkRepository {
 
     fun getTotalVolume(): LiveData<Int>
 
-    fun getAverageVolume(): LiveData<DrinkSort?>
+    fun getMostPopular(): LiveData<DrinkSort?>
 
     fun getWaterVolume(): Int
 

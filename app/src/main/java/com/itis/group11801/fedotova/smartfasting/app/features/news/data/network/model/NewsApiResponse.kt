@@ -3,7 +3,7 @@ package com.itis.group11801.fedotova.smartfasting.app.features.news.data.network
 
 import com.google.gson.annotations.SerializedName
 
-data class NewaApiResponse(
+data class NewsApiResponse(
     @SerializedName("status")
     val status: String?,
     @SerializedName("totalResults")

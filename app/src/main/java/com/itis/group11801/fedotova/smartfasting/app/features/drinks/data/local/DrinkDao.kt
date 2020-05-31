@@ -20,5 +20,5 @@ interface DrinkDao {
     fun getTotalVolume(): LiveData<Int>
 
     @Query(" SELECT drink_sort FROM drink_notes GROUP BY drink_sort ORDER BY COUNT(*) DESC")
-    fun getAverageVolume(): LiveData<DrinkSort?>
+    fun getMostPopular(): LiveData<DrinkSort?>
 }

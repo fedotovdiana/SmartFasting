@@ -22,8 +22,8 @@ class StatisticsInteractor @Inject constructor(
         return drinkRepository.getTotalVolume()
     }
 
-    fun getDrinkVolumeAverage(): LiveData<DrinkSort?> {
-        return drinkRepository.getAverageVolume()
+    fun getDrinkMostPopular(): LiveData<DrinkSort?> {
+        return drinkRepository.getMostPopular()
     }
 
     fun isDrinkAdded(): Boolean {
