@@ -31,24 +31,40 @@ class DrinkTrackerViewModel @Inject constructor(
     val progressTextRemain: LiveData<String>
         get() = _progressTextRemain
 
+    private var _isIncorrect: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isIncorrect: LiveData<Boolean>
+        get() = _isIncorrect
+
     fun saveDrink(sort: String, volume: String) {
-        if (volume != "") {
+        if (volume != "" && volume.toInt() > 50 && volume.toInt() < 2000) {
             _progress.value = _progress.value?.plus(volume.toInt())
-            _progressTextRemain.value = "${_progressMax.value!! - _progress.value!!}ml"
+            _progressTextRemain.value = getFormattedRemainString()
 
             viewModelScope.launch {
                 interactor.saveDrinkNote(DrinkNote(DrinkSort.valueOf(sort), volume.toInt(), Date()))
             }
+        } else {
+            _isIncorrect.value = true
         }
     }
 
     fun updateProgress() {
         _progressMax.value = interactor.getDayWaterVolume()
         _progress.value = interactor.getWaterVolume()
-        _progressTextRemain.value = "${_progressMax.value!! - _progress.value!!} ml"
+        _progressTextRemain.value = getFormattedRemainString()
     }
 
     fun openDialog() {
         router.openDrinkDialog()
+    }
+
+    fun changeState() {
+        _isIncorrect.value = false
+    }
+
+    private fun getFormattedRemainString(): String {
+        var remain = _progressMax.value!! - _progress.value!!
+        if (remain < 0) remain = 0
+        return "$remain ml"
     }
 }

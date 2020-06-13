@@ -49,7 +49,7 @@
     <Button
         android:id="@+id/btn_set_up"
         android:layout_width="184dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:background="@drawable/custom_btn"
         android:elevation="4dp"
         android:text="@string/title_btn_choose_diet"

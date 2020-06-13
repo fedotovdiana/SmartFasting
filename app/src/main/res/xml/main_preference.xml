@@ -10,7 +10,8 @@
             app:title="@string/title_settings_drinks"
             android:dialogTitle="@string/title_enter_volume"
             android:digits="0123456789"
-            android:inputType="numberDecimal"
+            android:icon="@drawable/ic_local_drink_gray_24dp"
+            android:inputType="number"
             android:summary="@string/title_tap_to_change" />
 
     </PreferenceCategory>

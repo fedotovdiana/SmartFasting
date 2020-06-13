@@ -27,6 +27,11 @@ class NewsRepositoryImpl @Inject constructor(
         newsDao.insertAll(news.map { mapNewsToNewsLocal(it) })
     }
 
-    private suspend fun getRemoteNews(): List<News> =
-        service.getNews().newsResponse!!.map { mapNewsApiResultToNews(it) }
+    private suspend fun getRemoteNews(): List<News> {
+        return try {
+            service.getNews().newsResponse!!.map { mapNewsApiResultToNews(it) }
+        } catch (e: Exception) {
+            listOf()
+        }
+    }
 }

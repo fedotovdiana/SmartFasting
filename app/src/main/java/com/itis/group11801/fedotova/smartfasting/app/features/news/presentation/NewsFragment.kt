@@ -8,6 +8,8 @@ import androidx.lifecycle.Observer
 import com.itis.group11801.fedotova.smartfasting.R
 import com.itis.group11801.fedotova.smartfasting.app.di.AppInjector
 import com.itis.group11801.fedotova.smartfasting.app.ui.base.BaseFragment
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.hide
+import com.itis.group11801.fedotova.smartfasting.app.ui.utils.show
 import kotlinx.android.synthetic.main.fragment_news.*
 
 class NewsFragment : BaseFragment<NewsViewModel>() {
@@ -29,10 +31,15 @@ class NewsFragment : BaseFragment<NewsViewModel>() {
 
     override fun subscribe(viewModel: NewsViewModel) {
         observe(viewModel.news, Observer { result ->
-            if (rvNews.adapter == null) {
-                rvNews.adapter = NewsAdapter { viewModel.newsClicked(it) }
+            if (result.isEmpty()) {
+                iv_no_internet.show()
+            } else {
+                iv_no_internet.hide()
+                if (rvNews.adapter == null) {
+                    rvNews.adapter = NewsAdapter { viewModel.newsClicked(it) }
+                }
+                (rvNews.adapter as NewsAdapter).submitList(result)
             }
-            (rvNews.adapter as NewsAdapter).submitList(result)
         })
     }
 
