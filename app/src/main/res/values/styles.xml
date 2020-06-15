@@ -19,7 +19,7 @@
 
     <!--Style for Splash Screen-->
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+<!--        <item name="android:windowBackground">@drawable/splash_screen_background</item>-->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>

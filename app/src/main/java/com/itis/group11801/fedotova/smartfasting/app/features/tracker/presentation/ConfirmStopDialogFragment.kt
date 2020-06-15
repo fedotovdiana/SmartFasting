@@ -36,7 +36,7 @@ class ConfirmStopDialogFragment : BaseDialogFragment<TrackerViewModel>() {
     }
 
     companion object {
-        const val TIMER_STOPPED = "Timer stopped"
+        const val TIMER_STOPPED = "TIMER STOPPED"
     }
 
     override fun subscribe(viewModel: TrackerViewModel) {}

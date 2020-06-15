@@ -36,7 +36,7 @@ class DrinkTrackerViewModel @Inject constructor(
         get() = _isIncorrect
 
     fun saveDrink(sort: String, volume: String) {
-        if (volume != "" && volume.toInt() > 50 && volume.toInt() < 2000) {
+        if (volume != "" && volume.toInt() >= 50 && volume.toInt() <= 2000) {
             _progress.value = _progress.value?.plus(volume.toInt())
             _progressTextRemain.value = getFormattedRemainString()
 

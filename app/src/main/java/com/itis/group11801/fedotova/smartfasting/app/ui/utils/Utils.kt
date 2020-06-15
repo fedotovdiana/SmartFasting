@@ -21,7 +21,7 @@ fun getRandomDrawableColor() = colors[Random.nextInt(colors.size)]
 
 fun dateFormatFromString(oldStringDate: String): String {
     val newDate: String
-    val dateFormat = SimpleDateFormat("d MMM yyyy", Locale(getCountry()))
+    val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.US)
     newDate = try {
         val date: Date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(oldStringDate)
         dateFormat.format(date)
@@ -34,7 +34,7 @@ fun dateFormatFromString(oldStringDate: String): String {
 
 fun dateFormat(oldDate: Date): String {
     val newDate: String
-    val dateFormat = SimpleDateFormat("d MMM yyyy", Locale(getCountry()))
+    val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.US)
     newDate = try {
         dateFormat.format(oldDate)
     } catch (e: ParseException) {

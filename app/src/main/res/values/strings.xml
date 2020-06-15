@@ -36,7 +36,7 @@
     <string name="title_settings_drinks">Drink volume per day</string>
     <string name="title_drinks">Drinks</string>
     <string name="title_tap_to_change">Tap to change</string>
-    <string name="title_enter_volume">Enter drink volume, ml</string>
+    <string name="title_enter_volume">Between 500 and 5000 ml</string>
 
     <!--drink tracker-->
     <string name="title_goal">Your goal</string>

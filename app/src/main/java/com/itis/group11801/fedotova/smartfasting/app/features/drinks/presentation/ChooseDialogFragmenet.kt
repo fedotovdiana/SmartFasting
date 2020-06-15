@@ -46,6 +46,6 @@ class ChooseDialogFragment : BaseDialogFragment<DrinkTrackerViewModel>() {
     }
 
     companion object {
-        const val TOAST_INCORRECT = "INCORRECT VALUE FOR VOLUME"
+        const val TOAST_INCORRECT = "ONLY BETWEEN 50 AND 2000 ML"
     }
 }

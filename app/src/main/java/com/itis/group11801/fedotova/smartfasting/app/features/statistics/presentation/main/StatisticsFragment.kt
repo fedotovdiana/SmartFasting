@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.itis.group11801.fedotova.smartfasting.R
@@ -102,6 +104,7 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSele
     private fun setupBarChart() {
         with(chart_tracker) {
             setOnChartValueSelectedListener(this@StatisticsFragment)
+            setScaleEnabled(false)
             description.isEnabled = false
             legend.isEnabled = false
             setDrawBarShadow(true)
@@ -123,6 +126,7 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSele
                 textColor = viewModel.getTextColor()
                 setDrawAxisLine(false)
                 setDrawGridLines(true)
+                axisRight.valueFormatter = YAxisValueFormatter()
             }
             with(axisLeft) {
                 isEnabled = false
@@ -142,10 +146,25 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel>(), OnChartValueSele
 
     private fun setLabels(labels: MutableList<String>) {
         with(chart_tracker.xAxis) {
-            if (labels.size < 2) isEnabled = false
-            else {
-                valueFormatter = IndexAxisValueFormatter(labels)
-                labelCount = labels.size
+            when {
+                labels.size < 2 -> isEnabled = false
+                labels.size < 7 -> {
+                    valueFormatter = IndexAxisValueFormatter(labels)
+                    labelCount = labels.size
+                }
+                else -> valueFormatter = IndexAxisValueFormatter(labels)
+            }
+        }
+    }
+
+    class YAxisValueFormatter : ValueFormatter() {
+
+        override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+            return when {
+                value < 1 -> "0"
+                value < 60 -> "${value.toInt()}s"
+                value < 3600 -> "${value.toInt() / 60}m"
+                else -> "${value.toInt() / 3600}h"
             }
         }
     }
